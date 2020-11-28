@@ -15,27 +15,36 @@
 
             </div>
         </div>
+        <form [formGroup]="masteradminphonenumberFormRegistration">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-sm-4">
-                <label for="">Admin Name</label>
-                <input type="text" class="form-control" placeholder="Enter Your Admin Name">
+                <div class="col-sm-4">
+                    <label for="">Admin Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Your Admin Name" [(ngModel)]="aname" [ngClass]="{ 'is-invalid': submitted && f.aname.errors }" formControlName="aname">
+
+                    <div *ngIf="submitted && f.aname.errors" class="invalid-feedback">
+                        <div *ngIf="f.aname.errors.required">Admin name is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for=""> Admin Phone Number</label>
+                    <input type="number" class="form-control" placeholder="Enter Your Admin Phone Number" [(ngModel)]="aphn" [ngClass]="{ 'is-invalid': submitted && f.aphn.errors }" formControlName="aphn">
+
+                    <div *ngIf="submitted && f.aphn.errors" class="invalid-feedback">
+                        <div *ngIf="f.aphn.errors.required">Admin phone number is required</div>
+
+                    </div>
+
+
+                    <div class="col-sm-12">
+                        <button class="btn btn-warning" (click)="submit()">SUBMIT</button>
+                    </div>
+
+                </div>
+
             </div>
-
-            <div class="col-sm-4">
-                <label for=""> Admin Phone Number</label>
-                <input type="number" class="form-control" placeholder="Enter Your  Admin Phone Number">
-            </div>
-
-
-
-
-
-            <div class="col-sm-12">
-                <button class="btn btn-warning">SUBMIT</button>
-            </div>
-
-        </div>
+        </form>
     </div>
-</div>

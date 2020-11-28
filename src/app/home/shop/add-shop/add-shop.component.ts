@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./add-shop.component.css']
 })
 export class AddShopComponent implements OnInit {
-  shopform:FormGroup;
+  // shopform:FormGroup;
   sessiondayssRepat
   repeatsessiondays = [
     {
@@ -22,7 +22,7 @@ export class AddShopComponent implements OnInit {
     },
     {
       "id": "1",
-      "day": "Alapuzha",
+      "day": "Alappuzha",
     },
     {
       "id": "2",
@@ -32,20 +32,48 @@ export class AddShopComponent implements OnInit {
       "id": "3",
       "day": "Karthikappally",
     },
-   
+
   ]
   value;
-  constructor(private fb:FormBuilder) { }
+
+  shopFormRegistration: FormGroup;
+  submitted = false;
+
+  sname;
+  scat;
+  saddress;
+  sphn;
+  sotime;
+  sctime;
+  movalue;
+  sdperc;
+  pucharge;
+  dcharge;
+  check;
+  checkeddays;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.shopform = this.fb.group({
-      check:['',Validators.required],
+    this.shopFormRegistration = this.fb.group({
+      sname: ['', Validators.required],
+      scat: ['', Validators.required],
+      saddress: ['', Validators.required],
+      sphn: ['', Validators.required],
+      sotime: ['', Validators.required],
+      sctime: ['', Validators.required],
+      movalue: ['', Validators.required],
+      sdperc: ['', Validators.required],
+      pucharge: ['', Validators.required],
+      dcharge: ['', Validators.required],
+      check: ['', Validators.required],
       checkeddays: this.fb.array([]),
     })
+
+
   }
   onChange(time: string, isChecked: boolean) {
     this.sessiondayssRepat = [];
-    const emailFormArray = <FormArray>this.shopform.controls.checkeddays;
+    const emailFormArray = <FormArray>this.shopFormRegistration.controls.checkeddays;
     if (isChecked) {
       emailFormArray.push(new FormControl(time));
       this.value = emailFormArray['value']
@@ -66,5 +94,16 @@ export class AddShopComponent implements OnInit {
 
 
     // console.log(emailFormArray)
+  }
+  get f() { return this.shopFormRegistration.controls; }
+
+  submit() {
+    this.submitted = true;
+    if (this.shopFormRegistration.invalid) {
+      return;
+    }
+    else {
+
+    }
   }
 }

@@ -15,57 +15,107 @@
 
             </div>
         </div>
-        <form [formGroup]="shopform">
+        <form [formGroup]="shopFormRegistration">
             <div class="row">
 
                 <div class="col-sm-4">
                     <label for="">Shop Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Shop Name">
+                    <input type="text" class="form-control" placeholder="Enter Your Shop Name" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
+
+                    <div *ngIf="submitted && f.sname.errors" class="invalid-feedback">
+                        <div *ngIf="f.sname.errors.required">Shop name is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Shop Category </label>
-                    <input type="text" class="form-control" placeholder="Enter Your Shop Category">
+                    <input type="text" class="form-control" placeholder="Enter Your Shop Category" [(ngModel)]="scat" [ngClass]="{ 'is-invalid': submitted && f.scat.errors }" formControlName="scat">
+
+                    <div *ngIf="submitted && f.scat.errors" class="invalid-feedback">
+                        <div *ngIf="f.scat.errors.required">Shop category is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Shop Address </label>
-                    <input type="text" class="form-control" placeholder="Enter Your Shop Address">
+                    <input type="text" class="form-control" placeholder="Enter Your Shop Address" [(ngModel)]="saddress" [ngClass]="{ 'is-invalid': submitted && f.saddress.errors }" formControlName="saddress">
+
+                    <div *ngIf="submitted && f.saddress.errors" class="invalid-feedback">
+                        <div *ngIf="f.saddress.errors.required">Shop address is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Shop Phone Number </label>
-                    <input type="number" class="form-control" placeholder="Enter Your Shop  Phone Number">
+                    <input type="number" class="form-control" placeholder="Enter Your Shop  Phone Number" [(ngModel)]="sphn" [ngClass]="{ 'is-invalid': submitted && f.sphn.errors }" formControlName="sphn">
+
+                    <div *ngIf="submitted && f.sphn.errors" class="invalid-feedback">
+                        <div *ngIf="f.sphn.errors.required">Shop phone number is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Shop Opening Time </label>
-                    <input type="time" class="form-control" placeholder="Enter Your Shop Opening Time">
+                    <input type="time" class="form-control" placeholder="Enter Your Shop Opening Time" [(ngModel)]="sotime" [ngClass]="{ 'is-invalid': submitted && f.sotime.errors }" formControlName="sotime">
+
+                    <div *ngIf="submitted && f.sotime.errors" class="invalid-feedback">
+                        <div *ngIf="f.sotime.errors.required">Shop opening time is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Shop Closing Time </label>
-                    <input type="time" class="form-control" placeholder="Enter Your Shop Closing Time">
+                    <input type="time" class="form-control" placeholder="Enter Your Shop Closing Time" [(ngModel)]="sctime" [ngClass]="{ 'is-invalid': submitted && f.sctime.errors }" formControlName="sctime">
+
+                    <div *ngIf="submitted && f.sctime.errors" class="invalid-feedback">
+                        <div *ngIf="f.sctime.errors.required">Shop closing time is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Minimum Order Value </label>
-                    <input type="number" class="form-control" placeholder="Enter Your Minimum Order Value">
+                    <input type="number" class="form-control" placeholder="Enter Your Minimum Order Value" [(ngModel)]="movalue" [ngClass]="{ 'is-invalid': submitted && f.movalue.errors }" formControlName="movalue">
+
+                    <div *ngIf="submitted && f.movalue.errors" class="invalid-feedback">
+                        <div *ngIf="f.movalue.errors.required">Minimum order value is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="">Shop Discount % </label>
-                    <input type="number" class="form-control" placeholder="Enter Your Shop Discount %">
+                    <label for="">Shop Discount Percentage </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Shop Discount Percentage" [(ngModel)]="sdperc" [ngClass]="{ 'is-invalid': submitted && f.sdperc.errors }" formControlName="sdperc">
+
+                    <div *ngIf="submitted && f.sdperc.errors" class="invalid-feedback">
+                        <div *ngIf="f.sdperc.errors.required">Shop discount percentage is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Pick-Up Charge</label>
-                    <input type="number" class="form-control" placeholder="Enter Your Pick-Up Charge">
+                    <input type="number" class="form-control" placeholder="Enter Your Pick-Up Charge" [(ngModel)]="pucharge" [ngClass]="{ 'is-invalid': submitted && f.pucharge.errors }" formControlName="pucharge">
+
+                    <div *ngIf="submitted && f.pucharge.errors" class="invalid-feedback">
+                        <div *ngIf="f.pucharge.errors.required">Pick-up charge is required</div>
+
+                    </div>
                 </div>
 
                 <div class="col-sm-4">
                     <label for="">Delivery Charge</label>
-                    <input type="number" class="form-control" placeholder="Enter Your Delivery Charge">
+                    <input type="number" class="form-control" placeholder="Enter Your Delivery Charge" [(ngModel)]="dcharge" [ngClass]="{ 'is-invalid': submitted && f.dcharge.errors }" formControlName="dcharge">
+
+                    <div *ngIf="submitted && f.dcharge.errors" class="invalid-feedback">
+                        <div *ngIf="f.dcharge.errors.required">Delivery charge is required</div>
+
+                    </div>
                 </div>
 
 
@@ -98,7 +148,7 @@
 
 
                 <div class="col-sm-12">
-                    <button class="btn btn-warning">SUBMIT</button>
+                    <button class="btn btn-warning" (click)="submit()">SUBMIT</button>
                 </div>
 
             </div>

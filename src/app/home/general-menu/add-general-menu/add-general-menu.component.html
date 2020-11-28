@@ -15,38 +15,58 @@
 
             </div>
         </div>
+        <form [formGroup]="generalmenuFormRegistration">
+            <div class="row">
 
-        <div class="row">
 
-            
 
-            <div class="col-sm-4">
-                <label for=""> Category </label>
-                <input type="text" class="form-control" placeholder="Enter Your Category">
+                <div class="col-sm-4">
+                    <label for=""> Category Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Your Category" [(ngModel)]="cname" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
+
+                    <div *ngIf="submitted && f.cname.errors" class="invalid-feedback">
+                        <div *ngIf="f.cname.errors.required">Category name is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="">Item Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Your Item Name" [(ngModel)]="iname" [ngClass]="{ 'is-invalid': submitted && f.iname.errors }" formControlName="iname">
+
+                    <div *ngIf="submitted && f.iname.errors" class="invalid-feedback">
+                        <div *ngIf="f.iname.errors.required">Item name is required</div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4">
+                    <label for="">Item Description</label>
+                    <input type="text" class="form-control" placeholder="Enter the Item Description" [(ngModel)]="des" [ngClass]="{ 'is-invalid': submitted && f.des.errors }" formControlName="des">
+
+                    <div *ngIf="submitted && f.des.errors" class="invalid-feedback">
+                        <div *ngIf="f.des.errors.required">Description is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="">Item Image</label>
+                    <input type="file" class="form-control" placeholder="Enter the Item Image" [(ngModel)]="iimage" [ngClass]="{ 'is-invalid': submitted && f.iimage.errors }" formControlName="iimage">
+
+                    <div *ngIf="submitted && f.iimage.errors" class="invalid-feedback">
+                        <div *ngIf="f.iimage.errors.required">Item is required</div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <button class="btn btn-warning" (click)="submit()">SUBMIT</button>
+                </div>
+
             </div>
-
-            <div class="col-sm-4">
-                <label for="">Item Name</label>
-                <input type="text" class="form-control" placeholder="Enter Your Item Name">
-            </div>
-
-            
-            <div class="col-sm-4">
-                <label for="">Item Description</label>
-                <input type="text" class="form-control" placeholder="Enter the Item Description">
-            </div>
-
-            <div class="col-sm-4">
-                <label for="">Item Image</label>
-                <input type="file" class="form-control" placeholder="Enter the Item Image">
-            </div>
-
-
-            <div class="col-sm-12">
-                 <button class="btn btn-warning">SUBMIT</button>
-            </div>
-
-        </div>
+        </form>
     </div>
 </div>
-

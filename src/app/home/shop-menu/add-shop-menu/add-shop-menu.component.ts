@@ -7,69 +7,53 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   styleUrls: ['./add-shop-menu.component.css']
 })
 export class AddShopMenuComponent implements OnInit {
-  // shopform:FormGroup;
-  // sessiondayssRepat
-  // repeatsessiondays = [
-  //   {
-  //     "id": "6",
-  //     "day": "Kochi",
-
-  //   },
-
-  //   {
-  //     "id": "0",
-  //     "day": "Haripad",
-  //   },
-  //   {
-  //     "id": "1",
-  //     "day": "Alapuzha",
-  //   },
-  //   {
-  //     "id": "2",
-  //     "day": "Kollam",
-  //   },
-  //   {
-  //     "id": "3",
-  //     "day": "Karthikappally",
-  //   },
-   
-  // ]
-  // value;
-  constructor(private fb:FormBuilder) { }
+  shopmenuFormRegistration:FormGroup;
+  submitted = false;
+  
+  sname;
+  location;
+  mname;  
+  mdes;
+  prate;
+  srate;
+  dperc;
+  damount;
+  patime;
+  pctime;
+  mimages;
+  // mstyle="";
+  
+  constructor(private formbuilder:FormBuilder) { }
 
   ngOnInit() {
-    // this.shopform = this.fb.group({
-    //   check:['',Validators.required],
-    //   checkeddays: this.fb.array([]),
-    // })
+    this.shopmenuFormRegistration = this.formbuilder.group(
+      {
+        sname: ['', Validators.required],
+        location:['', Validators.required],
+        mname:['', Validators.required],
+        mdes:['', Validators.required],
+        prate:['', Validators.required],
+        srate:['', Validators.required],
+        dperc:['', Validators.required],
+        damount:['', Validators.required],
+        patime:['', Validators.required],
+        pctime:['', Validators.required],
+        mimages:['', Validators.required],
+        // mstyle: ['', Validators.required],
+    })
+
   }
-//   onChange(time: string, isChecked: boolean) {
-//     this.sessiondayssRepat = [];
-//     const emailFormArray = <FormArray>this.shopform.controls.checkeddays;
-//     if (isChecked) {
-//       emailFormArray.push(new FormControl(time));
-//       this.value = emailFormArray['value']
-//       //console.log(this.value)
+get f() { return this.shopmenuFormRegistration.controls; }
 
-//       for (let j = 0; j < this.value.length; j++) {
-//         this.sessiondayssRepat.push(this.value[j]);
+  submit(){
+    this.submitted = true;
 
-//       }
-//       console.log(this.sessiondayssRepat)
+    // stop here if form is invalid
+    if (this.shopmenuFormRegistration.invalid) {
+        return;
+    }
+    else{
 
-
-
-
-//     }
-
-//     else {
-//       let index = emailFormArray.controls.findIndex(x => x.value == time)
-//       emailFormArray.removeAt(index);
-//     }
-
-
-//     // console.log(emailFormArray)
-//   }
-// }
-
+    }
+  }
 }

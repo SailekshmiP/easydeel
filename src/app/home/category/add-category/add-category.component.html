@@ -16,40 +16,48 @@
             </div>
         </div>
 
-        <div class="row">
+        <form [formGroup]="categoryFormRegistration">
 
-            <div class="col-sm-6">
-                <label for="">Category Name</label>
-                <input type="text" class="form-control" placeholder="Enter Your Category">
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <label for="">Category Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Your Category Name" [(ngModel)]="cname" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
+
+                    <div *ngIf="submitted && f.cname.errors" class="invalid-feedback">
+                        <div *ngIf="f.cname.errors.required">Category name is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="">Category Image</label>
+                    <input type="File" class="form-control" placeholder="Enter Your Category Image" [(ngModel)]="cimage" [ngClass]="{ 'is-invalid': submitted && f.cimage.errors }" formControlName="cimage">
+
+                    <div *ngIf="submitted && f.cimage.errors" class="invalid-feedback">
+                        <div *ngIf="f.cimage.errors.required">Category image is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6" style="margin-top: 20px;">
+                    <label for="">Show / Hide</label>
+                    <br> show
+                    <input type="radio"> Hide
+                    <input type="radio">
+                </div>
+
+                <div class="col-sm-6" style="margin-top: 20px;">
+                    <label for="">Status</label>
+                    <br> Active
+                    <input type="radio"> Inactive
+                    <input type="radio">
+                </div>
+
+                <div class="col-sm-12">
+                    <button class="btn btn-warning" (click)="submit()">SUBMIT</button>
+                </div>
+
             </div>
-
-            <div class="col-sm-6">
-                <label for="">Category Image</label>
-                <input type="File" class="form-control" placeholder="Enter Your Category">
-            </div>
-
-            <div class="col-sm-6" style="margin-top: 20px;">
-                <label for="">Show / Hide</label>
-                <br>
-                show
-                <input type="radio">
-                Hide
-                <input type="radio">
-            </div>
-
-            <div class="col-sm-6" style="margin-top: 20px;">
-                <label for="">Status</label>
-                <br>
-                Active
-                <input type="radio">
-                Inactive
-                <input type="radio">
-            </div>
-
-            <div class="col-sm-12">
-                 <button class="btn btn-warning">SUBMIT</button>
-            </div>
-
-        </div>
+        </form>
     </div>
-</div>

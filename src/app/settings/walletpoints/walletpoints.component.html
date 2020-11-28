@@ -16,30 +16,52 @@
             </div>
         </div>
 
-        <div class="row">
+        <form [formGroup]="walletpointsFormRegistration">
 
-            <div class="col-sm-4">
-                <label for="">Reward Points</label>
-                <input type="number" class="form-control" placeholder="Enter Your Reward Points">
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <label for="">Reward Points</label>
+                    <input type="number" class="form-control" placeholder="Enter Your Reward Points" [(ngModel)]="rpoints" [ngClass]="{ 'is-invalid': submitted && f.rpoints.errors }" formControlName="rpoints">
+
+                    <div *ngIf="submitted && f.rpoints.errors" class="invalid-feedback">
+                        <div *ngIf="f.rpoints.errors.required">Reward points is required</div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <label for=""> Amount Value</label>
+                    <input type="number" class="form-control" placeholder="Enter Your  Amount Value" [(ngModel)]="avalue" [ngClass]="{ 'is-invalid': submitted && f.avalue.errors }" formControlName="avalue">
+
+                    <div *ngIf="submitted && f.avalue.errors" class="invalid-feedback">
+                        <div *ngIf="f.avalue.errors.required">Amount value is required</div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <label for=""> Redeem Amount</label>
+                    <input type="number" class="form-control" placeholder="Enter Your  Minimum Redeem Amount" [(ngModel)]="ramount" [ngClass]="{ 'is-invalid': submitted && f.ramount.errors }" formControlName="ramount">
+
+                    <div *ngIf="submitted && f.ramount.errors" class="invalid-feedback">
+                        <div *ngIf="f.ramount.errors.required">Redeem amount is required</div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="col-sm-12">
+                    <button class="btn btn-warning" (click)="submit()">SUBMIT</button>
+                </div>
+
             </div>
+        </form>
 
-            <div class="col-sm-4">
-                <label for=""> Amount Value</label>
-                <input type="number" class="form-control" placeholder="Enter Your  Amount Value">
-            </div>
-
-            <div class="col-sm-4">
-                <label for=""> Redeem Amount</label>
-                <input type="number" class="form-control" placeholder="Enter Your  Minimum Redeem Amount">
-            </div>
-
-
-
-
-            <div class="col-sm-12">
-                <button class="btn btn-warning">SUBMIT</button>
-            </div>
-
-        </div>
     </div>
 </div>
