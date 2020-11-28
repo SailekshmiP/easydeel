@@ -1,0 +1,54 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">GENERAL MENU</h4>
+
+            </div>
+
+ <div class="col-sm-4">
+     <button class="btn btn-primary" style="float: right;"routerLink="/addgeneralmenu"> Add General Menu</button>
+ </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+               
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!--ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Item Name Column -->
+    <ng-container matColumnDef="itemname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Item Name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.itemname}}% </mat-cell>
+    </ng-container>
+
+    <!-- Item Image Column -->
+    <ng-container matColumnDef="itemimage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Item Image </mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.itemimage}}  </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator ></mat-paginator>
+            </div>
+        </div>
+    </div>
+    </div>

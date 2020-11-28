@@ -1,0 +1,64 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="page-title">Category</h4>
+
+            </div>
+            <div class="col-sm-4">
+
+                <button class="btn btn-primary" style="float: right;" routerLink="/addcategory"> Add Category</button>
+            </div>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" placeholder="search here">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Category Name Column -->
+                    <ng-container matColumnDef="categoryname">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.category}}% </mat-cell>
+                    </ng-container>
+
+                    <!--  Image Column -->
+                    <ng-container matColumnDef="image">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.image}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> <i class="fa fa-edit"></i> </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+
+                <mat-paginator></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

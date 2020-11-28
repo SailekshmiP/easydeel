@@ -1,0 +1,87 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h4 class="page-title">RESTAURANT MENU</h4>
+                    <button class="btn btn-primary" style="height: 33px;
+                    margin-left: 23px;" routerLink="/addrestaurantmenu"> Add Restaurant Menu</button>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-sm-2">
+                <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
+                <option value="" selected>Choose a option</option>
+                <option value="c">Course Type</option>
+                <option value="m">Menu Name</option>
+                <!-- <option value="">Category</option> -->
+
+              </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="">
+                    <option value="" selected>Choose a option</option>
+                   <option value="" *ngFor="let results of results">{{results.restaurantmenu}}</option>
+    
+                  </select>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="search here">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                </ng-container>
+
+                <!-- Menu Name Column -->
+                <ng-container matColumnDef="menuname">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Name</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.menuname}}% </mat-cell>
+                </ng-container>
+
+                <!--Image Column -->
+                <ng-container matColumnDef="menuimage">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Image </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.image}} </mat-cell>
+                </ng-container>
+
+                <!--Location Column -->
+                <ng-container matColumnDef="location">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
+                </ng-container>
+
+
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> <i class="fa fa-edit"></i> </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator></mat-paginator>
+        </div>
+    </div>
+</div>
