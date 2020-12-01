@@ -15,6 +15,7 @@ export class AddOffersComponent implements OnInit {
   oloc;
   odes;  
   tqpurc;
+  tnusers;
   oprice;
   aprice;
   adata;
@@ -27,10 +28,11 @@ export class AddOffersComponent implements OnInit {
   ngOnInit() {
     this.offerFormRegistration = this.formbuilder.group(
       {
-        mname: ['', Validators.required],
+        mname: [''],
         oloc:['', Validators.required],
         odes:['', Validators.required],
         tqpurc: ['', Validators.required],
+        tnusers: ['', Validators.required],
         oprice: ['', Validators.required],
         aprice: ['', Validators.required],
         adata: ['', Validators.required],

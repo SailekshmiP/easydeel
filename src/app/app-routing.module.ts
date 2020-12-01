@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddCoursetypeComponent } from './coursetype/add-coursetype/add-coursetype.component';
+import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
+import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
 import { AddCategoryComponent } from './home/category/add-category/add-category.component';
 import { AddDeliveryBoysComponent } from './home/delivery-boys/add-delivery-boys/add-delivery-boys.component';
 import { DeliveryBoysComponent } from './home/delivery-boys/delivery-boys.component';
@@ -29,6 +33,13 @@ import { AddSettingsComponent } from './settings/add-settings/add-settings.compo
 import { MasteradminphonenumberComponent } from './settings/masteradminphonenumber/masteradminphonenumber.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WalletpointsComponent } from './settings/walletpoints/walletpoints.component';
+import { AddShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/add-shop-admin-menu-name/add-shop-admin-menu-name.component';
+import { ShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/shop-admin-menu-name.component';
+import { AddShopAdminOffersComponent } from './shop_admin_section/shop-admin-offers/add-shop-admin-offers/add-shop-admin-offers.component';
+import { ShopAdminOffersComponent } from './shop_admin_section/shop-admin-offers/shop-admin-offers.component';
+import { ShopAdminOrdersComponent } from './shop_admin_section/shop-admin-orders/shop-admin-orders.component';
+import { SalesReportComponent } from './shop_admin_section/shop-admin-reports/sales-report/sales-report.component';
+import { ShopAdminReportsComponent } from './shop_admin_section/shop-admin-reports/shop-admin-reports.component';
 
 const routes: Routes = [
   {path:'',pathMatch:"full",redirectTo:"login"},
@@ -61,7 +72,26 @@ const routes: Routes = [
   {path:'sales',component:SalesComponent},
   {path:'purchase',component:PurchaseComponent},
   {path:'delivery',component:DeliveryComponent},
+  {path:'coursetype',component:CoursetypeComponent},
+  {path:'add-coursetype',component:AddCoursetypeComponent},
+  {path:'shopadminmenuname',component:ShopAdminMenuNameComponent},
+  {path:'shopadminoffers',component:ShopAdminOffersComponent},
+  {path:'shopadminorders',component:ShopAdminOrdersComponent},
+  {path:'shopadminreports',component:ShopAdminReportsComponent},
+  {path:'addshopadminmenuname',component:AddShopAdminMenuNameComponent},
+  {path:'addshopadminoffers',component:AddShopAdminOffersComponent},
+  {path:'salesreport',component:SalesReportComponent},
+  {path:'approvalrequest',component:ApprovalRequestComponent},
+  {path:'menuapproval',component:MenuApprovalComponent},
 
+
+
+  
+
+
+
+
+ 
 
  
 

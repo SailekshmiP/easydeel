@@ -14,6 +14,7 @@ export class AddDeliveryBoysComponent implements OnInit {
   uname;
   address; 
   mobile;
+  aadhar;
   password;
 
   
@@ -26,6 +27,7 @@ export class AddDeliveryBoysComponent implements OnInit {
         uname:['', Validators.required],
         address:['', Validators.required],
         mobile:['', Validators.required],
+        aadhar:['', Validators.required],
         password:['', Validators.required],
       
     })

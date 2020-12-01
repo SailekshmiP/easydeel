@@ -1,8 +1,12 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
-            <ul>
+            <ul *ngIf="status =='masteradmin'">
+
+
                 <li class="menu-title">MASTER ADMIN</li>
+
+
                 <li routerLinkActive="active">
                     <a routerLink="/home"><i class="fa fa-dashboard"></i> <span>CATEGORY</span></a>
                 </li>
@@ -12,11 +16,19 @@
                 </li>
 
                 <li routerLinkActive="active">
+                    <a routerLink="/coursetype"><i class="fa fa-cutlery"></i> <span>COURSE TYPE</span></a>
+                </li>
+
+                <li routerLinkActive="active">
                     <a routerLink="/restaurantmenu"><i class="fa fa-cutlery" ></i> <span> RESTAURANT MENU</span></a>
                 </li>
 
                 <li routerLinkActive="active">
                     <a routerLink="/shopmenu"><i class="fa fa-shopping-cart"></i> <span>SHOP MENU</span></a>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/approvalrequest"><i class="fa fa-history"></i> <span>APPROVAL REQUEST</span></a>
                 </li>
 
                 <li routerLinkActive="active">
@@ -54,6 +66,31 @@
 
                 <li routerLinkActive="active">
                     <a routerLink="/settings"><i class="fa fa-cog"></i> <span>SETTINGS</span></a>
+                </li>
+            </ul>
+
+
+
+            <ul *ngIf="status =='shopadmin'">
+
+                <li class="menu-title">SHOP ADMIN</li>
+
+
+
+                <li routerLinkActive="active">
+                    <a routerLink="/shopadminmenuname"><i class="fa fa-cutlery"></i> <span>MENU NAME</span></a>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/shopadminoffers"><i class="fa fa-gift"></i> <span>OFFERS</span></a>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/shopadminorders"><i class="fa fa-shopping-basket"></i> <span>ORDERS</span></a>
+                </li>
+
+                <li routerLinkActive="active">
+                    <a routerLink="/shopadminreports"><i class="fa fa-sticky-note"></i> <span>REPORTS</span></a>
                 </li>
             </ul>
         </div>

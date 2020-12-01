@@ -49,6 +49,16 @@
                 </div>
 
                 <div class="col-sm-4">
+                    <label for="">Shop Landline Number </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Shop  Landline Number" [(ngModel)]="sln" [ngClass]="{ 'is-invalid': submitted && f.sln.errors }" formControlName="sln">
+
+                    <div *ngIf="submitted && f.sln.errors" class="invalid-feedback">
+                        <div *ngIf="f.sln.errors.required">Shop landline number is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
                     <label for="">Shop Phone Number </label>
                     <input type="number" class="form-control" placeholder="Enter Your Shop  Phone Number" [(ngModel)]="sphn" [ngClass]="{ 'is-invalid': submitted && f.sphn.errors }" formControlName="sphn">
 

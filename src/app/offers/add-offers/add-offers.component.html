@@ -22,12 +22,12 @@
 
                 <div class="col-sm-4">
                     <label for=""> Menu Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Menu Name" [(ngModel)]="mname" [ngClass]="{ 'is-invalid': submitted && f.mname.errors }" formControlName="mname">
+                    <input type="text" class="form-control" placeholder="Enter Your Menu Name" [(ngModel)]="mname" formControlName="mname">
 
-                    <div *ngIf="submitted && f.mname.errors" class="invalid-feedback">
+                    <!-- <div *ngIf="submitted && f.mname.errors" class="invalid-feedback">
                         <div *ngIf="f.mname.errors.required">Menu name is required</div>
 
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-sm-4">
@@ -52,11 +52,21 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="">Total Quantity to Purchase </label>
-                    <input type="number" class="form-control" placeholder="Enter the Total Quantity to Purchase " [(ngModel)]="tqpurc" [ngClass]="{ 'is-invalid': submitted && f.tqpurc.errors }" formControlName="tqpurc">
+                    <label for="">Total No of Quantity </label>
+                    <input type="number" class="form-control" placeholder="Enter the Total No of Quantity  " [(ngModel)]="tqpurc" [ngClass]="{ 'is-invalid': submitted && f.tqpurc.errors }" formControlName="tqpurc">
 
                     <div *ngIf="submitted && f.tqpurc.errors" class="invalid-feedback">
-                        <div *ngIf="f.tqpurc.errors.required">Total quantity to purchase is required</div>
+                        <div *ngIf="f.tqpurc.errors.required">Total no of quantity is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="">Total No of Users </label>
+                    <input type="number" class="form-control" placeholder="Enter the Total No of Users  " [(ngModel)]="tnusers" [ngClass]="{ 'is-invalid': submitted && f.tnusers.errors }" formControlName="tnusers">
+
+                    <div *ngIf="submitted && f.tnusers.errors" class="invalid-feedback">
+                        <div *ngIf="f.tnusers.errors.required">Total no of users is required</div>
 
                     </div>
                 </div>

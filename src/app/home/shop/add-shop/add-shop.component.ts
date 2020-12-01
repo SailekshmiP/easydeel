@@ -42,6 +42,7 @@ export class AddShopComponent implements OnInit {
   sname;
   scat;
   saddress;
+  sln;
   sphn;
   sotime;
   sctime;
@@ -58,6 +59,7 @@ export class AddShopComponent implements OnInit {
       sname: ['', Validators.required],
       scat: ['', Validators.required],
       saddress: ['', Validators.required],
+      sln: ['', Validators.required],
       sphn: ['', Validators.required],
       sotime: ['', Validators.required],
       sctime: ['', Validators.required],

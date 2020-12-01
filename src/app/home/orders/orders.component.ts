@@ -8,7 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  displayedColumns = ['orderid', 'customeraddress',  'time',  'date', 'paymentstatus', 'assign', 'action'];
+  displayedColumns = ['orderid', 'customeraddress',  'time',  'date', 'ordertstatus', 'assign', 'action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;

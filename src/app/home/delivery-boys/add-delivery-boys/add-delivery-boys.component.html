@@ -59,6 +59,16 @@
                 </div>
 
                 <div class="col-sm-4">
+                    <label for="">Aadhar ID Proof </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Aadhar ID Proof" [(ngModel)]="aadhar" [ngClass]="{ 'is-invalid': submitted && f.aadhar.errors }" formControlName="aadhar">
+
+                    <div *ngIf="submitted && f.aadhar.errors" class="invalid-feedback">
+                        <div *ngIf="f.aadhar.errors.required">Aadhar id proof is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
                     <label for="">Password </label>
                     <input type="password" class="form-control" placeholder="Enter Your Password" [(ngModel)]="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password">
 

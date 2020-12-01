@@ -48,6 +48,21 @@ import { ReportsComponent } from './reports/reports.component';
 import { SalesComponent } from './reports/sales/sales.component';
 import { PurchaseComponent } from './reports/purchase/purchase.component';
 import { DeliveryComponent } from './reports/delivery/delivery.component';
+import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { AddCoursetypeComponent } from './coursetype/add-coursetype/add-coursetype.component';
+import { EditCoursetypeComponent } from './coursetype/edit-coursetype/edit-coursetype.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/shop-admin-menu-name.component';
+import { ShopAdminOffersComponent } from './shop_admin_section/shop-admin-offers/shop-admin-offers.component';
+import { ShopAdminOrdersComponent } from './shop_admin_section/shop-admin-orders/shop-admin-orders.component';
+import { ShopAdminReportsComponent } from './shop_admin_section/shop-admin-reports/shop-admin-reports.component';
+import { AddShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/add-shop-admin-menu-name/add-shop-admin-menu-name.component';
+import { EditShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/edit-shop-admin-menu-name/edit-shop-admin-menu-name.component';
+import { AddShopAdminOffersComponent } from './shop_admin_section/shop-admin-offers/add-shop-admin-offers/add-shop-admin-offers.component';
+import { EditShopAdminOffersComponent } from './shop_admin_section/shop-admin-offers/edit-shop-admin-offers/edit-shop-admin-offers.component';
+import { SalesReportComponent } from './shop_admin_section/shop-admin-reports/sales-report/sales-report.component';
+import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
+import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
 
 @NgModule({
   declarations: [
@@ -93,13 +108,28 @@ import { DeliveryComponent } from './reports/delivery/delivery.component';
     ReportsComponent,
     SalesComponent,
     PurchaseComponent,
-    DeliveryComponent
+    DeliveryComponent,
+    CoursetypeComponent,
+    AddCoursetypeComponent,
+    EditCoursetypeComponent,
+    ShopAdminMenuNameComponent,
+    ShopAdminOffersComponent,
+    ShopAdminOrdersComponent,
+    ShopAdminReportsComponent,
+    AddShopAdminMenuNameComponent,
+    EditShopAdminMenuNameComponent,
+    AddShopAdminOffersComponent,
+    EditShopAdminOffersComponent,
+    SalesReportComponent,
+    ApprovalRequestComponent,
+    MenuApprovalComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,      
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
   ],

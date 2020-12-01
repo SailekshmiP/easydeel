@@ -1,0 +1,54 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">Course Type</h4>
+
+            </div>
+
+            <div class="col-sm-4">
+                <button class="btn btn-primary" style="float: right;" routerLink="/add-coursetype"> Add Course Type</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <!--Image Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.image}} </mat-cell>
+                    </ng-container>
+
+
+                    <!-- Menu Description Column -->
+                    <ng-container matColumnDef="coursetype">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Course Type</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.menudescription}}% </mat-cell>
+                    </ng-container>
+
+
+                    <!--Location Column -->
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+
+                <mat-paginator></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
