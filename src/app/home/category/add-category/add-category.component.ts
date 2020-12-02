@@ -11,6 +11,7 @@ export class AddCategoryComponent implements OnInit {
   submitted = false;
   
   cname;
+  mtype = "";
   cimage;
   // des;  
   // mtype="";
@@ -23,7 +24,8 @@ export class AddCategoryComponent implements OnInit {
     this.categoryFormRegistration = this.formbuilder.group(
       {
         cname: ['', Validators.required],
-        cimage:['', Validators.required],
+        mtype: ['', Validators.required],
+        cimage: ['', Validators.required],
         // des: ['', Validators.required],
         // mtype: ['', Validators.required],
         // mctype: ['', Validators.required],
