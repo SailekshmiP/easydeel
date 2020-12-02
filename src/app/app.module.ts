@@ -63,6 +63,14 @@ import { EditShopAdminOffersComponent } from './shop_admin_section/shop-admin-of
 import { SalesReportComponent } from './shop_admin_section/shop-admin-reports/sales-report/sales-report.component';
 import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
 import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
+import { PriceUpdatorComponent } from './settings/price-updator/price-updator.component';
+import { AddPriceUpdatorComponent } from './settings/price-updator/add-price-updator/add-price-updator.component';
+import { EditPriceUpdatorComponent } from './settings/price-updator/edit-price-updator/edit-price-updator.component';
+import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
+import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
+import { EditPreOrdersComponent } from './home/pre-orders/edit-pre-orders/edit-pre-orders.component';
+// import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
+// import { EditPriceUpdatorComponent } from './settings/edit-price-updator/edit-price-updator.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +131,12 @@ import { MenuApprovalComponent } from './home/approval-request/menu-approval/men
     SalesReportComponent,
     ApprovalRequestComponent,
     MenuApprovalComponent,
+    PriceUpdatorComponent,
+    AddPriceUpdatorComponent,
+    EditPriceUpdatorComponent,
+    PreOrdersComponent,
+    AddPreOrdersComponent,
+    EditPreOrdersComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
   shopadmin(){
     localStorage.setItem("loginstatus",JSON.stringify("shopadmin"));
     this.router.navigate(['/home']);

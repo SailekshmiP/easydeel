@@ -8,38 +8,38 @@
 
         <div class="row">
             <div class="col-sm-8">
-                <h4 class="page-title">PINCODES</h4>
+                <h4 class="page-title">Store Locations</h4>
 
             </div>
 
- <div class="col-sm-4">
-     <button class="btn btn-primary" style="float: right;"routerLink="/addpincodes"> Add Pincode</button>
- </div>
+            <div class="col-sm-4">
+                <button class="btn btn-primary" style="float: right;" routerLink="/addpincodes"> Add Location</button>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-               
-  <mat-table [dataSource]="dataSource" matSort>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-    </ng-container>
+                <mat-table [dataSource]="dataSource" matSort>
 
-    <!--Location Column -->
-    <ng-container matColumnDef="location">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.loaction}} </mat-cell>
-      </ng-container>
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                    </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
-  </mat-table>
+                    <!--Location Column -->
+                    <ng-container matColumnDef="location">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.loaction}} </mat-cell>
+                    </ng-container>
 
-  <mat-paginator ></mat-paginator>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+
+                <mat-paginator></mat-paginator>
             </div>
         </div>
     </div>
-    </div>
+</div>

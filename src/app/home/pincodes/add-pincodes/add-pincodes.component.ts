@@ -8,10 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddPincodesComponent implements OnInit {
 
-  pincodeFormRegistration:FormGroup;
+  locationFormRegistration:FormGroup;
   submitted = false;
   
- pincode;
+  location;
   // cimage;
   // des;  
   // mtype="";
@@ -21,9 +21,9 @@ export class AddPincodesComponent implements OnInit {
   constructor(private formbuilder:FormBuilder) { }
 
   ngOnInit() {
-    this.pincodeFormRegistration = this.formbuilder.group(
+    this.locationFormRegistration = this.formbuilder.group(
       {
-        pincode: ['', Validators.required],
+        location: ['', Validators.required],
         // cimage:['', Validators.required],
         // des: ['', Validators.required],
         // mtype: ['', Validators.required],
@@ -32,13 +32,13 @@ export class AddPincodesComponent implements OnInit {
     })
 
   }
-get f() { return this.pincodeFormRegistration.controls; }
+get f() { return this.locationFormRegistration.controls; }
 
   submit(){
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.pincodeFormRegistration.invalid) {
+    if (this.locationFormRegistration.invalid) {
         return;
     }
     else{

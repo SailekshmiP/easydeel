@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './home/orders/orders.component';
 import { AddPincodesComponent } from './home/pincodes/add-pincodes/add-pincodes.component';
 import { PincodesComponent } from './home/pincodes/pincodes.component';
+import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
+import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
 import { AddRestaurantMenuComponent } from './home/restaurant-menu/add-restaurant-menu/add-restaurant-menu.component';
 import { RestaurantMenuComponent } from './home/restaurant-menu/restaurant-menu.component';
 import { AddShopMenuComponent } from './home/shop-menu/add-shop-menu/add-shop-menu.component';
@@ -31,6 +33,8 @@ import { ReportsComponent } from './reports/reports.component';
 import { SalesComponent } from './reports/sales/sales.component';
 import { AddSettingsComponent } from './settings/add-settings/add-settings.component';
 import { MasteradminphonenumberComponent } from './settings/masteradminphonenumber/masteradminphonenumber.component';
+import { AddPriceUpdatorComponent } from './settings/price-updator/add-price-updator/add-price-updator.component';
+import { PriceUpdatorComponent } from './settings/price-updator/price-updator.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WalletpointsComponent } from './settings/walletpoints/walletpoints.component';
 import { AddShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/add-shop-admin-menu-name/add-shop-admin-menu-name.component';
@@ -83,6 +87,13 @@ const routes: Routes = [
   {path:'salesreport',component:SalesReportComponent},
   {path:'approvalrequest',component:ApprovalRequestComponent},
   {path:'menuapproval',component:MenuApprovalComponent},
+  {path:'priceupdator',component:PriceUpdatorComponent},
+  {path:'addpriceupdator',component:AddPriceUpdatorComponent},
+  {path:'preorders',component:PreOrdersComponent},
+  {path:'addpreorders',component:AddPreOrdersComponent},
+
+
+
 
 
 
