@@ -43,7 +43,7 @@
 
                 <div class="col-sm-4">
                     <label for="">Offer Description </label>
-                    <input type="number" class="form-control" placeholder="Enter the Offer Description" [(ngModel)]="odes" [ngClass]="{ 'is-invalid': submitted && f.odes.errors }" formControlName="odes">
+                    <input type="text" class="form-control" placeholder="Enter the Offer Description" [(ngModel)]="odes" [ngClass]="{ 'is-invalid': submitted && f.odes.errors }" formControlName="odes">
 
                     <div *ngIf="submitted && f.odes.errors" class="invalid-feedback">
                         <div *ngIf="f.odes.errors.required">Offer description is required</div>

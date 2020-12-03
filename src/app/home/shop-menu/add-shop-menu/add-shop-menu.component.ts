@@ -10,9 +10,9 @@ export class AddShopMenuComponent implements OnInit {
   shopmenuFormRegistration:FormGroup;
   submitted = false;
   
-  sname;
-  location;
-  mname;  
+  sname ="";
+  location ="";
+  mname ="";  
   mdes;
   prate;
   srate;

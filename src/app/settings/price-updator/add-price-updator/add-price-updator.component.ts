@@ -11,8 +11,8 @@ export class AddPriceUpdatorComponent implements OnInit {
   addpriceupdatorFormRegistration: FormGroup;
   submitted = false;
 
-  sname;
-  sprice;
+  sname ="";
+  sprice ="";
   amount;
   percentage;
   disable = false;

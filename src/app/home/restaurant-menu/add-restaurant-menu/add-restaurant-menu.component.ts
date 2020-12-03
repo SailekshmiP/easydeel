@@ -13,8 +13,8 @@ export class AddRestaurantMenuComponent implements OnInit {
   
   mname;
   mdes;
-  mtype;  
-  ctype;
+  mtype ="";  
+  ctype ="";
   mimages;
   // mstyle="";
   
