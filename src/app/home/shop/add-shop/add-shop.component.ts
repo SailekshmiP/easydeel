@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-add-shop',
@@ -40,8 +42,9 @@ export class AddShopComponent implements OnInit {
   submitted = false;
 
   sname;
-  scat;
+  scat ="";
   saddress;
+  simage;
   sln;
   sphn;
   sotime;
@@ -50,12 +53,17 @@ export class AddShopComponent implements OnInit {
   sdperc;
   pucharge;
   dcharge;
+  showorhide = "Show";
+  status = "Active";
   check;
   checkeddays;
-  constructor(private fb: FormBuilder) { }
-
+  files;
+  currentphoto;
+  resultscat:any=[];
+  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
+  formData = new FormData();
   ngOnInit() {
-    this.shopFormRegistration = this.fb.group({
+    this.shopFormRegistration = this.formbuilder.group({
       sname: ['', Validators.required],
       scat: ['', Validators.required],
       saddress: ['', Validators.required],
@@ -65,12 +73,15 @@ export class AddShopComponent implements OnInit {
       sctime: ['', Validators.required],
       movalue: ['', Validators.required],
       sdperc: ['', Validators.required],
+      simage: ['', Validators.required],
       pucharge: ['', Validators.required],
       dcharge: ['', Validators.required],
+      showorhide:['', Validators.required],
+      status:['',Validators.required],
       check: ['', Validators.required],
-      checkeddays: this.fb.array([]),
+      checkeddays: this.formbuilder.array([]),
     })
-
+    this.getallCategory();
 
   }
   onChange(time: string, isChecked: boolean) {
@@ -99,13 +110,69 @@ export class AddShopComponent implements OnInit {
   }
   get f() { return this.shopFormRegistration.controls; }
 
+  getallCategory(){
+    this.easydealservice.getcat().subscribe(
+      data =>{
+        console.log(data);
+        this.resultscat =data;
+    
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+  addshopimage(event)
+  {
+    
+    this.files = event.target.files;
+    this.currentphoto = this.files.item(0);
+  }
   submit() {
     this.submitted = true;
     if (this.shopFormRegistration.invalid) {
       return;
     }
-    else {
+    else 
+    {
+      this.formData.append("sname",this.sname)
+    this.formData.append("category",this.scat)
+    this.formData.append("ph",this.sphn)
+    // this.formData.append("open",this.sotime)
+    // this.formData.append("close",this.sctime)
+    this.formData.append("open","10")
+    this.formData.append("close","50")
+    this.formData.append("disc",this.sdperc)
+    this.formData.append("discam",this.dcharge)
+    this.formData.append("pick",this.pucharge)
+    this.formData.append("delivery",this.dcharge)
+    this.formData.append("min",this.movalue)
+    this.formData.append("show",this.showorhide)
+    this.formData.append("state",this.status)
+    this.formData.append("shop_img",this.currentphoto)
+    this.formData.append("add",this.saddress)
 
-    }
+   this.easydealservice.addshop(this.formData).subscribe(
+     data=>{
+      console.log(data);
+      this.formData.delete;
+      this.router.navigate(['/shop']);
+     },
+     error=>{
+       console.log(error);
+      this.formData.delete;
+       
+     }
+     
+   )
+
   }
+}
+// addcategoryimage(event) {
+
+//   this.files = event.target.files;
+//   this.currentphoto = this.files.item(0);
+  
+//   //  console.log(this.currentFoto)
+// }
 }

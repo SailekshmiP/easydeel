@@ -30,13 +30,19 @@
 
                 <div class="col-sm-4">
                     <label for="">Shop Category </label>
-                    <input type="text" class="form-control" placeholder="Enter Your Shop Category" [(ngModel)]="scat" [ngClass]="{ 'is-invalid': submitted && f.scat.errors }" formControlName="scat">
 
+                    <select name="" id="" class="form-control" [(ngModel)]="scat" [ngClass]="{ 'is-invalid': submitted && f.scat.errors }" formControlName="scat">
+                        <option value="" disabled selected>Choose a option </option>
+                      
+                        <option  *ngFor="let c of resultscat" value="{{c._id}}">{{c.Cat_name}}</option>
+                    </select>
                     <div *ngIf="submitted && f.scat.errors" class="invalid-feedback">
                         <div *ngIf="f.scat.errors.required">Shop category is required</div>
 
                     </div>
                 </div>
+
+
 
                 <div class="col-sm-4">
                     <label for="">Shop Address </label>
@@ -128,20 +134,30 @@
                     </div>
                 </div>
 
-
                 <div class="col-sm-4">
+                    <label for="">Shop Image</label>
+                    <input class="form-control" #file type="file" (change)="addshopimage($event)" [ngClass]="{ 'is-invalid': submitted && f.simage.errors }" formControlName="simage">
+
+                    <div *ngIf="submitted && f.simage.errors" class="invalid-feedback">
+                        <div *ngIf="f.simage.errors.required">Shop image is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Show / Hide</label>
                     <br> show
-                    <input type="radio"> Hide
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="showorhide" value="Show" formControlName="showorhide"> Hide
+                    <input type="radio" [(ngModel)]="showorhide" value="Hide" formControlName="showorhide">
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Status</label>
                     <br> Active
-                    <input type="radio"> Inactive
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status"> Inactive
+                    <input type="radio" [(ngModel)]="status" value="Active" formControlName="status">
                 </div>
+
 
                 <div class="col-sm-12">
                     <label for=""> Choose Locations</label>

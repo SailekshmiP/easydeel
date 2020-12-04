@@ -46,7 +46,7 @@
 
                 <div class="col-sm-6">
                     <label for="">Category Image</label>
-                    <input type="File" class="form-control" placeholder="Enter Your Category Image" [(ngModel)]="cimage" [ngClass]="{ 'is-invalid': submitted && f.cimage.errors }" formControlName="cimage">
+                    <input class="form-control" placeholder="Enter Your Category Image" #file type="file" (change)="addcategoryimage($event)" [ngClass]="{ 'is-invalid': submitted && f.cimage.errors }" formControlName="cimage">
 
                     <div *ngIf="submitted && f.cimage.errors" class="invalid-feedback">
                         <div *ngIf="f.cimage.errors.required">Category image is required</div>
@@ -57,15 +57,15 @@
                 <div class="col-sm-6" style="margin-top: 20px;">
                     <label for="">Show / Hide</label>
                     <br> show
-                    <input type="radio"> Hide
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="showorhide" value="Show" formControlName="showorhide"> Hide
+                    <input type="radio" [(ngModel)]="showorhide" value="Hide" formControlName="showorhide">
                 </div>
 
                 <div class="col-sm-6" style="margin-top: 20px;">
                     <label for="">Status</label>
                     <br> Active
-                    <input type="radio"> Inactive
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status"> Inactive
+                    <input type="radio" [(ngModel)]="status" value="Active" formControlName="status">
                 </div>
 
                 <div class="col-sm-12">

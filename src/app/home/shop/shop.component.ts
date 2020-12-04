@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-shop',
@@ -14,16 +15,30 @@ export class ShopComponent implements OnInit {
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   options: any = "";
-  results: any[];
+  results: any=[];
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private easydealservice:EasydealService) { }
 
   ngOnInit() {
+    this.getallShop();
   }
+  getallShop(){
+    this.easydealservice.getshop().subscribe(
+      data =>{
+        console.log(data);
+        this.results =data;
+        this.dataSource.data = this.results;
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+  
 
   selectedevent(s) {
     console.log(s);
