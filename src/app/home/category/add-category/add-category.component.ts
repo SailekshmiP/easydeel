@@ -51,9 +51,9 @@ get f() { return this.categoryFormRegistration.controls; }
         return;
     }
     else{
-      this.formData.append("cname",this.cname)
+      this.formData.append("category_name",this.cname)
       this.formData.append("show",this.showorhide)
-      this.formData.append("cmenu",this.mtype)
+      this.formData.append("category_menutype",this.mtype)
       this.formData.append("state",this.status)
       this.formData.append("cat_img",this.currentphoto)
      this.easydealservice.addcategory(this.formData).subscribe(

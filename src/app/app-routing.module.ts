@@ -5,6 +5,7 @@ import { CoursetypeComponent } from './coursetype/coursetype.component';
 import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
 import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
 import { AddCategoryComponent } from './home/category/add-category/add-category.component';
+import { EditCategoryComponent } from './home/category/edit-category/edit-category.component';
 import { AddDeliveryBoysComponent } from './home/delivery-boys/add-delivery-boys/add-delivery-boys.component';
 import { DeliveryBoysComponent } from './home/delivery-boys/delivery-boys.component';
 import { AddGeneralMenuComponent } from './home/general-menu/add-general-menu/add-general-menu.component';
@@ -22,6 +23,7 @@ import { RestaurantMenuComponent } from './home/restaurant-menu/restaurant-menu.
 import { AddShopMenuComponent } from './home/shop-menu/add-shop-menu/add-shop-menu.component';
 import { ShopMenuComponent } from './home/shop-menu/shop-menu.component';
 import { AddShopComponent } from './home/shop/add-shop/add-shop.component';
+import { EditShopComponent } from './home/shop/edit-shop/edit-shop.component';
 import { ShopComponent } from './home/shop/shop.component';
 import { UsersComponent } from './home/users/users.component';
 import { LoginComponent } from './login/login.component';
@@ -91,6 +93,8 @@ const routes: Routes = [
   {path:'addpriceupdator',component:AddPriceUpdatorComponent},
   {path:'preorders',component:PreOrdersComponent},
   {path:'addpreorders',component:AddPreOrdersComponent},
+  {path:'editcategory',component:EditCategoryComponent},
+  {path:'editshop',component:EditShopComponent},
 
 
 

@@ -37,23 +37,23 @@
                     <!-- Category Name Column -->
                     <ng-container matColumnDef="categoryname">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.Cat_name}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.category_name}} </mat-cell>
                     </ng-container>
 
                     <!--  Image Column -->
                     <ng-container matColumnDef="image">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.Cat_img}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> <img src="{{apiUrl}}/category/get/image/{{row._id}}" alt="" style="width: 100px;"> </mat-cell>
                     </ng-container>
 
                     <!-- Action Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button class="btn btn-success"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
-                            <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp;
-                            <button class="btn btn-warning" *ngIf="row.Cat_state == 'Inactive'">Active </button>&nbsp;
-                            <button class="btn btn-danger" *ngIf="row.Cat_state == 'Active'">In-Active  </button>
+                            <button class="btn btn-success" (click)=edit(row)><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
+
+                            <button class="btn btn-warning" *ngIf="row.category_state == 'Inactive'">Active </button>&nbsp;
+                            <button class="btn btn-danger" *ngIf="row.category_state == 'Active'">In-Active  </button>
 
                         </mat-cell>
                     </ng-container>

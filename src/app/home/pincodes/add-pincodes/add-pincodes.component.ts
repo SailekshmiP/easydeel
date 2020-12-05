@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-add-pincodes',
@@ -18,7 +21,7 @@ export class AddPincodesComponent implements OnInit {
   // mctype="";
   // mstyle="";
   
-  constructor(private formbuilder:FormBuilder) { }
+  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService, private router:Router,private taostr:ToastrService) { }
 
   ngOnInit() {
     this.locationFormRegistration = this.formbuilder.group(
@@ -43,6 +46,22 @@ get f() { return this.locationFormRegistration.controls; }
     }
     else{
 
+      let req={
+        "location":this.location,
+        "state":"Active"
+      }
+      this.easydealservice.addlocation(req).subscribe(
+        data =>
+        {
+        this.router.navigate(['/pincodes']);
+        this.taostr.success("location added successfully");
+        },
+
+        error =>{
+          this.taostr.error("location added unsuccessful");
+
+        }
+      )
     }
   }
 }

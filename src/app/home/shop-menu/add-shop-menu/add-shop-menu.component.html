@@ -22,9 +22,9 @@
                 <div class="col-sm-4">
                     <label for=""> Shop Name</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
-                    <option value="" disabled selected>Choose a option </option>
-
+                    <select name="" id="" class="form-control" [(ngModel)]="sname" (change)="shopselcted(sname)" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let s of shops" value="{{s._id}}" >{{s.shop_name}}</option>
                     </select>
                     <div *ngIf="submitted && f.sname.errors" class="invalid-feedback">
                         <div *ngIf="f.sname.errors.required">Shop name is required</div>
@@ -36,8 +36,8 @@
                     <label for=""> Location</label>
 
                     <select name="" id="" class="form-control" [(ngModel)]="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" formControlName="location">
-                    <option value="" disabled selected>Choose a option </option>
-
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let l of locations" value="{{l._id}}">{{l.location}}</option>
                     </select>
                     <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
                         <div *ngIf="f.location.errors.required">Location is required</div>
@@ -51,8 +51,8 @@
                     <label for=""> Menu Name</label>
 
                     <select name="" id="" class="form-control" [(ngModel)]="mname" [ngClass]="{ 'is-invalid': submitted && f.mname.errors }" formControlName="mname">
-                    <option value="" disabled selected>Choose a option </option>
-
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let m of menu" value="{{m._id}}">{{m.menu_name}}</option>
                     </select>
                     <div *ngIf="submitted && f.mname.errors" class="invalid-feedback">
                         <div *ngIf="f.mname.errors.required">Menu name is required</div>
@@ -84,7 +84,7 @@
 
                 <div class="col-sm-4">
                     <label for="">Purchase Rate </label>
-                    <input type="number" class="form-control" placeholder="Enter Your Purchase Rate" [(ngModel)]="prate" [ngClass]="{ 'is-invalid': submitted && f.prate.errors }" formControlName="prate">
+                    <input disabled type="number" class="form-control" placeholder="Purchase rate will be automatically calculated" [(ngModel)]="prate" [ngClass]="{ 'is-invalid': submitted && f.prate.errors }" formControlName="prate">
 
                     <div *ngIf="submitted && f.prate.errors" class="invalid-feedback">
                         <div *ngIf="f.prate.errors.required">Purchase rate is required</div>
@@ -148,7 +148,8 @@
 
                 <div class="col-sm-4">
                     <label for="">Menu Image </label>
-                    <input type="file" class="form-control" placeholder="Enter the Product Closing time " [(ngModel)]="mimages" [ngClass]="{ 'is-invalid': submitted && f.mimages.errors }" formControlName="mimages">
+                    <!-- <input type="file" class="form-control" placeholder="Enter the Product Closing time " [(ngModel)]="mimages" [ngClass]="{ 'is-invalid': submitted && f.mimages.errors }" formControlName="mimages"> -->
+                    <input class="form-control" #file type="file" (change)="addshopimage($event)" [ngClass]="{ 'is-invalid': submitted && f.simage.errors }" formControlName="simage">
 
                     <div *ngIf="submitted && f.mimages.errors" class="invalid-feedback">
                         <div *ngIf="f.mimages.errors.required">Menu images is required</div>
@@ -158,21 +159,19 @@
                 </div>
 
 
-
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Show / Hide</label>
                     <br> show
-                    <input type="radio"> Hide
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="showorhide" value="Show" formControlName="showorhide"> Hide
+                    <input type="radio" [(ngModel)]="showorhide" value="Hide" formControlName="showorhide">
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Status</label>
                     <br> Active
-                    <input type="radio"> Inactive
-                    <input type="radio">
+                    <input type="radio" [(ngModel)]="status" value="Active" formControlName="status"> Inactive
+                    <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div>
-
 
 
 

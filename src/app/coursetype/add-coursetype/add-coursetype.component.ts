@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-add-coursetype',
@@ -12,7 +16,7 @@ export class AddCoursetypeComponent implements OnInit {
   
   ctype ;
  
-  constructor(private formbuilder:FormBuilder) { }
+  constructor(private formbuilder:FormBuilder,private router:Router,private easydeelservice:EasydealService,private toaster:ToastrService) { }
 
   ngOnInit() {
     this.coursetypeFormRegistration = this.formbuilder.group(
@@ -33,7 +37,18 @@ get f() { return this.coursetypeFormRegistration.controls; }
         return;
     }
     else{
+      let req = {
+        "courceName":this.ctype,
+      }
+      this.easydeelservice.addcourse(req).subscribe(
+        data =>{
+          this.toaster.success("Course added successfully");
+          this.router.navigate(['/coursetype'])
+        },
+        error =>{
 
+        }
+      )
     }
   }
 }

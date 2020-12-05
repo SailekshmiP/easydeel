@@ -45,8 +45,8 @@
 
                     <select name="" id="" class="form-control" [(ngModel)]="mtype" [ngClass]="{ 'is-invalid': submitted && f.mtype.errors }" formControlName="mtype">
                         <option value="" disabled selected>Choose a option </option>
-                        <option value="veg">VEG</option>
-                        <option value="non-veg">NON-VEG</option>
+                        <option value="Veg">VEG</option>
+                        <option value="Non Veg">NON-VEG</option>
                     </select>
                     <div *ngIf="submitted && f.mtype.errors" class="invalid-feedback">
                         <div *ngIf="f.mtype.errors.required">Menu type is required</div>
@@ -59,11 +59,8 @@
 
                     <select name="" id="" class="form-control" [(ngModel)]="ctype" [ngClass]="{ 'is-invalid': submitted && f.ctype.errors }" formControlName="ctype">
                         <option value="" disabled selected>Choose a option </option>
-                        <option value="Starter">STARTER</option>
-                        <option value="Breakfast">BREAKFAST</option>
-                        <option value="Lunch">LUNCH</option>
-                        <option value="Dinner">DINNER</option>
-                        <option value="Deserts">DESERTS</option>
+                        <option value="{{result._id}}" *ngFor="let result of result">{{result.cource_name}}</option>
+                       
                     </select>
                     <div *ngIf="submitted && f.ctype.errors" class="invalid-feedback">
                         <div *ngIf="f.ctype.errors.required">Course type is required</div>
@@ -73,8 +70,8 @@
 
                 <div class="col-sm-4">
                     <label for="">Menu Images </label>
-                    <input type="file" class="form-control" placeholder="Enter Your Menu Images" [(ngModel)]="mimages" [ngClass]="{ 'is-invalid': submitted && f.mimages.errors }" formControlName="mimages">
 
+                    <input class="form-control" #file type="file" (change)="addmenuimage($event)" [ngClass]="{ 'is-invalid': submitted && f.mimages.errors }" formControlName="mimages">
                     <div *ngIf="submitted && f.mimages.errors" class="invalid-feedback">
                         <div *ngIf="f.mimages.errors.required">Menu images is required</div>
 

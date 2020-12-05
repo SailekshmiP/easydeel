@@ -48,26 +48,26 @@
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                    <mat-cell *matCellDef="let row; let i =index;">M{{i+1}} </mat-cell>
                 </ng-container>
 
                 <!-- Menu Name Column -->
                 <ng-container matColumnDef="menuname">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Name</mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.menuname}}% </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.menu_name}}</mat-cell>
                 </ng-container>
 
                 <!--Image Column -->
                 <ng-container matColumnDef="menuimage">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Image </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.image}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> <img src="{{apiUrl}}menurest/get/image/{{row._id}}" alt="" style="width: 100px;"> </mat-cell>
                 </ng-container>
 
-                <!--Location Column -->
+                <!-- Location Column
                 <ng-container matColumnDef="location">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
-                </ng-container>
+                </ng-container> -->
 
 
                 <!-- Action Column -->

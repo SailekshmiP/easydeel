@@ -24,21 +24,23 @@
                     <!--Image Column -->
                     <ng-container matColumnDef="id">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Id </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.image}} </mat-cell>
+                        <mat-cell *matCellDef="let row;let i=index;"> C{{i+1}} </mat-cell>
                     </ng-container>
 
 
                     <!-- Menu Description Column -->
                     <ng-container matColumnDef="coursetype">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Course Type</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.menudescription}}% </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.cource_name}} </mat-cell>
                     </ng-container>
 
 
                     <!--Location Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
+                        <mat-cell *matCellDef="let row">
+                            <i class="fa fa-edit"></i>
+                        </mat-cell>
                     </ng-container>
 
 

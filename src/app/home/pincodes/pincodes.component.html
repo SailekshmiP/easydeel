@@ -24,13 +24,13 @@
                     <!-- ID Column -->
                     <ng-container matColumnDef="id">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                        <mat-cell *matCellDef="let row;let i = index;"> L{{i+1}} </mat-cell>
                     </ng-container>
 
                     <!--Location Column -->
                     <ng-container matColumnDef="location">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.loaction}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

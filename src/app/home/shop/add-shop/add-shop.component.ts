@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EasydealService } from 'src/app/_services/easydeal.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-shop',
   templateUrl: './add-shop.component.html',
@@ -49,8 +49,10 @@ export class AddShopComponent implements OnInit {
   sphn;
   sotime;
   sctime;
+  profit;
   movalue;
   sdperc;
+  sdamnt;
   pucharge;
   dcharge;
   showorhide = "Show";
@@ -60,7 +62,9 @@ export class AddShopComponent implements OnInit {
   files;
   currentphoto;
   resultscat:any=[];
-  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
+  locations:any=[];
+  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router,
+    private toaster:ToastrService) { }
   formData = new FormData();
   ngOnInit() {
     this.shopFormRegistration = this.formbuilder.group({
@@ -71,8 +75,10 @@ export class AddShopComponent implements OnInit {
       sphn: ['', Validators.required],
       sotime: ['', Validators.required],
       sctime: ['', Validators.required],
+      profit: ['', Validators.required],
       movalue: ['', Validators.required],
       sdperc: ['', Validators.required],
+      sdamnt: ['', Validators.required],
       simage: ['', Validators.required],
       pucharge: ['', Validators.required],
       dcharge: ['', Validators.required],
@@ -82,8 +88,11 @@ export class AddShopComponent implements OnInit {
       checkeddays: this.formbuilder.array([]),
     })
     this.getallCategory();
+    this.getalllocations();
 
   }
+
+  
   onChange(time: string, isChecked: boolean) {
     this.sessiondayssRepat = [];
     const emailFormArray = <FormArray>this.shopFormRegistration.controls.checkeddays;
@@ -122,6 +131,24 @@ export class AddShopComponent implements OnInit {
       }
     )
   }
+
+  getalllocations(){
+    this.easydealservice.getalllocations().subscribe(
+      data =>{
+        console.log(data);
+        
+        this.locations = data;
+
+        this.repeatsessiondays =this.locations;
+     
+        
+      },
+      error =>{
+        console.log(error);
+        
+      }
+    )
+  }
   addshopimage(event)
   {
     
@@ -135,28 +162,32 @@ export class AddShopComponent implements OnInit {
     }
     else 
     {
-      this.formData.append("sname",this.sname)
-    this.formData.append("category",this.scat)
-    this.formData.append("ph",this.sphn)
+    this.formData.append("shop_name",this.sname)
+    this.formData.append("category_id",this.scat)
+    this.formData.append("shop_phone",this.sphn)
+    this.formData.append("shop_landline",this.sln)
     // this.formData.append("open",this.sotime)
     // this.formData.append("close",this.sctime)
-    this.formData.append("open","10")
-    this.formData.append("close","50")
-    this.formData.append("disc",this.sdperc)
-    this.formData.append("discam",this.dcharge)
-    this.formData.append("pick",this.pucharge)
-    this.formData.append("delivery",this.dcharge)
-    this.formData.append("min",this.movalue)
+    this.formData.append("open_time","10")
+    this.formData.append("clos_time","50")
+    this.formData.append("shop_discount",this.sdperc)
+    this.formData.append("shop_discamountamount",this.sdamnt)
+    this.formData.append("pickupRate",this.pucharge)
+    this.formData.append("deliveryRate",this.dcharge)
+    this.formData.append("minimum",this.movalue)
     this.formData.append("show",this.showorhide)
     this.formData.append("state",this.status)
+    this.formData.append("profitpercentage",this.profit)
     this.formData.append("shop_img",this.currentphoto)
-    this.formData.append("add",this.saddress)
+    this.formData.append("shop_address",this.saddress)
+    this.formData.append("locationId",this.sessiondayssRepat['0'])
 
    this.easydealservice.addshop(this.formData).subscribe(
      data=>{
       console.log(data);
       this.formData.delete;
       this.router.navigate(['/shop']);
+      this.toaster.success("Shop Added Successfully")
      },
      error=>{
        console.log(error);
@@ -167,6 +198,7 @@ export class AddShopComponent implements OnInit {
    )
 
   }
+  
 }
 // addcategoryimage(event) {
 

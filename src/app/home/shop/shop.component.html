@@ -34,19 +34,19 @@
 
             <div class="col-sm-2">
                 <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
-                <option value="" selected>Choose a option</option>
-                <option value="s">Shop</option>
-                <option value="l">Location</option>
-                <option value="c">Category</option>
+                    <option value="" selected>Choose a option</option>
+                    <option value="s">Shop</option>
+                    <option value="l">Location</option>
+                    <option value="c">Category</option>
 
-              </select>
+                </select>
             </div>
             <div class="col-sm-2">
                 <select class="form-control" id="">
                     <option value="" selected>Choose a option</option>
-                   <option value="" *ngFor="let results of results">{{results.shopname}}</option>
-    
-                  </select>
+                    <option value="" *ngFor="let results of results">{{results.shopname}}</option>
+
+                </select>
             </div>
             <div class="col-sm-4">
                 <input type="text" class="form-control" placeholder="search here">
@@ -60,7 +60,9 @@
                     <!--Image Column -->
                     <ng-container matColumnDef="image">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Image </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.shop_img}} </mat-cell>
+                        <mat-cell *matCellDef="let row">
+                            <img src="{{apiUrl}}/shop/get/image/{{row._id}}" alt="" style="width: 100px;">
+                        </mat-cell>
                     </ng-container>
 
                     <!-- Shop Name Column -->
@@ -72,31 +74,39 @@
                     <!-- Category Name Column -->
                     <ng-container matColumnDef="categoryname">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Category Name</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.shop_cat}}</mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.category_id.category_name}}</mat-cell>
                     </ng-container>
 
                     <!-- Phone Number Column -->
                     <ng-container matColumnDef="phonenumber">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.shop_ph}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.shop_phone}} </mat-cell>
                     </ng-container>
 
 
                     <!--Service Location Column -->
                     <ng-container matColumnDef="servicelocation">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Service Location </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.servicelocation}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.locationId.location}} </mat-cell>
                     </ng-container>
 
+                    <!--Status Column -->
+                    <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Status </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <p style="font-weight: bold; color: green;" *ngIf="row.shop_state == 'Active'">{{row.shop_state}} </p>
+                            <p style="font-weight: bold; color: red;" *ngIf="row.shop_state == 'Inactive'">{{row.shop_state}} </p>
+                        </mat-cell>
+                    </ng-container>
 
                     <!-- Action Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button class="btn btn-success"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
-                            <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp;
+                            <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
+                            <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
                             <button class="btn btn-warning" *ngIf="row.Cat_state == 'Inactive'">Active </button>&nbsp;
-                            <button class="btn btn-danger" *ngIf="row.Cat_state == 'Active'">In-Active  </button>
+                            <button class="btn btn-danger" *ngIf="row.Cat_state == 'Active'">In-Active </button>
 
                         </mat-cell>
                     </ng-container>
