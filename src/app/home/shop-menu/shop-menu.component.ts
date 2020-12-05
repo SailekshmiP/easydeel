@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-shop-menu',
@@ -21,9 +22,23 @@ export class ShopMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private easydeelservice:EasydealService) { }
 
   ngOnInit() {
+    this.getrestmentall();
+  }
+  getrestmentall()
+  {
+    this.easydeelservice.getallmenus().subscribe(
+      data =>{
+        let arr:any = [];
+        arr = data;
+        this.dataSource.data = arr;
+      },
+      error =>{
+
+      }
+    )
   }
   selectedevent(s) {
     console.log(s);

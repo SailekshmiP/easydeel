@@ -42,7 +42,7 @@ export class AddShopMenuComponent implements OnInit {
         location: ['', Validators.required],
         mname: ['', Validators.required],
         mdes: ['', Validators.required],
-        prate: ['', Validators.required],
+        prate: ['', ],
         srate: ['', Validators.required],
         dperc: ['', Validators.required],
         damount: ['', Validators.required],
@@ -71,21 +71,30 @@ export class AddShopMenuComponent implements OnInit {
     else {
 
 
-
+      this.prate ="0";
       this.formData.append("shop_id",this.sname)
       this.formData.append("location_id",this.location)
       this.formData.append("menu_id",this.mname)
       this.formData.append("menu_desc",this.mdes)
       this.formData.append("purchaseRate",this.prate)
-      this.formData.append("salerate",this.srate)
+      this.formData.append("salesRate",this.srate)
       this.formData.append("discount",this.dperc)
-      this.formData.append("disamountAmount",this.damount)
+      this.formData.append("discamountAmount",this.damount)
       this.formData.append("closingTime",this.pctime)
       this.formData.append("availableTime",this.patime)
       this.formData.append("status",this.status)
       this.formData.append("show",this.showorhide)
       this.formData.append("addrest_img",this.currentphoto)
+      
+      this.easydealservice.addrestmenusss(this.formData).subscribe(
+        data =>{
+          this.ToastrService.success("Shop Menu added sucessfully ")
+        },
+        error =>{
+          this.ToastrService.error("Shop Menu unable to add sucessfully ")
 
+        }
+      )
     }
   }
   addshopimage(event)

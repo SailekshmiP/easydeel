@@ -69,4 +69,14 @@ export class EasydealService {
     return this.http.get(this.apiUrl+'menurest');
 
   }
+  addrestmenusss(fomrdata)
+  {
+    return this.http.post(this.apiUrl+'addrestaurantmenu/post',fomrdata);
+
+  }
+  getallmenus()
+  {
+    return this.http.get(this.apiUrl+'addrestaurantmenu');
+
+  }
 }
