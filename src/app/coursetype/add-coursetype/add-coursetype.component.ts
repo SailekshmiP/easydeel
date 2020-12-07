@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { error } from 'console';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
@@ -41,11 +40,11 @@ get f() { return this.coursetypeFormRegistration.controls; }
         "courceName":this.ctype,
       }
       this.easydeelservice.addcourse(req).subscribe(
-        data =>{
+        data=>{
           this.toaster.success("Course added successfully");
           this.router.navigate(['/coursetype'])
         },
-        error =>{
+        error=>{
 
         }
       )

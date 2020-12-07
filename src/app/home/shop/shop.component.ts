@@ -28,7 +28,7 @@ export class ShopComponent implements OnInit {
   constructor(private easydealservice:EasydealService,private router:Router,) { }
 
   ngOnInit() {
-    this.apiUrl="http://shopgi.in/";
+    this.apiUrl="https://shopgi.in/";
     this.getallShop();
   }
   getallShop(){

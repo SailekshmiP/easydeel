@@ -180,7 +180,11 @@ export class AddShopComponent implements OnInit {
     this.formData.append("profitpercentage",this.profit)
     this.formData.append("shop_img",this.currentphoto)
     this.formData.append("shop_address",this.saddress)
-    this.formData.append("locationId",this.sessiondayssRepat['0'])
+    for(let i=0;i<this.sessiondayssRepat.length;i++)
+    {
+      this.formData.append("locationId",this.sessiondayssRepat[i])
+
+    }
 
    this.easydealservice.addshop(this.formData).subscribe(
      data=>{

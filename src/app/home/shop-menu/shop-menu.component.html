@@ -45,7 +45,7 @@
                     <!-- ID Column -->
                     <ng-container matColumnDef="id">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                        <mat-cell *matCellDef="let row;let i=index"> {{i+1}} </mat-cell>
                     </ng-container>
 
                     <!--Menu Name Column -->
@@ -63,25 +63,25 @@
                     <!-- Purchase Rate Column -->
                     <ng-container matColumnDef="purchaserate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Purchase Rate</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.shopname}}% </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.purchaseRate}} </mat-cell>
                     </ng-container>
 
                     <!--Sales Rate Column -->
                     <ng-container matColumnDef="salesrate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Sales Rate </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.salesrate}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.salesRate}} </mat-cell>
                     </ng-container>
 
                     <!--Discount Percentage Column -->
                     <ng-container matColumnDef="discountpercentage">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Discount Percentage </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.discountpercentage}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.discount}} </mat-cell>
                     </ng-container>
 
                     <!--Discount Amount Column -->
                     <ng-container matColumnDef="discountamount">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Discount Amount </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.discountamount}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.discamountAmount}} </mat-cell>
                     </ng-container>
 
 
