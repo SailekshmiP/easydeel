@@ -59,7 +59,7 @@ get f() { return this.categoryFormRegistration.controls; }
         return;
     }
     else{
-      this.formData.append("category_name",this.cname)
+      this.formData.append("category_name",this.cname.toUpperCase( ))
       this.formData.append("show",this.showorhide)
       this.formData.append("category_menutype",this.mtype)
       this.formData.append("state",this.status)

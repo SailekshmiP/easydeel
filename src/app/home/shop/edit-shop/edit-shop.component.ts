@@ -157,7 +157,7 @@ export class EditShopComponent implements OnInit {
       return;
     }
     else {
-      this.formData.append("shop_name", this.sname)
+      this.formData.append("shop_name", this.sname.toUpperCase( ))
       this.formData.append("category_id", this.scat)
       this.formData.append("shop_phone", this.sphn)
       this.formData.append("shop_landline", this.sln)

@@ -31,7 +31,7 @@ export class AddRestaurantMenuComponent implements OnInit {
     this.restaurantmenuFormRegistration = this.formbuilder.group(
       {
         mname: ['', Validators.required],
-        mdes:['', Validators.required],
+        mdes:['', [Validators.required,Validators.maxLength(50)]],
         mtype:['', Validators.required],
         ctype:['', Validators.required],
         mimages:['', Validators.required],
@@ -48,7 +48,7 @@ get f() { return this.restaurantmenuFormRegistration.controls; }
         return;
     }
     else{
-  this.formData.append("menu_name",this. mname)
+  this.formData.append("menu_name",this. mname.toUpperCase( ))
     this.formData.append("menu_desc",this.mdes)
     this.formData.append("menu_type",this.mtype)
     this.formData.append("courceId",this.ctype)

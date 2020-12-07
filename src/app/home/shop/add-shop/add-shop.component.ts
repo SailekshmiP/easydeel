@@ -162,7 +162,7 @@ export class AddShopComponent implements OnInit {
     }
     else 
     {
-    this.formData.append("shop_name",this.sname)
+    this.formData.append("shop_name",this.sname.toUpperCase( ))
     this.formData.append("category_id",this.scat)
     this.formData.append("shop_phone",this.sphn)
     this.formData.append("shop_landline",this.sln)
@@ -180,6 +180,7 @@ export class AddShopComponent implements OnInit {
     this.formData.append("profitpercentage",this.profit)
     this.formData.append("shop_img",this.currentphoto)
     this.formData.append("shop_address",this.saddress)
+
     for(let i=0;i<this.sessiondayssRepat.length;i++)
     {
       this.formData.append("locationId",this.sessiondayssRepat[i])

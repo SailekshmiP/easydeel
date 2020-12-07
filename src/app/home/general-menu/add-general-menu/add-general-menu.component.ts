@@ -23,7 +23,7 @@ export class AddGeneralMenuComponent implements OnInit {
       {
         cname: ['', Validators.required],
         iname:['', Validators.required],
-        des:['', Validators.required],
+        des:['',[ Validators.required,Validators.maxLength(50)]],
         iimage:['', Validators.required],
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],

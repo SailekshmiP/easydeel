@@ -36,9 +36,15 @@ get f() { return this.coursetypeFormRegistration.controls; }
         return;
     }
     else{
+      // let s:String;
+      // s = this.ctype;
+      // console.log();
       let req = {
-        "courceName":this.ctype,
+        "courceName":this.ctype.toUpperCase( ),
       }
+     
+      
+      
       this.easydeelservice.addcourse(req).subscribe(
         data=>{
           this.toaster.success("Course added successfully");

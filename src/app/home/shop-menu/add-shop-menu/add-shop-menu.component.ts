@@ -41,7 +41,7 @@ export class AddShopMenuComponent implements OnInit {
         sname: ['', Validators.required],
         location: ['', Validators.required],
         mname: ['', Validators.required],
-        mdes: ['', Validators.required],
+        mdes: ['', [Validators.required,Validators.maxLength(50)]],
         prate: ['', ],
         srate: ['', Validators.required],
         dperc: ['', Validators.required],
@@ -72,7 +72,7 @@ export class AddShopMenuComponent implements OnInit {
 
 
       this.prate ="0";
-      this.formData.append("shop_id",this.sname)
+      this.formData.append("shop_id",this.sname.toUpperCase( ))
       this.formData.append("location_id",this.location)
       this.formData.append("menu_id",this.mname)
       this.formData.append("menu_desc",this.mdes)
@@ -89,6 +89,7 @@ export class AddShopMenuComponent implements OnInit {
       this.easydealservice.addrestmenusss(this.formData).subscribe(
         data =>{
           this.ToastrService.success("Shop Menu added sucessfully ")
+          this.router.navigate(['/shopmenu']);
         },
         error =>{
           this.ToastrService.error("Shop Menu unable to add sucessfully ")

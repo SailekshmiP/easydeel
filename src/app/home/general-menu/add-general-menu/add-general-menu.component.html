@@ -47,6 +47,7 @@
 
                     <div *ngIf="submitted && f.des.errors" class="invalid-feedback">
                         <div *ngIf="f.des.errors.required">Description is required</div>
+                        <div *ngIf="f.des.errors.maxlength">Maximum 50 characters are allowed</div>
 
                     </div>
                 </div>

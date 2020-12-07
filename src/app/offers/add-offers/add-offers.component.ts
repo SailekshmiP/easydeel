@@ -10,7 +10,8 @@ export class AddOffersComponent implements OnInit {
 
   offerFormRegistration:FormGroup;
   submitted = false;
-  
+
+  sname;
   mname;
   oloc;
   odes;  
@@ -21,6 +22,7 @@ export class AddOffersComponent implements OnInit {
   adata;
   atime;
   ctime;
+  cashback;
   bimages;
   
   constructor(private formbuilder:FormBuilder) { }
@@ -28,6 +30,8 @@ export class AddOffersComponent implements OnInit {
   ngOnInit() {
     this.offerFormRegistration = this.formbuilder.group(
       {
+
+        sname:['', Validators.required],
         mname: [''],
         oloc:['', Validators.required],
         odes:['', Validators.required],
@@ -38,6 +42,7 @@ export class AddOffersComponent implements OnInit {
         adata: ['', Validators.required],
         atime: ['', Validators.required],
         ctime: ['', Validators.required],
+        cashback: ['', Validators.required],
         bimages: ['', Validators.required],
     })
 
