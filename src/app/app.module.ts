@@ -70,6 +70,7 @@ import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
 import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
 import { EditPreOrdersComponent } from './home/pre-orders/edit-pre-orders/edit-pre-orders.component';
 import { ToastrModule } from 'ngx-toastr';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
 // import { EditPriceUpdatorComponent } from './settings/edit-price-updator/edit-price-updator.component';
 
@@ -149,7 +150,7 @@ import { ToastrModule } from 'ngx-toastr';
     MaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
