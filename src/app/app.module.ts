@@ -71,6 +71,9 @@ import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-
 import { EditPreOrdersComponent } from './home/pre-orders/edit-pre-orders/edit-pre-orders.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { GeneralCategoryComponent } from './general-category/general-category.component';
+import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
+
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
 // import { EditPriceUpdatorComponent } from './settings/edit-price-updator/edit-price-updator.component';
 
@@ -139,6 +142,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     PreOrdersComponent,
     AddPreOrdersComponent,
     EditPreOrdersComponent,
+    GeneralCategoryComponent,
+    AddGeneralCategoryComponent,
   ],
   imports: [
     BrowserModule,

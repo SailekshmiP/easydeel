@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">General Category Type</h4>
+
+            </div>
+
+            <div class="col-sm-4">
+                <button class="btn btn-primary" style="float: right;" routerLink="/addgeneralcategory"> Add General Category Type</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+                    <!--Image Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id </mat-header-cell>
+                        <mat-cell *matCellDef="let row;let i=index;"> C{{i+1}} </mat-cell>
+                    </ng-container>
+
+
+                    <!-- Menu Description Column -->
+                    <ng-container matColumnDef="categorytype">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Category Type</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.cource_name}} </mat-cell>
+                    </ng-container>
+
+
+                    <!--Location Column -->
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <i class="fa fa-edit"></i>
+                        </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+
+                <mat-paginator></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

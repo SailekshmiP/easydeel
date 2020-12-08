@@ -33,8 +33,8 @@
 
                     <select name="" id="" class="form-control" [(ngModel)]="scat" [ngClass]="{ 'is-invalid': submitted && f.scat.errors }" formControlName="scat">
                         <option value="" disabled selected>Choose a option </option>
-                      
-                        <option  *ngFor="let c of resultscat" value="{{c._id}}">{{c.category_name}}</option>
+
+                        <option *ngFor="let c of resultscat" value="{{c._id}}">{{c.category_name}}</option>
                     </select>
                     <div *ngIf="submitted && f.scat.errors" class="invalid-feedback">
                         <div *ngIf="f.scat.errors.required">Shop category is required</div>
@@ -110,6 +110,16 @@
 
                     <div *ngIf="submitted && f.movalue.errors" class="invalid-feedback">
                         <div *ngIf="f.movalue.errors.required">Minimum order value is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <label for="">Shop Discount Amount </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Shop Discount Amount" [(ngModel)]="sdamnt" [ngClass]="{ 'is-invalid': submitted && f.sdamnt.errors }" formControlName="sdamnt">
+
+                    <div *ngIf="submitted && f.sdamnt.errors" class="invalid-feedback">
+                        <div *ngIf="f.sdamnt.errors.required">Shop discount amount is required</div>
 
                     </div>
                 </div>

@@ -108,4 +108,30 @@ export class ShopComponent implements OnInit {
     sessionStorage.setItem("shop",JSON.stringify(r))
     this.router.navigate(['/editshop'])
   }
+  active(r)
+  {
+    this.easydealservice.changestatusactive(r._id).subscribe(
+      data =>{
+        this.ngOnInit();
+      },
+      error =>{
+        this.ngOnInit();
+
+      },
+    )
+
+  }
+  inactive(r)
+  {
+    this.easydealservice.changestatusactive(r._id).subscribe(
+      data =>{
+        this.ngOnInit();
+      },
+      error =>{
+        this.ngOnInit();
+
+      },
+    )
+
+  }
 }

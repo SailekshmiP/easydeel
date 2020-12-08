@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddCoursetypeComponent } from './coursetype/add-coursetype/add-coursetype.component';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
+import { GeneralCategoryComponent } from './general-category/general-category.component';
 import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
 import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
 import { AddCategoryComponent } from './home/category/add-category/add-category.component';
@@ -95,6 +97,9 @@ const routes: Routes = [
   {path:'addpreorders',component:AddPreOrdersComponent},
   {path:'editcategory',component:EditCategoryComponent},
   {path:'editshop',component:EditShopComponent},
+  {path:'generalcategory',component:GeneralCategoryComponent},
+  {path:'addgeneralcategory',component:AddGeneralCategoryComponent},
+
 
 
 

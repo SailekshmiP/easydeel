@@ -37,10 +37,25 @@ export class EasydealService {
   {
     return this.http.post(this.apiUrl+'shop/post',formData);
   }
-  editshop(formdata)
+  editshop(formdata,id)
   {
-    return this.http.patch(this.apiUrl+'shop/post',formdata);
+    return this.http.patch(this.apiUrl+'shop/edit/'+id,formdata);
 
+  }
+  changestatusactive(e){
+    let req={
+
+    }
+
+    return this.http.patch(this.apiUrl+'shop/edit/state/'+e,req);
+  }
+
+  changerestaurantmenuactive(a){
+    let req={
+
+    }
+
+    return this.http.patch(this.apiUrl+'addrestaurantmenu/edit/state/'+a,req);
   }
   getalllocations(){
 

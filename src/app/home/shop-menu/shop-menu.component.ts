@@ -22,14 +22,14 @@ export class ShopMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydeelservice:EasydealService) { }
+  constructor(private easydealservice:EasydealService) { }
 
   ngOnInit() {
     this.getrestmentall();
   }
   getrestmentall()
   {
-    this.easydeelservice.getallmenus().subscribe(
+    this.easydealservice.getallmenus().subscribe(
       data =>{
         let arr:any = [];
         arr = data;
@@ -96,6 +96,32 @@ export class ShopMenuComponent implements OnInit {
       },
     ]
     }
+
+  }
+  active(r)
+  {
+    this.easydealservice.changerestaurantmenuactive(r._id).subscribe(
+      data =>{
+        this.ngOnInit();
+      },
+      error =>{
+        this.ngOnInit();
+
+      },
+    )
+
+  }
+  inactive(r)
+  {
+    this.easydealservice.changerestaurantmenuactive(r._id).subscribe(
+      data =>{
+        this.ngOnInit();
+      },
+      error =>{
+        this.ngOnInit();
+
+      },
+    )
 
   }
 }

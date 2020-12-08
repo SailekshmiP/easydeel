@@ -39,6 +39,7 @@ export class EditShopComponent implements OnInit {
   resultscat: any = [];
   locations: any = [];
   shopdetails;
+  id;
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
     private toaster: ToastrService) { }
   formData = new FormData();
@@ -47,17 +48,21 @@ export class EditShopComponent implements OnInit {
       sname: ['', Validators.required],
       scat: ['', Validators.required],
       saddress: ['', Validators.required],
+
       sln: ['', Validators.required],
       sphn: ['', Validators.required],
       sotime: ['', Validators.required],
+
       sctime: ['', Validators.required],
       profit: ['', Validators.required],
       movalue: ['', Validators.required],
+
       sdperc: ['', Validators.required],
-      simage: ['', Validators.required],
       pucharge: ['', Validators.required],
-      sdamnt: ['', Validators.required],
       dcharge: ['', Validators.required],
+
+      sdamnt: ['', Validators.required],
+      simage: ['', Validators.required],
       showorhide: ['', Validators.required],
       status: ['', Validators.required],
       check: ['', Validators.required],
@@ -67,6 +72,7 @@ export class EditShopComponent implements OnInit {
     this.getalllocations();
     this.shopdetails = JSON.parse(sessionStorage.getItem("shop"));
     this.sname = this.shopdetails['shop_name']
+
     this.scat = this.shopdetails.category_id['_id']
     this.saddress = this.shopdetails['shop_address']
     this.sln = this.shopdetails['shop_landline']
@@ -81,6 +87,7 @@ export class EditShopComponent implements OnInit {
     this.sdamnt = this.shopdetails['shop_discamountamount']
     this.showorhide = this.shopdetails['shop_show']
     this.status = this.shopdetails['shop_state']
+    this.id=this.shopdetails['_id']
     // this.repeatsessiondays=this.shopdetails['locationId']
     // console.log(this.repeatsessiondays);
     // let arr =[];
@@ -154,6 +161,7 @@ export class EditShopComponent implements OnInit {
   submit() {
     this.submitted = true;
     if (this.shopFormRegistration.invalid) {
+      console.log("s")
       return;
     }
     else {
@@ -178,7 +186,7 @@ export class EditShopComponent implements OnInit {
       this.formData.append("shop_address", this.saddress)
       this.formData.append("locationId", this.sessiondayssRepat['0'])
 
-      this.easydealservice.editshop(this.formData).subscribe(
+      this.easydealservice.editshop(this.formData,this.id).subscribe(
         data => {
           console.log(data);
           this.formData.delete;

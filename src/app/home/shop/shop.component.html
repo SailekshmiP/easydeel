@@ -105,8 +105,8 @@
                         <mat-cell *matCellDef="let row">
                             <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
                             <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
-                            <button class="btn btn-warning" *ngIf="row.Cat_state == 'Inactive'">Active </button>&nbsp;
-                            <button class="btn btn-danger" *ngIf="row.Cat_state == 'Active'">In-Active </button>
+                            <button class="btn btn-warning" (click)="active(row)" *ngIf="row.shop_state == 'Inactive'">Active </button>&nbsp;
+                            <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.shop_state == 'Active'">In-Active </button>
 
                         </mat-cell>
                     </ng-container>
