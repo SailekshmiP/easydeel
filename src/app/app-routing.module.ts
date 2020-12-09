@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddCoursetypeComponent } from './coursetype/add-coursetype/add-coursetype.component';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
+import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
 import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
 import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
@@ -99,6 +100,7 @@ const routes: Routes = [
   {path:'editshop',component:EditShopComponent},
   {path:'generalcategory',component:GeneralCategoryComponent},
   {path:'addgeneralcategory',component:AddGeneralCategoryComponent},
+  {path:'editgeneralcategory',component:EditGeneralCategoryComponent},
 
 
 

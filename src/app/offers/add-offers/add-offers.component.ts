@@ -11,9 +11,9 @@ export class AddOffersComponent implements OnInit {
   offerFormRegistration:FormGroup;
   submitted = false;
 
-  sname;
+  sname ='';
   mname;
-  oloc;
+  oloc ='';
   odes;  
   tqpurc;
   tnusers;

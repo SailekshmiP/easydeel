@@ -31,15 +31,19 @@
                     <!-- Menu Description Column -->
                     <ng-container matColumnDef="categorytype">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Category Type</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.cource_name}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.category_name}} </mat-cell>
                     </ng-container>
 
 
-                    <!--Location Column -->
+                    <!--Action Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <i class="fa fa-edit"></i>
+                            <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
+                            <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
+                            <button class="btn btn-warning" (click)="active(row)" *ngIf="row.state == 'Inactive'">Active </button>
+                            <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.state == 'Active'">In-Active </button>
+
                         </mat-cell>
                     </ng-container>
 

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-add-general-menu',
@@ -7,40 +10,95 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-general-menu.component.css']
 })
 export class AddGeneralMenuComponent implements OnInit {
-  generalmenuFormRegistration:FormGroup;
+  generalmenuFormRegistration: FormGroup;
   submitted = false;
-  
-  cname;
+
+  sname = "";
+  cname = "";
   iname;
-  des;  
+  des;
   iimage;
+  showorhide;
+  status;
   // mctype="";
+  shops;
+  category;
   // mstyle="";
-  
-  constructor(private formbuilder:FormBuilder) { }
+  formData = new FormData();
+  files;
+  currentphoto;
+  constructor(private formbuilder: FormBuilder, private easydeelservices: EasydealService, private router: Router, private toastr: ToastrService) { }
   ngOnInit() {
-    this.generalmenuFormRegistration= this.formbuilder.group(
+    this.generalmenuFormRegistration = this.formbuilder.group(
       {
+        sname: ['', Validators.required],
         cname: ['', Validators.required],
-        iname:['', Validators.required],
-        des:['',[ Validators.required,Validators.maxLength(50)]],
-        iimage:['', Validators.required],
+        iname: ['', Validators.required],
+        des: ['', [Validators.required, Validators.maxLength(50)]],
+        iimage: ['', Validators.required],
+        showorhide: ['', Validators.required],
+        status: ['', Validators.required],
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
-    })
+      })
+this.getallShop();
+this.getallcategorytype();
+  }
+  get f() { return this.generalmenuFormRegistration.controls; }
+  additemimage(event) {
+
+    this.files = event.target.files;
+    this.currentphoto = this.files.item(0);
+  }
+  getallShop(){
+    this.easydeelservices.getshop().subscribe(
+      data =>{
+        console.log(data);
+        this.shops =data;
+      
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+  getallcategorytype() {
+    this.easydeelservices.getallgeneralcategory().subscribe(
+      data => {
+        let result: any = []
+        this.category = data;
+        
+      },
+      error => {
+
+      },
+    )
 
   }
-get f() { return this.generalmenuFormRegistration.controls; }
-
-  submit(){
+  submit() {
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.generalmenuFormRegistration.invalid) {
-        return;
+      return;
     }
-    else{
+    else {
+      this.formData.append("itemName", this.iname)
+      this.formData.append("itm_description", this.des)
+      this.formData.append("gmenu_img", this.currentphoto)
+      this.formData.append("shop_id",this.sname)
+      this.formData.append("generalcat_id",this.cname)
+      // this.formData.append(""),this.sname
+      this.easydeelservices.addgeneralitemmenu(this.formData).subscribe(
+        data => {
+this.toastr.success("General menu added successfully");
+this.router.navigate(['/generalmenu']);
+        },
 
+error => {
+  this.toastr.error("General menu added unsuccessful");
+        }
+      )
     }
   }
 }

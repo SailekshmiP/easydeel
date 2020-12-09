@@ -41,12 +41,12 @@ get f() { return this.categorytypeFormRegistration.controls; }
       // s = this.ctype;
       // console.log();
       let req = {
-        "courceName":this.ctype.toUpperCase( ),
+        "category_name":this.ctype.toUpperCase( ),
       }
-      this.easydeelservice.addcourse(req).subscribe(
+      this.easydeelservice.addgencat(req).subscribe(
         data=>{
-          this.toaster.success("Course added successfully");
-          this.router.navigate(['/coursetype'])
+          this.toaster.success("General category added successfully");
+          this.router.navigate(['/generalcategory'])
         },
         error=>{
 

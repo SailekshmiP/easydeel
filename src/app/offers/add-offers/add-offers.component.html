@@ -21,15 +21,17 @@
             <div class="row">
 
                 <div class="col-sm-4">
-                    <label for="">Shop Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Shop Name" [(ngModel)]="sname" formControlName="sname">
+                    <label for=""> Shop Name</label>
 
+                    <select name="" id="" class="form-control" [(ngModel)]="sname" (change)="shopselcted(sname)" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let s of shops" value="{{s._id}}" >{{s.shop_name}}</option>
+                    </select>
                     <div *ngIf="submitted && f.sname.errors" class="invalid-feedback">
                         <div *ngIf="f.sname.errors.required">Shop name is required</div>
 
                     </div>
                 </div>
-
 
                 <div class="col-sm-4">
                     <label for=""> Menu Name</label>
@@ -43,10 +45,12 @@
 
                 <div class="col-sm-4">
                     <label for=""> Offer Location</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Offer Location" [(ngModel)]="oloc" [ngClass]="{ 'is-invalid': submitted && f.oloc.errors }" formControlName="oloc">
-
+                    <select name="" id="" class="form-control" [(ngModel)]="oloc" (change)="shopselcted(oloc)" [ngClass]="{ 'is-invalid': submitted && f.oloc.errors }" formControlName="oloc">
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let l of locations" value="{{s._id}}" >{{s.offerlocation}}</option>
+                    </select>
                     <div *ngIf="submitted && f.oloc.errors" class="invalid-feedback">
-                        <div *ngIf="f.oloc.errors.required">Offer location is required</div>
+                        <div *ngIf="f.oloc.errors.required">Offer Location is required</div>
 
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-general-shop-menu',
@@ -8,9 +10,9 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./general-shop-menu.component.css']
 })
 export class GeneralShopMenuComponent implements OnInit {
-  displayedColumns = ['id', 'itemname', 'itemprice', 'itemquantity', 'action'];
+  displayedColumns = ['id','sname','itemname', 'itemprice', 'itemquantity', 'action'];
   dataSource = new MatTableDataSource();
-
+result;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -18,9 +20,55 @@ export class GeneralShopMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private easydeelservice:EasydealService,private toastr:ToastrService) { }
 
   ngOnInit() {
+    this.getallgeneralshopmenu();
   }
+  
+getallgeneralshopmenu(){
+this.easydeelservice.getallgeneralshopmenu().subscribe(
+  data =>
+  {
 
+    this.result=data;
+    this.dataSource.data=this.result;
+  },
+  error =>
+  {
+
+  }
+)
+}
+active(s)
+{
+  console.log(s);
+  
+this.easydeelservice.changegmstatus(s._id).subscribe(
+  data =>{
+    this.toastr.success("Status Updated");
+    this.ngOnInit();
+  },
+  error =>{
+    this.toastr.error("Unable to Update status");
+    this.ngOnInit();
+
+  }
+)
+}
+inactive(s)
+{
+  
+this.easydeelservice.changegmstatus(s._id).subscribe(
+  data =>{
+    this.toastr.success("Status Updated");
+    this.ngOnInit();
+  },
+  error =>{
+    this.toastr.error("Unable to Update status");
+    this.ngOnInit();
+
+  }
+)
+}
 }

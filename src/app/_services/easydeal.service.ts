@@ -7,91 +7,123 @@ import { Injectable } from '@angular/core';
 })
 export class EasydealService {
   BASEURL;
-  apiUrl="https://shopgi.in/";
-  constructor(private http:HttpClient) 
-  { 
-  this.apiUrl;
-    
-  }
-  getcat(){
-    console.log(this.apiUrl);
-    
-    return this.http.get(this.apiUrl+'category');
-  }
-  addcategory(data)
-  {
-    return this.http.post(this.apiUrl+'category/post',data);
-  }
-  editcategory(formData,cat_id)
-  {
-    return this.http.patch(this.apiUrl+'category/edit/'+cat_id,formData);
+  apiUrl = "https://shopgi.in/";
+  constructor(private http: HttpClient) {
+    this.apiUrl;
 
   }
-
-  getshop(){
+  getcat() {
     console.log(this.apiUrl);
 
-    return this.http.get(this.apiUrl+'shop');
+    return this.http.get(this.apiUrl + 'category');
   }
-  addshop(formData)
-  {
-    return this.http.post(this.apiUrl+'shop/post',formData);
+  addcategory(data) {
+    return this.http.post(this.apiUrl + 'category/post', data);
   }
-  editshop(formdata,id)
-  {
-    return this.http.patch(this.apiUrl+'shop/edit/'+id,formdata);
+  editcategory(formData, cat_id) {
+    return this.http.patch(this.apiUrl + 'category/edit/' + cat_id, formData);
 
   }
-  changestatusactive(e){
-    let req={
+
+  getshop() {
+    console.log(this.apiUrl);
+
+    return this.http.get(this.apiUrl + 'shop');
+  }
+  addshop(formData) {
+    return this.http.post(this.apiUrl + 'shop/post', formData);
+  }
+  editshop(formdata, id) {
+    return this.http.patch(this.apiUrl + 'shop/edit/' + id, formdata);
+
+  }
+  changestatusactive(e) {
+    let req = {
 
     }
 
-    return this.http.patch(this.apiUrl+'shop/edit/state/'+e,req);
+    return this.http.patch(this.apiUrl + 'shop/edit/state/' + e, req);
   }
 
-  changerestaurantmenuactive(a){
-    let req={
+  changerestaurantmenuactive(a) {
+    let req = {
 
     }
 
-    return this.http.patch(this.apiUrl+'addrestaurantmenu/edit/state/'+a,req);
+    return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/state/' + a, req);
   }
-  getalllocations(){
+  getalllocations() {
 
-    return this.http.get(this.apiUrl+'location');
-  }
-
-  addlocation(r){
-    return this.http.post(this.apiUrl+'location/post',r);
+    return this.http.get(this.apiUrl + 'location');
   }
 
-  addcourse(r){
-    return this.http.post(this.apiUrl+'cource/post',r);
+  addlocation(r) {
+    return this.http.post(this.apiUrl + 'location/post', r);
   }
-  getallcoursetype()
+
+  addcourse(r) {
+    return this.http.post(this.apiUrl + 'cource/post', r);
+  }
+  getallcoursetype() {
+    return this.http.get(this.apiUrl + 'cource');
+
+  }
+  addrestmenu(r) {
+    return this.http.post(this.apiUrl + 'menurest/post', r);
+
+  }
+  getallmenu() {
+    return this.http.get(this.apiUrl + 'menurest');
+
+  }
+  addrestmenusss(fomrdata) {
+    return this.http.post(this.apiUrl + 'addrestaurantmenu/post', fomrdata);
+
+  }
+  getallmenus() {
+    return this.http.get(this.apiUrl + 'addrestaurantmenu');
+
+  }
+  addgeneralitemmenu(s) {
+    return this.http.post(this.apiUrl + 'generalitem/post', s);
+  }
+  addgencat(s) {
+    return this.http.post(this.apiUrl + 'generalcategory/post', s);
+
+  }
+  getallgeneralcategory() {
+    return this.http.get(this.apiUrl + 'generalcategory');
+
+  }
+  getallgeneralmenu() {
+    return this.http.get(this.apiUrl + 'generalitem');
+  }
+  changestatus(s) {
+    let req = {
+
+    }
+    return this.http.patch(this.apiUrl + 'generalitem/edit/state/' + s, req);
+  }
+  gencatstatchange(s) {
+    let req = {
+
+    }
+    return this.http.patch(this.apiUrl + 'generalcategory/edit/state/' + s, req);
+  }
+  editgencat(req, id) {
+    return this.http.patch(this.apiUrl + 'generalcategory/edit/' + id, req);
+  }
+  addgeneralshopmenu(a) {
+    return this.http.post(this.apiUrl + 'generalshopmenu/post', a);
+  }
+  getallgeneralshopmenu(){
+    return this.http.get(this.apiUrl +'generalshopmenu');
+  }
+  changegmstatus(s)
   {
-    return this.http.get(this.apiUrl+'cource');
-    
-  }
-  addrestmenu(r)
-  {
-    return this.http.post(this.apiUrl+'menurest/post',r);
+    let req ={
 
-  }
-  getallmenu()
-  {
-    return this.http.get(this.apiUrl+'menurest');
-
-  }
-  addrestmenusss(fomrdata)
-  {
-    return this.http.post(this.apiUrl+'addrestaurantmenu/post',fomrdata);
-
-  }
-  getallmenus()
-  {
-    return this.http.get(this.apiUrl+'addrestaurantmenu');
-
+    }
+    return this.http.patch(this.apiUrl+'generalshopmenu/edit/state/'+s,req)
   }
 }
