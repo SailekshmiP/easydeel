@@ -26,11 +26,11 @@ export class EasydealService {
 
   }
 
-  changecategorystatus(s){
+  changecategorystatus(s) {
     let req = {
 
     }
-    return this.http.patch(this.apiUrl + 'category/edit/state/' + s,req);
+    return this.http.patch(this.apiUrl + 'category/edit/state/' + s, req);
 
   }
   getshop() {
@@ -43,6 +43,11 @@ export class EasydealService {
   }
   editshop(formdata, id) {
     return this.http.patch(this.apiUrl + 'shop/edit/' + id, formdata);
+
+  }
+  editrestmenu(req, id) {
+    return this.http.patch(this.apiUrl + 'menurest/edit/' + id, req);
+
 
   }
   changestatusactive(e) {
@@ -84,16 +89,20 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'menurest');
 
   }
-  changestatusrestmenu(s)
-  {
-    let req ={
+  changestatusrestmenu(s) {
+    let req = {
 
     }
-    return this.http.patch(this.apiUrl + 'menurest/edit/state/'+s,req);
+    return this.http.patch(this.apiUrl + 'menurest/edit/state/' + s, req);
 
   }
   addrestmenusss(fomrdata) {
     return this.http.post(this.apiUrl + 'addrestaurantmenu/post', fomrdata);
+
+  }
+  editshopmenu(fomrdata, id) {
+
+    return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/' + id, fomrdata);
 
   }
   getallmenus() {
@@ -132,26 +141,48 @@ export class EasydealService {
   addgeneralshopmenu(a) {
     return this.http.post(this.apiUrl + 'generalshopmenu/post', a);
   }
-  getallgeneralshopmenu(){
-    return this.http.get(this.apiUrl +'generalshopmenu');
+  editgeneralmenu(s, id) {
+
+    return this.http.patch(this.apiUrl + 'generalshopmenu/edit/' + id, s);
   }
-  changegmstatus(s)
-  {
-    let req ={
+  getallgeneralshopmenu() {
+    return this.http.get(this.apiUrl + 'generalshopmenu');
+  }
+  changegmstatus(s) {
+    let req = {
 
     }
-    return this.http.patch(this.apiUrl+'generalshopmenu/edit/state/'+s,req)
+    return this.http.patch(this.apiUrl + 'generalshopmenu/edit/state/' + s, req)
   }
-  editgeneralitemmenu(req,id)
+  editgeneralitemmenu(req, id) {
+    return this.http.patch(this.apiUrl + 'generalitem/edit/' + id, req);
+  }
+
+  editcourse(r, id) {
+    return this.http.patch(this.apiUrl + 'cource/edit/' + id, r);
+
+
+  }
+  addoffer(formdata)
   {
-    return this.http.patch(this.apiUrl + 'generalitem/edit/'+id, req);
+    return this.http.post(this.apiUrl+'offers/post',formdata);
   }
-  
-  editcourse(r,id)
+  getalloffers()
+  {
+    return this.http.get(this.apiUrl+'offers');
 
-{
-  return this.http.patch(this.apiUrl + 'cource/edit/'+id, r);
+  }
+  editoffer(formData,id){
 
+    return this.http.patch(this.apiUrl+'offers/edit/'+id,formData);
 
-}
+  }
+  changeofferstatus(d)
+  {
+    let req= {
+
+    }
+    return this.http.patch(this.apiUrl+'offers/edit/state/'+d,req);
+
+  }
 }

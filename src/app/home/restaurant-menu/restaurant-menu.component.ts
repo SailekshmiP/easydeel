@@ -76,6 +76,12 @@ this.dataSource.data=this.results;
       }
     )
   }
+  edit(s)
+  {
+    sessionStorage.setItem("restmenu",JSON.stringify(s));
+
+    this.router.navigate(['/edit-rest-menu']);
+  }
   selectedevent(r) {
     console.log(r);
     if (r == "m") {

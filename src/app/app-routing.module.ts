@@ -16,6 +16,7 @@ import { AddGeneralMenuComponent } from './home/general-menu/add-general-menu/ad
 import { EditGeneralMenuComponent } from './home/general-menu/edit-general-menu/edit-general-menu.component';
 import { GeneralMenuComponent } from './home/general-menu/general-menu.component';
 import { AddGeneralShopMenuComponent } from './home/general-shop-menu/add-general-shop-menu/add-general-shop-menu.component';
+import { EditGeneralShopMenuComponent } from './home/general-shop-menu/edit-general-shop-menu/edit-general-shop-menu.component';
 import { GeneralShopMenuComponent } from './home/general-shop-menu/general-shop-menu.component';
 import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './home/orders/orders.component';
@@ -24,8 +25,10 @@ import { PincodesComponent } from './home/pincodes/pincodes.component';
 import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
 import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
 import { AddRestaurantMenuComponent } from './home/restaurant-menu/add-restaurant-menu/add-restaurant-menu.component';
+import { EditRestaurantMenuComponent } from './home/restaurant-menu/edit-restaurant-menu/edit-restaurant-menu.component';
 import { RestaurantMenuComponent } from './home/restaurant-menu/restaurant-menu.component';
 import { AddShopMenuComponent } from './home/shop-menu/add-shop-menu/add-shop-menu.component';
+import { EditShopMenuComponent } from './home/shop-menu/edit-shop-menu/edit-shop-menu.component';
 import { ShopMenuComponent } from './home/shop-menu/shop-menu.component';
 import { AddShopComponent } from './home/shop/add-shop/add-shop.component';
 import { EditShopComponent } from './home/shop/edit-shop/edit-shop.component';
@@ -33,6 +36,7 @@ import { ShopComponent } from './home/shop/shop.component';
 import { UsersComponent } from './home/users/users.component';
 import { LoginComponent } from './login/login.component';
 import { AddOffersComponent } from './offers/add-offers/add-offers.component';
+import { EditOffersComponent } from './offers/edit-offers/edit-offers.component';
 import { OffersComponent } from './offers/offers.component';
 import { DeliveryComponent } from './reports/delivery/delivery.component';
 import { PurchaseComponent } from './reports/purchase/purchase.component';
@@ -106,9 +110,13 @@ const routes: Routes = [
   {path:'editgeneralmenu',component:EditGeneralMenuComponent},
 
   {path:'editcoursetype',component:EditCoursetypeComponent},
+  {path:'edit-rest-menu',component:EditRestaurantMenuComponent},
 
+  {path:'edit-shop-menu',component:EditShopMenuComponent},
 
+  {path:'edit-general-shop-menu',component:EditGeneralShopMenuComponent},
 
+  {path:'edit-offers',component:EditOffersComponent},
 
 
   

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
@@ -22,7 +24,7 @@ export class ShopMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydealservice:EasydealService) { }
+  constructor(private easydealservice:EasydealService,private toaster:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.getrestmentall();
@@ -39,6 +41,11 @@ export class ShopMenuComponent implements OnInit {
 
       }
     )
+  }
+  edit(s)
+  {
+    sessionStorage.setItem("shopmenu",JSON.stringify(s));
+    this.router.navigate(['/edit-shop-menu'])
   }
   selectedevent(s) {
     console.log(s);

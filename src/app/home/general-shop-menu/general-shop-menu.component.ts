@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
@@ -12,7 +13,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class GeneralShopMenuComponent implements OnInit {
   displayedColumns = ['id','sname','itemname', 'itemprice', 'itemquantity', 'action'];
   dataSource = new MatTableDataSource();
-result;
+  result;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -20,7 +21,7 @@ result;
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydeelservice:EasydealService,private toastr:ToastrService) { }
+  constructor(private easydeelservice:EasydealService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.getallgeneralshopmenu();
@@ -71,4 +72,10 @@ this.easydeelservice.changegmstatus(s._id).subscribe(
   }
 )
 }
+edit(s)
+{
+  sessionStorage.setItem("gmenu",JSON.stringify(s));
+  this.router.navigate(['/edit-general-shop-menu']);
+}
+
 }

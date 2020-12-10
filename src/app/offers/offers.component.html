@@ -24,41 +24,49 @@
                     <!--Image Column -->
                     <ng-container matColumnDef="menuimage">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Image </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.image}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> <img style="width: 100px;" src="{{apiurl}}offers/get/image/{{row._id}}" alt=""> </mat-cell>
                     </ng-container>
 
 
                     <!-- Menu Description Column -->
                     <ng-container matColumnDef="menudescription">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Description</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.menudescription}}% </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.offr_desc}} </mat-cell>
                     </ng-container>
 
 
                     <!--Location Column -->
                     <ng-container matColumnDef="location">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.location_id.location}} </mat-cell>
                     </ng-container>
 
                     <!--Total Quantity to Purchase Column -->
                     <ng-container matColumnDef="totalquantitytopurchase">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Total Quantity to Purchase </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.totalquantitytopurchase}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.total_qnty}} </mat-cell>
                     </ng-container>
 
 
                     <!--Price Column -->
                     <ng-container matColumnDef="price">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.offr_price}}
+
+                        </mat-cell>
                     </ng-container>
 
 
                     <!-- Action Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <i class="fa fa-edit"></i> </mat-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
+                            <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
+                            <button class="btn btn-warning" (click)="active(row)" *ngIf="row.offr_state == 'Inactive'">Active </button>&nbsp;
+                            <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.offr_state == 'Active'">In-Active </button>
+
+                        </mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

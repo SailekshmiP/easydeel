@@ -42,7 +42,11 @@
                             <button class="btn btn-success">
                             <i class="fa fa-edit" (click)="edit(row)"></i>
 
+
                             </button>
+                            <button class="btn btn-warning" (click)="active(row)" *ngIf="row.menu_state == 'Inactive'">Active </button>&nbsp;
+                            <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.menu_state == 'Active'">In-Active  </button>
+
                         </mat-cell>
                     </ng-container>
 
