@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
@@ -23,7 +25,7 @@ export class RestaurantMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydealservice: EasydealService) { }
+  constructor(private easydealservice: EasydealService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.apiUrl="https://shopgi.in/";
@@ -41,6 +43,35 @@ this.dataSource.data=this.results;
       },
       error => {
         console.log(error);
+
+      }
+    )
+  }
+  active(s) {
+    console.log(s);
+
+    this.easydealservice.changestatusrestmenu(s._id).subscribe(
+      data => {
+        this.toastr.success("Status Updated");
+        this.ngOnInit();
+      },
+      error => {
+        this.toastr.error("Unable to Update status");
+        this.ngOnInit();
+
+      }
+    )
+  }
+  inactive(s) {
+
+    this.easydealservice.changestatusrestmenu(s._id).subscribe(
+      data => {
+        this.toastr.success("Status Updated");
+        this.ngOnInit();
+      },
+      error => {
+        this.toastr.error("Unable to Update status");
+        this.ngOnInit();
 
       }
     )

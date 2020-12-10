@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 // import { environment } from 'src/environments';
 
@@ -25,6 +26,13 @@ export class EasydealService {
 
   }
 
+  changecategorystatus(s){
+    let req = {
+
+    }
+    return this.http.patch(this.apiUrl + 'category/edit/state/' + s,req);
+
+  }
   getshop() {
     console.log(this.apiUrl);
 
@@ -74,6 +82,14 @@ export class EasydealService {
   }
   getallmenu() {
     return this.http.get(this.apiUrl + 'menurest');
+
+  }
+  changestatusrestmenu(s)
+  {
+    let req ={
+
+    }
+    return this.http.patch(this.apiUrl + 'menurest/edit/state/'+s,req);
 
   }
   addrestmenusss(fomrdata) {
@@ -126,4 +142,16 @@ export class EasydealService {
     }
     return this.http.patch(this.apiUrl+'generalshopmenu/edit/state/'+s,req)
   }
+  editgeneralitemmenu(req,id)
+  {
+    return this.http.patch(this.apiUrl + 'generalitem/edit/'+id, req);
+  }
+  
+  editcourse(r,id)
+
+{
+  return this.http.patch(this.apiUrl + 'cource/edit/'+id, r);
+
+
+}
 }

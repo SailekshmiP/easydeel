@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddCoursetypeComponent } from './coursetype/add-coursetype/add-coursetype.component';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { EditCoursetypeComponent } from './coursetype/edit-coursetype/edit-coursetype.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
@@ -12,6 +13,7 @@ import { EditCategoryComponent } from './home/category/edit-category/edit-catego
 import { AddDeliveryBoysComponent } from './home/delivery-boys/add-delivery-boys/add-delivery-boys.component';
 import { DeliveryBoysComponent } from './home/delivery-boys/delivery-boys.component';
 import { AddGeneralMenuComponent } from './home/general-menu/add-general-menu/add-general-menu.component';
+import { EditGeneralMenuComponent } from './home/general-menu/edit-general-menu/edit-general-menu.component';
 import { GeneralMenuComponent } from './home/general-menu/general-menu.component';
 import { AddGeneralShopMenuComponent } from './home/general-shop-menu/add-general-shop-menu/add-general-shop-menu.component';
 import { GeneralShopMenuComponent } from './home/general-shop-menu/general-shop-menu.component';
@@ -101,8 +103,9 @@ const routes: Routes = [
   {path:'generalcategory',component:GeneralCategoryComponent},
   {path:'addgeneralcategory',component:AddGeneralCategoryComponent},
   {path:'editgeneralcategory',component:EditGeneralCategoryComponent},
+  {path:'editgeneralmenu',component:EditGeneralMenuComponent},
 
-
+  {path:'editcoursetype',component:EditCoursetypeComponent},
 
 
 

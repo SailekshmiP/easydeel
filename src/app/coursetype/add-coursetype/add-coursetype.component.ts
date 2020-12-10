@@ -47,7 +47,7 @@ get f() { return this.coursetypeFormRegistration.controls; }
       
       this.easydeelservice.addcourse(req).subscribe(
         data=>{
-          this.toaster.success("Course added successfully");
+          this.toaster.success("Course type added successfully");
           this.router.navigate(['/coursetype'])
         },
         error=>{

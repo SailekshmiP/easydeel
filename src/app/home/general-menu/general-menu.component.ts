@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
@@ -21,7 +22,7 @@ export class GeneralMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydeelservice:EasydealService,private toastr:ToastrService) { }
+  constructor(private easydeelservice:EasydealService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.apiUrl="https://shopgi.in/";
@@ -73,5 +74,10 @@ this.easydeelservice.changestatus(s._id).subscribe(
 
   }
 )
+}
+edit(s)
+{
+  sessionStorage.setItem("generalmenu",JSON.stringify(s));
+  this.router.navigate(['/editgeneralmenu'])
 }
 }

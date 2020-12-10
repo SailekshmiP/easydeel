@@ -35,11 +35,14 @@
                     </ng-container>
 
 
-                    <!--Location Column -->
+                    <!--Action Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <i class="fa fa-edit"></i>
+                            <button class="btn btn-success">
+                            <i class="fa fa-edit" (click)="edit(row)"></i>
+
+                            </button>
                         </mat-cell>
                     </ng-container>
 

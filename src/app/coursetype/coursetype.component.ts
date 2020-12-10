@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { EasydealService } from '../_services/easydeal.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class CoursetypeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydeelservice: EasydealService) { }
+  constructor(private easydeelservice: EasydealService,private router:Router) { }
 
   ngOnInit() {
     this.getallcoursetype();
@@ -38,5 +39,10 @@ export class CoursetypeComponent implements OnInit {
       },
     )
 
+  }
+  edit(r)
+  {
+    sessionStorage.setItem("coursetype",JSON.stringify(r));
+    this.router.navigate(['/editcoursetype'])
   }
 }
