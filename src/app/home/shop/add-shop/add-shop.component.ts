@@ -71,7 +71,7 @@ export class AddShopComponent implements OnInit {
       sname: ['', Validators.required],
       scat: ['', Validators.required],
       saddress: ['', Validators.required],
-      sln: ['', Validators.required],
+      sln: [''],
       sphn: ['', Validators.required],
       sotime: ['', Validators.required],
       sctime: ['', Validators.required],

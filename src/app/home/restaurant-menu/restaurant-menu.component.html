@@ -16,20 +16,19 @@
 
             </div>
 
-
-
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
+                <select class="form-control" id="" [(ngModel)]="options">
                 <option value="" selected>Choose a option</option>
                 <option value="c">Course Type</option>
                 <option value="m">Menu Name</option>
-                <!-- <option value="">Category</option> -->
-
-              </select>
+              
+            </select>
             </div>
+
+
             <div class="col-sm-2">
-                <select class="form-control" id="">
-                    <option value="" selected>Choose a option</option>
+                <select class="form-control" id="" [(ngModel)]="options">
+                   <option value="" selected>Choose a option</option>
                    <option value="" *ngFor="let results of results">{{results.restaurantmenu}}</option>
     
                   </select>

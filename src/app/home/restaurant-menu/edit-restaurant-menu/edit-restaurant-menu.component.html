@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="">Course Type </label>
+                    <label for="">Category Type </label>
 
                     <select name="" id="" class="form-control" [(ngModel)]="ctype" [ngClass]="{ 'is-invalid': submitted && f.ctype.errors }" formControlName="ctype">
                         <option value="" disabled selected>Choose a option </option>
@@ -63,7 +63,7 @@
                        
                     </select>
                     <div *ngIf="submitted && f.ctype.errors" class="invalid-feedback">
-                        <div *ngIf="f.ctype.errors.required">Course type is required</div>
+                        <div *ngIf="f.ctype.errors.required">Category type is required</div>
 
                     </div>
                 </div>
