@@ -26,6 +26,8 @@ export class EditRestaurantMenuComponent implements OnInit {
   formData = new FormData();
   restmenu;
   id;
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -51,12 +53,16 @@ export class EditRestaurantMenuComponent implements OnInit {
   get f() { return this.restaurantmenuFormRegistration.controls; }
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.restaurantmenuFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       this.formData.append("menu_name", this.mname.toUpperCase())
       this.formData.append("menu_desc", this.mdes)
       this.formData.append("menu_type", this.mtype)
@@ -64,12 +70,16 @@ export class EditRestaurantMenuComponent implements OnInit {
       this.formData.append("menu_img", this.currentphoto)
       this.easydealservice.editrestmenu(this.formData,this.id).subscribe(
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           console.log(data);
           this.formData.delete;
           this.router.navigate(['/restaurantmenu']);
           this.toastr.success("Menu Added Successfully");
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           console.log(error);
           this.formData.delete;
           this.toastr.error("Menu Added Unsuccessful");

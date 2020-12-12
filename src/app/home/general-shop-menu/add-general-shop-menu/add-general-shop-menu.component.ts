@@ -26,6 +26,8 @@ export class AddGeneralShopMenuComponent implements OnInit {
   results;
   cat;
   iname ='';
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -90,12 +92,16 @@ export class AddGeneralShopMenuComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.generalshopmenuFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       let req = {
         "shop_id": this.sname,
         "category_id": this.cname,
@@ -110,10 +116,14 @@ export class AddGeneralShopMenuComponent implements OnInit {
       this.easydeelservice.addgeneralshopmenu(req).subscribe(
 
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toastr.success("General shop menu added Successfully");
           this.router.navigate(['/generalshopmenu']);
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toastr.success("General shop menu added unsuccessful");
           this.router.navigate(['/generalshopmenu'])
         }

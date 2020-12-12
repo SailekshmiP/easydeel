@@ -16,6 +16,8 @@ export class AddDeliveryBoysComponent implements OnInit {
   mobile;
   aadhar;
   password;
+  isLoading = false;
+  button = 'Submit';
 
   
   constructor(private formbuilder:FormBuilder) { }
@@ -36,7 +38,10 @@ export class AddDeliveryBoysComponent implements OnInit {
 get f() { return this.deliveryboyFormRegistration.controls; }
 
   submit(){
-    this.submitted = true;
+    
+  this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.deliveryboyFormRegistration.invalid) {

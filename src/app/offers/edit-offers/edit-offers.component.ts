@@ -14,7 +14,7 @@ export class EditOffersComponent implements OnInit {
 
   offerFormRegistration: FormGroup;
   submitted = false;
-  results: any=[];
+  results: any = [];
   location;
   sname = '';
   mname;
@@ -34,8 +34,10 @@ export class EditOffersComponent implements OnInit {
   currentphoto;
   offer;
   id;
-  constructor(private formbuilder: FormBuilder, 
-    private easydeelservice: EasydealService, 
+  isLoading = false;
+  button = 'Submit';
+  constructor(private formbuilder: FormBuilder,
+    private easydeelservice: EasydealService,
     private toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -59,49 +61,49 @@ export class EditOffersComponent implements OnInit {
         bimages: ['', Validators.required],
       })
 
-      this.offer = JSON.parse(sessionStorage.getItem("offer"));
-      this.id = this.offer['_id'];
-      console.log(this.id);
-      
-      this.sname = this.offer.shop_id['_id'];
-      this.mname = this.offer['menu_name'];
-      this.oloc = this.offer.location_id['_id'];
-      this.odes = this.offer['offr_desc'];
-      this.tqpurc = this.offer['total_qnty'];
-      this.tnusers = this.offer['No_users'];
-      this.oprice = this.offer['offr_price'];
-      this.aprice = this.offer['actual_price'];
-      this.adata = this.offer['av_date'];
-      this.atime = this.offer['av_time'];
-      this.cashback = this.offer['cashback'];
-      this.ctime = this.offer['clos_time'];
-  
+    this.offer = JSON.parse(sessionStorage.getItem("offer"));
+    this.id = this.offer['_id'];
+    console.log(this.id);
+
+    this.sname = this.offer.shop_id['_id'];
+    this.mname = this.offer['menu_name'];
+    this.oloc = this.offer.location_id['_id'];
+    this.odes = this.offer['offr_desc'];
+    this.tqpurc = this.offer['total_qnty'];
+    this.tnusers = this.offer['No_users'];
+    this.oprice = this.offer['offr_price'];
+    this.aprice = this.offer['actual_price'];
+    this.adata = this.offer['av_date'];
+    this.atime = this.offer['av_time'];
+    this.cashback = this.offer['cashback'];
+    this.ctime = this.offer['clos_time'];
+
 
   }
-  getallShop(){
+  getallShop() {
     this.easydeelservice.getshop().subscribe(
-      data =>{
+      data => {
         console.log(data);
-        this.results =data;
-     
+        this.results = data;
+
       },
-      error =>{
+      error => {
         console.log(error);
       }
     )
   }
-  getalllocations(){
+  getalllocations() {
     this.easydeelservice.getalllocations().subscribe(
-      data =>{
+      data => {
         console.log(data);
-    
+
         this.location = data;
-     
-        
+
+
       },
-      error =>{
+      error => {
         console.log(error);
-        
+
       }
     )
   }
@@ -113,12 +115,15 @@ export class EditOffersComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
-
+    this.isLoading = true;
+    this.button = 'Processing';
     // stop here if form is invalid
     if (this.offerFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       this.formData.append("shop_id", this.sname);
       this.formData.append("menu_name", this.mname);
       this.formData.append("location_id", this.oloc);
@@ -132,14 +137,18 @@ export class EditOffersComponent implements OnInit {
       this.formData.append("clos_time", this.ctime);
       this.formData.append("cashback", this.cashback);
       this.formData.append("offer_img", this.currentphoto);
-   
-      
-      this.easydeelservice.editoffer(this.formData,this.id).subscribe(
+
+
+      this.easydeelservice.editoffer(this.formData, this.id).subscribe(
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.success("Offers are added");
           this.router.navigate(['/offers']);
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.error("Unable to add Offers");
         }
       )

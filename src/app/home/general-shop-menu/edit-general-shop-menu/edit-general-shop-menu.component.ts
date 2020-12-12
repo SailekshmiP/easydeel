@@ -30,6 +30,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
   generalsmenu;
   id;
   gmenu:any =[];
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder,
      private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -109,12 +111,16 @@ export class EditGeneralShopMenuComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.generalshopmenuFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       let req = {
         "shop_id": this.sname,
         "category_id": this.cname,
@@ -129,10 +135,14 @@ export class EditGeneralShopMenuComponent implements OnInit {
       this.easydeelservice.editgeneralmenu(req,this.id).subscribe(
 
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toastr.success("General shop menu updated Successfully");
           this.router.navigate(['/generalshopmenu']);
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toastr.success("General shop menu updated unsuccessful");
           // this.router.navigate(['/generalshopmenu'])
         }

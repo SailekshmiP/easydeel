@@ -10,45 +10,57 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
   styleUrls: ['./add-general-category.component.css']
 })
 export class AddGeneralCategoryComponent implements OnInit {
-  categorytypeFormRegistration:FormGroup;
+  categorytypeFormRegistration: FormGroup;
   submitted = false;
-  
-  ctype ;
-  constructor(private formbuilder:FormBuilder,private router:Router,private easydeelservice:EasydealService,private toaster:ToastrService) { }
+
+  ctype;
+  isLoading = false;
+  button = 'Submit';
+  constructor(private formbuilder: FormBuilder, private router: Router, private easydeelservice: EasydealService, private toaster: ToastrService) { }
 
 
   ngOnInit() {
 
-  this.categorytypeFormRegistration = this.formbuilder.group(
+    this.categorytypeFormRegistration = this.formbuilder.group(
       {
-        
-       ctype:['', Validators.required],
-        
-    })
+
+        ctype: ['', Validators.required],
+
+      })
 
   }
-get f() { return this.categorytypeFormRegistration.controls; }
+  get f() { return this.categorytypeFormRegistration.controls; }
 
-  submit(){
+  submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.categorytypeFormRegistration.invalid) {
-        return;
+      return;
     }
-    else{
+    else {
+      this.isLoading = true;
+      this.button = 'Processing';
       // let s:String;
       // s = this.ctype;
       // console.log();
       let req = {
-        "category_name":this.ctype.toUpperCase( ),
+
+        "category_name": this.ctype.toUpperCase(),
       }
       this.easydeelservice.addgencat(req).subscribe(
-        data=>{
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+
           this.toaster.success("General category added successfully");
           this.router.navigate(['/generalcategory'])
         },
-        error=>{
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
 
         }
       )

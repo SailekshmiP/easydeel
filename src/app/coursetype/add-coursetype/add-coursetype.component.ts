@@ -10,47 +10,56 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
   styleUrls: ['./add-coursetype.component.css']
 })
 export class AddCoursetypeComponent implements OnInit {
-  coursetypeFormRegistration:FormGroup;
+  coursetypeFormRegistration: FormGroup;
   submitted = false;
-  
-  ctype ;
- 
-  constructor(private formbuilder:FormBuilder,private router:Router,private easydeelservice:EasydealService,private toaster:ToastrService) { }
+
+  ctype;
+  isLoading = false;
+  button = 'Submit';
+  constructor(private formbuilder: FormBuilder, private router: Router, private easydeelservice: EasydealService, private toaster: ToastrService) { }
 
   ngOnInit() {
     this.coursetypeFormRegistration = this.formbuilder.group(
       {
-        
-       ctype:['', Validators.required],
-        
-    })
+
+        ctype: ['', Validators.required],
+
+      })
 
   }
-get f() { return this.coursetypeFormRegistration.controls; }
+  get f() { return this.coursetypeFormRegistration.controls; }
 
-  submit(){
+  submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.coursetypeFormRegistration.invalid) {
-        return;
+      return;
     }
-    else{
+    else {
+      this.isLoading = true;
+      this.button = 'Processing';
       // let s:String;
       // s = this.ctype;
       // console.log();
       let req = {
-        "courceName":this.ctype.toUpperCase( ),
+        "courceName": this.ctype.toUpperCase(),
       }
-     
-      
-      
+
+
+
       this.easydeelservice.addcourse(req).subscribe(
-        data=>{
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.success("Course type added successfully");
           this.router.navigate(['/coursetype'])
         },
-        error=>{
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
 
         }
       )

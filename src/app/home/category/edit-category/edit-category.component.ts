@@ -27,6 +27,8 @@ export class EditCategoryComponent implements OnInit {
   // mstyle="";
   formData = new FormData();
   getcatdetails;
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
 
   ngOnInit() {
@@ -53,12 +55,17 @@ get f() { return this.categoryFormRegistration.controls; }
 
   submit(){
     this.submitted = true;
-
+    this.isLoading = true;
+    this.button = 'Processing';
     // stop here if form is invalid
     if (this.categoryFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'Submit';
         return;
     }
     else{
+      this.isLoading = true;
+      this.button = 'Processing';
       this.formData.append("category_name",this.cname.toUpperCase( ))
       this.formData.append("show",this.showorhide)
       this.formData.append("category_menutype",this.mtype)
@@ -66,12 +73,16 @@ get f() { return this.categoryFormRegistration.controls; }
       this.formData.append("cat_img",this.currentphoto)
      this.easydealservice.editcategory(this.formData,this.cat_id).subscribe(
        data=>{
+        this.isLoading = false;
+        this.button = 'Submit';
         console.log(data);
      
         this.router.navigate(['/home']);
         this.formData.delete;
        },
        error=>{
+        this.isLoading = false;
+        this.button = 'Submit';
          console.log(error);
         this.formData.delete;
          

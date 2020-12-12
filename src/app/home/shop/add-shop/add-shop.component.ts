@@ -42,7 +42,7 @@ export class AddShopComponent implements OnInit {
   submitted = false;
 
   sname;
-  scat ="";
+  scat = "";
   saddress;
   simage;
   sln;
@@ -61,10 +61,12 @@ export class AddShopComponent implements OnInit {
   checkeddays;
   files;
   currentphoto;
-  resultscat:any=[];
-  locations:any=[];
-  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router,
-    private toaster:ToastrService) { }
+  resultscat: any = [];
+  locations: any = [];
+  isLoading = false;
+  button = 'Submit';
+  constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
+    private toaster: ToastrService) { }
   formData = new FormData();
   ngOnInit() {
     this.shopFormRegistration = this.formbuilder.group({
@@ -82,8 +84,8 @@ export class AddShopComponent implements OnInit {
       simage: ['', Validators.required],
       pucharge: ['', Validators.required],
       dcharge: ['', Validators.required],
-      showorhide:['', Validators.required],
-      status:['',Validators.required],
+      showorhide: ['', Validators.required],
+      status: ['', Validators.required],
       check: ['', Validators.required],
       checkeddays: this.formbuilder.array([]),
     })
@@ -92,7 +94,7 @@ export class AddShopComponent implements OnInit {
 
   }
 
-  
+
   onChange(time: string, isChecked: boolean) {
     this.sessiondayssRepat = [];
     const emailFormArray = <FormArray>this.shopFormRegistration.controls.checkeddays;
@@ -119,97 +121,102 @@ export class AddShopComponent implements OnInit {
   }
   get f() { return this.shopFormRegistration.controls; }
 
-  getallCategory(){
+  getallCategory() {
     this.easydealservice.getcat().subscribe(
-      data =>{
+      data => {
         console.log(data);
-        this.resultscat =data;
-    
+        this.resultscat = data;
+
       },
-      error =>{
+      error => {
         console.log(error);
       }
     )
   }
 
-  getalllocations(){
+  getalllocations() {
     this.easydealservice.getalllocations().subscribe(
-      data =>{
+      data => {
         console.log(data);
-        
+
         this.locations = data;
 
-        this.repeatsessiondays =this.locations;
-     
-        
+        this.repeatsessiondays = this.locations;
+
+
       },
-      error =>{
+      error => {
         console.log(error);
-        
+
       }
     )
   }
-  addshopimage(event)
-  {
-    
+  addshopimage(event) {
+
     this.files = event.target.files;
     this.currentphoto = this.files.item(0);
   }
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
     if (this.shopFormRegistration.invalid) {
       return;
     }
-    else 
-    {
-    this.formData.append("shop_name",this.sname.toUpperCase( ))
-    this.formData.append("category_id",this.scat)
-    this.formData.append("shop_phone",this.sphn)
-    this.formData.append("shop_landline",this.sln)
-    // this.formData.append("open",this.sotime)
-    // this.formData.append("close",this.sctime)
-    this.formData.append("open_time","10")
-    this.formData.append("clos_time","50")
-    this.formData.append("shop_discount",this.sdperc)
-    this.formData.append("shop_discamountamount",this.sdamnt)
-    this.formData.append("pickupRate",this.pucharge)
-    this.formData.append("deliveryRate",this.dcharge)
-    this.formData.append("minimum",this.movalue)
-    this.formData.append("show",this.showorhide)
-    this.formData.append("state",this.status)
-    this.formData.append("profitpercentage",this.profit)
-    this.formData.append("shop_img",this.currentphoto)
-    this.formData.append("shop_address",this.saddress)
+    else {
+      this.isLoading = true;
+      this.button = 'Processing';
+      this.formData.append("shop_name", this.sname.toUpperCase())
+      this.formData.append("category_id", this.scat)
+      this.formData.append("shop_phone", this.sphn)
+      this.formData.append("shop_landline", this.sln)
+      // this.formData.append("open",this.sotime)
+      // this.formData.append("close",this.sctime)
+      this.formData.append("open_time", "10")
+      this.formData.append("clos_time", "50")
+      this.formData.append("shop_discount", this.sdperc)
+      this.formData.append("shop_discamountamount", this.sdamnt)
+      this.formData.append("pickupRate", this.pucharge)
+      this.formData.append("deliveryRate", this.dcharge)
+      this.formData.append("minimum", this.movalue)
+      this.formData.append("show", this.showorhide)
+      this.formData.append("state", this.status)
+      this.formData.append("profitpercentage", this.profit)
+      this.formData.append("shop_img", this.currentphoto)
+      this.formData.append("shop_address", this.saddress)
 
-    for(let i=0;i<this.sessiondayssRepat.length;i++)
-    {
-      this.formData.append("locationId",this.sessiondayssRepat[i])
+      for (let i = 0; i < this.sessiondayssRepat.length; i++) {
+        this.formData.append("locationId", this.sessiondayssRepat[i])
+
+      }
+
+      this.easydealservice.addshop(this.formData).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          console.log(data);
+          this.formData.delete;
+          this.router.navigate(['/shop']);
+          this.toaster.success("Shop Added Successfully")
+        },
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          console.log(error);
+          this.formData.delete;
+
+        }
+
+      )
 
     }
 
-   this.easydealservice.addshop(this.formData).subscribe(
-     data=>{
-      console.log(data);
-      this.formData.delete;
-      this.router.navigate(['/shop']);
-      this.toaster.success("Shop Added Successfully")
-     },
-     error=>{
-       console.log(error);
-      this.formData.delete;
-       
-     }
-     
-   )
-
   }
-  
-}
-// addcategoryimage(event) {
+  // addcategoryimage(event) {
 
-//   this.files = event.target.files;
-//   this.currentphoto = this.files.item(0);
-  
-//   //  console.log(this.currentFoto)
-// }
+  //   this.files = event.target.files;
+  //   this.currentphoto = this.files.item(0);
+
+  //   //  console.log(this.currentFoto)
+  // }
 }

@@ -15,6 +15,8 @@ export class EditGeneralCategoryComponent implements OnInit {
 
   ctype;
   generalcategory;
+  isLoading = false;
+  button = 'Submit';
 
   constructor(private formbuilder: FormBuilder, private router: Router, private easydeelservice: EasydealService, private toaster: ToastrService) { }
 
@@ -33,12 +35,16 @@ export class EditGeneralCategoryComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.categorytypeFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       // let s:String;
       // s = this.ctype;
       // console.log();
@@ -47,10 +53,14 @@ export class EditGeneralCategoryComponent implements OnInit {
       }
       this.easydeelservice.editgencat(req, this.generalcategory["_id"]).subscribe(
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.success("General category updated successfully");
           this.router.navigate(['/generalcategory'])
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.error("General category updated unsuccessful");
         }
       )

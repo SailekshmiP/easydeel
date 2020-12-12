@@ -33,6 +33,8 @@ export class AddShopMenuComponent implements OnInit {
   formData = new FormData();
   showorhide = "Show";
   status = "Active";
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -63,6 +65,8 @@ export class AddShopMenuComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.shopmenuFormRegistration.invalid) {
@@ -70,7 +74,8 @@ export class AddShopMenuComponent implements OnInit {
     }
     else {
 
-
+      this.isLoading = true;
+      this.button = 'Processing';
       this.prate ="0";
       this.formData.append("shop_id",this.sname.toUpperCase( ))
       this.formData.append("location_id",this.location)
@@ -107,6 +112,19 @@ export class AddShopMenuComponent implements OnInit {
   shopselcted(s)
   {
     console.log(s);
+    this.easydealservice.getalllocationbyshopid(s).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+        
+
+      },
+      error =>{
+
+      }
+    )
+
     
   }
   getallShop() {
@@ -122,19 +140,22 @@ export class AddShopMenuComponent implements OnInit {
     )
   }
   getalllocations() {
-    this.easydealservice.getalllocations().subscribe(
-      data => {
-        console.log(data);
+    // this.easydealservice.getalllocations().subscribe(
+    //   data => {
+    //     this.isLoading = false;
+    //   this.button = 'Submit';
+    //     console.log(data);
 
-        this.locations = data;
+    //     this.locations = data;
 
 
-      },
-      error => {
-        console.log(error);
+    //   },
+    //   error => {this.isLoading = false;
+    //     this.button = 'Submit';
+    //     console.log(error);
 
-      }
-    )
+    //   }
+    // )
   }
   getallmenu() {
 

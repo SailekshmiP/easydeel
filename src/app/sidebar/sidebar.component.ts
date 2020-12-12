@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.status = JSON.parse(localStorage.getItem("loginstatus"));
-    console.log(status);
+    console.log(this.status);
     
   }
 

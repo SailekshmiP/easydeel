@@ -43,14 +43,15 @@
                 <input type="password" class="form-control" placeholder="Enter Your Password">
             </div>
 
-            
+
 
             <div class="col-sm-12">
-                 <button class="btn btn-warning">SUBMIT</button>
+                <!-- <button class="btn btn-warning">SUBMIT</button> -->
+                <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
+                    [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
+                {{button}}</button>
             </div>
 
         </div>
     </div>
 </div>
-
-

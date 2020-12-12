@@ -11,52 +11,62 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 })
 export class EditCoursetypeComponent implements OnInit {
 
-  coursetypeFormRegistration:FormGroup;
+  coursetypeFormRegistration: FormGroup;
   submitted = false;
-  
-  ctype ;
- coursetype;
- id;
-  constructor(private formbuilder:FormBuilder,private router:Router,private easydeelservice:EasydealService,
-    private toaster:ToastrService) { }
+
+  ctype;
+  coursetype;
+  id;
+  isLoading = false;
+  button = 'Submit';
+  constructor(private formbuilder: FormBuilder, private router: Router, private easydeelservice: EasydealService,
+    private toaster: ToastrService) { }
 
   ngOnInit() {
     this.coursetypeFormRegistration = this.formbuilder.group(
       {
-        
-       ctype:['', Validators.required],
-        
-    })
+
+        ctype: ['', Validators.required],
+
+      })
     this.coursetype = JSON.parse(sessionStorage.getItem("coursetype"));
     this.ctype = this.coursetype['cource_name'];
-    this.id =this.coursetype['_id']
+    this.id = this.coursetype['_id']
 
   }
-get f() { return this.coursetypeFormRegistration.controls; }
+  get f() { return this.coursetypeFormRegistration.controls; }
 
-  submit(){
+  submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.coursetypeFormRegistration.invalid) {
-        return;
+      return;
     }
-    else{
+    else {
+      this.isLoading = true;
+      this.button = 'Processing';
       // let s:String;
       // s = this.ctype;
       // console.log();
       let req = {
-        "courceName":this.ctype.toUpperCase( ),
+        "courceName": this.ctype.toUpperCase(),
       }
-     
-      
-      
-      this.easydeelservice.editcourse(req,this.id).subscribe(
-        data=>{
+
+
+
+      this.easydeelservice.editcourse(req, this.id).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.success("Course type updated successfully");
           this.router.navigate(['/coursetype'])
         },
-        error=>{
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
 
         }
       )

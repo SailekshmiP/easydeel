@@ -32,6 +32,8 @@ export class AddOffersComponent implements OnInit {
   currentphoto;
   results: any=[];
   location;
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -90,12 +92,16 @@ export class AddOffersComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.offerFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       this.formData.append("shop_id", this.sname);
       this.formData.append("menu_name", this.mname);
       this.formData.append("location_id", this.oloc);
@@ -112,10 +118,14 @@ export class AddOffersComponent implements OnInit {
 
       this.easydeelservice.addoffer(this.formData).subscribe(
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.success("Offers are added");
           this.router.navigate(['/offers']);
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           this.toaster.error("Unable to add Offers");
         }
       )

@@ -95,7 +95,10 @@
 
 
                 <div class="col-sm-12">
-                    <button class="btn btn-warning" (click)="submit()">SUBMIT</button>
+                    <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
+                    <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
+                        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
+                    {{button}}</button>
                 </div>
 
             </div>

@@ -40,6 +40,8 @@ export class EditShopComponent implements OnInit {
   locations: any = [];
   shopdetails;
   id;
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
     private toaster: ToastrService) { }
   formData = new FormData();
@@ -160,11 +162,15 @@ export class EditShopComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
     if (this.shopFormRegistration.invalid) {
       console.log("s")
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       this.formData.append("shop_name", this.sname.toUpperCase( ))
       this.formData.append("category_id", this.scat)
       this.formData.append("shop_phone", this.sphn)
@@ -188,12 +194,16 @@ export class EditShopComponent implements OnInit {
 
       this.easydealservice.editshop(this.formData,this.id).subscribe(
         data => {
+          this.isLoading = false;
+          this.button = 'Submit';
           console.log(data);
           this.formData.delete;
           this.router.navigate(['/shop']);
           this.toaster.success("Shop update Successfully")
         },
         error => {
+          this.isLoading = false;
+          this.button = 'Submit';
           console.log(error);
           this.formData.delete;
 

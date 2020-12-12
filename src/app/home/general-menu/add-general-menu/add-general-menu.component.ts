@@ -27,6 +27,8 @@ export class AddGeneralMenuComponent implements OnInit {
   formData = new FormData();
   files;
   currentphoto;
+  isLoading = false;
+  button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydeelservices: EasydealService, private router: Router, private toastr: ToastrService) { }
   ngOnInit() {
     this.generalmenuFormRegistration = this.formbuilder.group(
@@ -41,8 +43,8 @@ export class AddGeneralMenuComponent implements OnInit {
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
       })
-this.getallShop();
-this.getallcategorytype();
+    this.getallShop();
+    this.getallcategorytype();
   }
   get f() { return this.generalmenuFormRegistration.controls; }
   additemimage(event) {
@@ -50,14 +52,14 @@ this.getallcategorytype();
     this.files = event.target.files;
     this.currentphoto = this.files.item(0);
   }
-  getallShop(){
+  getallShop() {
     this.easydeelservices.getshop().subscribe(
-      data =>{
+      data => {
         console.log(data);
-        this.shops =data;
-      
+        this.shops = data;
+
       },
-      error =>{
+      error => {
         console.log(error);
       }
     )
@@ -67,7 +69,7 @@ this.getallcategorytype();
       data => {
         let result: any = []
         this.category = data;
-        
+
       },
       error => {
 
@@ -77,26 +79,33 @@ this.getallcategorytype();
   }
   submit() {
     this.submitted = true;
-
+    this.isLoading = true;
+    this.button = 'Processing';
     // stop here if form is invalid
     if (this.generalmenuFormRegistration.invalid) {
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
       this.formData.append("itemName", this.iname)
       this.formData.append("itm_description", this.des)
       this.formData.append("gmenu_img", this.currentphoto)
-      this.formData.append("shop_id",this.sname)
-      this.formData.append("generalcat_id",this.cname)
+      this.formData.append("shop_id", this.sname)
+      this.formData.append("generalcat_id", this.cname)
       // this.formData.append(""),this.sname
       this.easydeelservices.addgeneralitemmenu(this.formData).subscribe(
         data => {
-this.toastr.success("General menu added successfully");
-this.router.navigate(['/generalmenu']);
+          this.isLoading = false;
+          this.button = 'Submit';
+          this.toastr.success("General menu added successfully");
+          this.router.navigate(['/generalmenu']);
         },
 
-error => {
-  this.toastr.error("General menu added unsuccessful");
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          this.toastr.error("General menu added unsuccessful");
         }
       )
     }
