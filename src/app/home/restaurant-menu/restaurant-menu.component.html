@@ -87,7 +87,7 @@
                 </mat-row>
             </mat-table>
 
-            <mat-paginator></mat-paginator>
+            <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" (page)="changePage($event)"></mat-paginator>
         </div>
     </div>
 </div>

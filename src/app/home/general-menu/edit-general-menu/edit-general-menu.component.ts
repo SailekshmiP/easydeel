@@ -40,7 +40,7 @@ export class EditGeneralMenuComponent implements OnInit {
         cname: ['', Validators.required],
         iname: ['', Validators.required],
         des: ['', [Validators.required, Validators.maxLength(50)]],
-        iimage: ['', Validators.required],
+        iimage: [''],
         showorhide: ['', Validators.required],
         status: ['', Validators.required],
         // mctype: ['', Validators.required],

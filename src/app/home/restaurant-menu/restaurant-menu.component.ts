@@ -20,6 +20,13 @@ export class RestaurantMenuComponent implements OnInit {
   options: any = "";
   results: any=[];
   apiUrl;
+  page: number = 0;
+  limit: number = 40;
+  skip: number = 0;
+  totalLength: number = 0;
+  pageIndex: number = 0;
+  pageLimit: number[] = [5, 10];
+
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -117,6 +124,10 @@ this.dataSource.data=this.results;
 
       ]
     }
+  }
+  changePage(event) {
+    console.log(event.pageIndex)
+   
   }
 }
 

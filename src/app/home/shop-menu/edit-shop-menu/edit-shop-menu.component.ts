@@ -52,7 +52,7 @@ export class EditShopMenuComponent implements OnInit {
         damount: ['', Validators.required],
         patime: ['', Validators.required],
         pctime: ['', Validators.required],
-        mimages: ['', Validators.required],
+        mimages: [''],
         showorhide: ['', Validators.required],
         status: ['', Validators.required],
         // mstyle: ['', Validators.required],

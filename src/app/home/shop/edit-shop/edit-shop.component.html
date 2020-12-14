@@ -176,12 +176,22 @@
                 <div class="col-sm-4" style="margin-top: 20px;">
                     <label for="">Status</label>
                     <br> Active
-                    <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status"> Inactive
-                    <input type="radio" [(ngModel)]="status" value="Active" formControlName="status">
+                    <input type="radio" [(ngModel)]="status" value="Active" formControlName="status"> Inactive
+                    <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
+                </div>
+                <div class="col-sm-4" style="margin-top: 20px;">
+                    <label for="">Do you want to update the shop Location?</label>
+                    <br> yes
+                    <input type="radio" [(ngModel)]="condtionyesorno" value="yes" [ngModelOptions]="{standalone: true}"> No
+                    <input type="radio" [(ngModel)]="condtionyesorno" value="no" [ngModelOptions]="{standalone: true}">
                 </div>
 
+                <!-- <div class="col-sm-4" style="margin-top: 20px;">
+                    <label for="">Selected Locations</label>
+                    <p *ngFor="let sessiondayssRepat of sessiondayssRepat">{{sessiondayssRepat.location}}</p>
+                </div> -->
 
-                <div class="col-sm-12">
+                <div class="col-sm-12" *ngIf="condtionyesorno == 'yes'">
                     <label for=""> Choose Locations</label>
                     <div class="row" style="padding: 15px;">
                         <div class="radio-toolbar" *ngFor="let repeatsessiondays of repeatsessiondays">

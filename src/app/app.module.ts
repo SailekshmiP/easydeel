@@ -74,6 +74,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
+// import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
 // import { EditPriceUpdatorComponent } from './settings/edit-price-updator/edit-price-updator.component';
@@ -146,6 +147,7 @@ import { EditGeneralCategoryComponent } from './general-category/edit-general-ca
     GeneralCategoryComponent,
     AddGeneralCategoryComponent,
     EditGeneralCategoryComponent,
+    // MatSort
   ],
   imports: [
     BrowserModule,

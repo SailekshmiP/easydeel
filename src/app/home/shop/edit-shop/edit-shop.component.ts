@@ -42,6 +42,8 @@ export class EditShopComponent implements OnInit {
   id;
   isLoading = false;
   button = 'Submit';
+  sessionarray:any=[];
+  condtionyesorno = 'no';
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
     private toaster: ToastrService) { }
   formData = new FormData();
@@ -64,10 +66,10 @@ export class EditShopComponent implements OnInit {
       dcharge: ['', Validators.required],
 
       sdamnt: ['', Validators.required],
-      simage: ['', Validators.required],
+      simage: [''],
       showorhide: ['', Validators.required],
       status: ['', Validators.required],
-      check: ['', Validators.required],
+      check: [''],
       checkeddays: this.formbuilder.array([]),
     })
     this.getallCategory();
@@ -90,6 +92,16 @@ export class EditShopComponent implements OnInit {
     this.showorhide = this.shopdetails['shop_show']
     this.status = this.shopdetails['shop_state']
     this.id=this.shopdetails['_id']
+    this.sessiondayssRepat = this.shopdetails['locationId'];
+    console.log(this.sessiondayssRepat);
+    // let arr = [];
+    for(let i=0;i<this.sessiondayssRepat.length;i++)
+    {
+      this.sessionarray.push(this.sessiondayssRepat[i]._id)
+    }
+    console.log(this.sessionarray);
+    this.sessiondayssRepat = this.sessionarray;
+    
     // this.repeatsessiondays=this.shopdetails['locationId']
     // console.log(this.repeatsessiondays);
     // let arr =[];
@@ -177,8 +189,8 @@ export class EditShopComponent implements OnInit {
       this.formData.append("shop_landline", this.sln)
       // this.formData.append("open",this.sotime)
       // this.formData.append("close",this.sctime)
-      this.formData.append("open_time", "10")
-      this.formData.append("clos_time", "50")
+      this.formData.append("open_time", this.sotime)
+      this.formData.append("clos_time", this.sctime)
       this.formData.append("shop_discount", this.sdperc)
       this.formData.append("shop_discamountamount", this.sdamnt)
       // this.formData.append("shop_discamountamount", this.dcharge)
@@ -190,7 +202,13 @@ export class EditShopComponent implements OnInit {
       this.formData.append("profitpercentage", this.profit)
       this.formData.append("shop_img", this.currentphoto)
       this.formData.append("shop_address", this.saddress)
-      this.formData.append("locationId", this.sessiondayssRepat['0'])
+
+      // this.formData.append("locationId", this.sessiondayssRepat['0'])
+      for (let i = 0; i < this.sessiondayssRepat.length; i++) {
+        this.formData.append("locationId",this.sessiondayssRepat[i])
+        // console.log("locationId", this.sessiondayssRepat[i]['_id']);
+        
+      }
 
       this.easydealservice.editshop(this.formData,this.id).subscribe(
         data => {

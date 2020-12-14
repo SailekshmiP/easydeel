@@ -20,6 +20,11 @@
     overflow: auto !important;
 }
 
+hr {
+    width: 60%;
+    background: #fda600 !important;
+}
+
 
 /* .sidebar {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);

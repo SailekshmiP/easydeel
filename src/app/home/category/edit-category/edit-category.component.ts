@@ -36,7 +36,7 @@ export class EditCategoryComponent implements OnInit {
       {
         cname: ['', Validators.required],
         mtype: ['', Validators.required],
-        cimage: ['', Validators.required],
+        cimage: [''],
         showorhide:['', Validators.required],
         status:['',Validators.required],
         // des: ['', Validators.required],
