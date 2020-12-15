@@ -37,7 +37,7 @@ export class EditRestaurantMenuComponent implements OnInit {
         mdes: ['', [Validators.required, Validators.maxLength(50)]],
         mtype: ['', Validators.required],
         ctype: ['', Validators.required],
-        mimages: ['', Validators.required],
+        mimages: [''],
         // mstyle: ['', Validators.required],
       })
     this.getallcoursetype();
@@ -47,7 +47,7 @@ export class EditRestaurantMenuComponent implements OnInit {
     this.mtype = this.restmenu['menu_type'];
     this.ctype = this.restmenu.courceId['_id'];
     this.id = this.restmenu['_id'];
-    // this.mname = this.restmenu['menu_name'];
+    this.mname = this.restmenu['menu_name'];
 
   }
   get f() { return this.restaurantmenuFormRegistration.controls; }

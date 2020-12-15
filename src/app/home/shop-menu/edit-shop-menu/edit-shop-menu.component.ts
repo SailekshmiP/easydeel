@@ -37,6 +37,7 @@ export class EditShopMenuComponent implements OnInit {
   id;
   isLoading = false;
   button = 'Submit';
+  restmenus:any =[];
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -52,7 +53,7 @@ export class EditShopMenuComponent implements OnInit {
         damount: ['', Validators.required],
         patime: ['', Validators.required],
         pctime: ['', Validators.required],
-        mimages: [''],
+        // mimages: [''],
         showorhide: ['', Validators.required],
         status: ['', Validators.required],
         // mstyle: ['', Validators.required],
@@ -108,7 +109,7 @@ export class EditShopMenuComponent implements OnInit {
       this.formData.append("availableTime", this.patime)
       this.formData.append("status", this.status)
       this.formData.append("show", this.showorhide)
-      this.formData.append("addrest_img", this.currentphoto)
+      // this.formData.append("addrest_img", this.currentphoto)
 
       this.easydealservice.editshopmenu(this.formData, this.id).subscribe(
         data => {
@@ -136,10 +137,23 @@ export class EditShopMenuComponent implements OnInit {
 
   }
   getallShop() {
-    this.easydealservice.getshop().subscribe(
+    this.easydealservice.getallshopmappedtorestaurant().subscribe(
       data => {
         console.log(data);
-        this.shops = data;
+        // this.shops = data;
+        this.restmenus=data;
+        for(let i=0;i<this.restmenus.length;i++)
+        {
+          if(this.restmenus[i].category_id==null)
+          {
+
+          }
+          else
+          {
+            
+            this.shops.push(this.restmenus[i])
+          }
+        }
         // this.dataSource.data = this.results;
       },
       error => {

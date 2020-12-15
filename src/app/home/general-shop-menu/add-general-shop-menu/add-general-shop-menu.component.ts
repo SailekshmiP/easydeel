@@ -23,12 +23,14 @@ export class AddGeneralShopMenuComponent implements OnInit {
   idpercent;
   showorhide;
   status;
-  results;
+  results:any=[];
   cat;
   iname ='';
   isLoading = false;
   button = 'Submit';
-  constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
+  generalshopmenu:any=[];
+
+    constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.generalshopmenuFormRegistration = this.formbuilder.group(
@@ -52,11 +54,23 @@ export class AddGeneralShopMenuComponent implements OnInit {
   }
   get f() { return this.generalshopmenuFormRegistration.controls; }
   getallShop() {
-    this.easydeelservice.getshop().subscribe(
+    this.easydeelservice.getshopsbygeneralcategory().subscribe(
       data => {
         console.log(data);
-        this.results = data;
+        // this.results = data;
+        this.generalshopmenu=data;
+        for(let i=0;i<this.generalshopmenu.length;i++)
+        {
+          if(this.generalshopmenu[i].category_id==null)
+          {
 
+          }
+          else
+          {
+            
+            this.results.push(this.generalshopmenu[i])
+          }
+        }
       },
       error => {
         console.log(error);

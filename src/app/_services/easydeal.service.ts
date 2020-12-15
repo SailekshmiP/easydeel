@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
+import { identifierModuleUrl, ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 // import { environment } from 'src/environments';
 
@@ -188,5 +188,14 @@ export class EasydealService {
   getalllocationbyshopid(s)
   {
     return this.http.get(this.apiUrl+'shop/location/'+s);
+  }
+  getallshopmappedtorestaurant()
+  {
+    return this.http.get(this.apiUrl+'shop/category/menutype/rest');
+  }
+
+  getshopsbygeneralcategory()
+  {
+    return this.http.get(this.apiUrl+'shop/category/menutype/general');
   }
 }

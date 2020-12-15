@@ -24,7 +24,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
   idpercent;
   showorhide;
   status;
-  results;
+  results:any=[];
   cat;
   iname ='';
   generalsmenu;
@@ -32,6 +32,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
   gmenu:any =[];
   isLoading = false;
   button = 'Submit';
+  generalshopmenu:any=[];
   constructor(private formbuilder: FormBuilder,
      private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -71,11 +72,23 @@ export class EditGeneralShopMenuComponent implements OnInit {
   }
   get f() { return this.generalshopmenuFormRegistration.controls; }
   getallShop() {
-    this.easydeelservice.getshop().subscribe(
+    this.easydeelservice.getshopsbygeneralcategory().subscribe(
       data => {
         console.log(data);
-        this.results = data;
+        // this.results = data;
+        this.generalshopmenu=data;
+        for(let i=0;i<this.generalshopmenu.length;i++)
+        {
+          if(this.generalshopmenu[i].category_id==null)
+          {
 
+          }
+          else
+          {
+            
+            this.results.push(this.generalshopmenu[i])
+          }
+        }
       },
       error => {
         console.log(error);

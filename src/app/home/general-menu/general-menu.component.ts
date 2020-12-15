@@ -11,7 +11,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
   styleUrls: ['./general-menu.component.css']
 })
 export class GeneralMenuComponent implements OnInit {
-  displayedColumns = ['id', 'shopname','itemname', 'itemimage','action'];
+  displayedColumns = ['id','itemname', 'itemimage','action'];
   dataSource = new MatTableDataSource();
   results;
   apiUrl;

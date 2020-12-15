@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
@@ -35,6 +36,8 @@ export class AddShopMenuComponent implements OnInit {
   status = "Active";
   isLoading = false;
   button = 'Submit';
+  restmenus:any=[];
+
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -50,7 +53,7 @@ export class AddShopMenuComponent implements OnInit {
         damount: ['', Validators.required],
         patime: ['', Validators.required],
         pctime: ['', Validators.required],
-        mimages: ['', Validators.required],
+        // mimages: ['', Validators.required],
         showorhide:['', Validators.required],
         status:['',Validators.required],
         // mstyle: ['', Validators.required],
@@ -89,7 +92,7 @@ export class AddShopMenuComponent implements OnInit {
       this.formData.append("availableTime",this.patime)
       this.formData.append("status",this.status)
       this.formData.append("show",this.showorhide)
-      this.formData.append("addrest_img",this.currentphoto)
+      // this.formData.append("addrest_img",this.currentphoto)
       
       this.easydealservice.addrestmenusss(this.formData).subscribe(
         data =>{
@@ -128,10 +131,23 @@ export class AddShopMenuComponent implements OnInit {
     
   }
   getallShop() {
-    this.easydealservice.getshop().subscribe(
+    this.easydealservice.getallshopmappedtorestaurant().subscribe(
       data => {
         console.log(data);
-        this.shops = data;
+        // this.shops = data;
+        this.restmenus=data;
+        for(let i=0;i<this.restmenus.length;i++)
+        {
+          if(this.restmenus[i].category_id==null)
+          {
+
+          }
+          else
+          {
+            
+            this.shops.push(this.restmenus[i])
+          }
+        }
         // this.dataSource.data = this.results;
       },
       error => {
