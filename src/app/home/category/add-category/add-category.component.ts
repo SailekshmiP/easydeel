@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
@@ -26,7 +27,8 @@ export class AddCategoryComponent implements OnInit {
   formData = new FormData();
   isLoading = false;
   button = 'Submit';
-  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
+  constructor(private formbuilder:FormBuilder,private toaster:ToastrService,
+    private easydealservice:EasydealService,private router:Router) { }
 
   ngOnInit() {
     this.categoryFormRegistration = this.formbuilder.group(
@@ -68,12 +70,16 @@ get f() { return this.categoryFormRegistration.controls; }
         this.isLoading = false;
         this.button = 'Submit';
         console.log(data);
+        this.toaster.success("Category Added Successfully")
         this.formData.delete;
         this.router.navigate(['/home']);
        },
        error=>{
         this.isLoading = false;
         this.button = 'Submit';
+        let err = error['responce'];
+        this.toaster.error(err);
+
          console.log(error);
         this.formData.delete;
          
