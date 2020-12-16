@@ -86,7 +86,14 @@ export class EasydealService {
 
   }
   getallmenu() {
-    return this.http.get(this.apiUrl + 'menurest');
+    return this.http.get(this.apiUrl + 'menurest/all');
+
+  }
+
+
+  getallmenubypagination(page)
+  {
+    return this.http.get(this.apiUrl + 'menurest?page='+page);
 
   }
   changestatusrestmenu(s) {

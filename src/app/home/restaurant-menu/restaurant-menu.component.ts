@@ -18,35 +18,38 @@ export class RestaurantMenuComponent implements OnInit {
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   options: any = "";
-  results: any=[];
+  results: any = [];
   apiUrl;
   page: number = 0;
-  limit: number = 40;
-  skip: number = 0;
-  totalLength: number = 0;
+  limit: number = 20;
+  // skip: number = 0;
+  totalLength: number;
   pageIndex: number = 0;
-  pageLimit: number[] = [5, 10];
+  // pageLimit: number[] = [5, 10];
 
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydealservice: EasydealService,private toastr:ToastrService,private router:Router) { }
+  constructor(private easydealservice: EasydealService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
-    this.apiUrl="https://shopgi.in/";
+    this.apiUrl = "https://shopgi.in/";
     this.getallmenu();
   }
 
   getallmenu() {
 
-    this.easydealservice.getallmenu().subscribe(
+    this.easydealservice.getallmenubypagination(this.page).subscribe(
 
       data => {
         console.log(data);
-this.results=data;
-this.dataSource.data=this.results;
+        this.results = data['menu'];
+        this.dataSource.data = this.results;
+        let totalelements = data['totalPages'] * 20;
+        console.log(totalelements)
+        this.totalLength = totalelements;
       },
       error => {
         console.log(error);
@@ -83,9 +86,8 @@ this.dataSource.data=this.results;
       }
     )
   }
-  edit(s)
-  {
-    sessionStorage.setItem("restmenu",JSON.stringify(s));
+  edit(s) {
+    sessionStorage.setItem("restmenu", JSON.stringify(s));
 
     this.router.navigate(['/edit-rest-menu']);
   }
@@ -127,7 +129,26 @@ this.dataSource.data=this.results;
   }
   changePage(event) {
     console.log(event.pageIndex)
-   
+
+    this.easydealservice.getallmenubypagination(event.pageIndex).subscribe(
+
+      data => {
+        this.dataSource = new MatTableDataSource();
+
+        console.log(data);
+        this.results = data['menu'];
+        this.dataSource.data = this.results;
+        // this.totalLength = data['totalPages'] * 20;
+        // this.totalLength = 100;
+        let totalelements = data['totalPages'] * 20;
+        console.log(totalelements)
+        this.totalLength = totalelements;
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
   }
 }
 
