@@ -36,6 +36,8 @@ export class EditOffersComponent implements OnInit {
   id;
   isLoading = false;
   button = 'Submit';
+  pprice;
+
   constructor(private formbuilder: FormBuilder,
     private easydeelservice: EasydealService,
     private toaster: ToastrService, private router: Router) { }
@@ -56,6 +58,7 @@ export class EditOffersComponent implements OnInit {
         aprice: ['', Validators.required],
         adata: ['', Validators.required],
         atime: ['', Validators.required],
+        pprice: ['', Validators.required],
         ctime: ['', Validators.required],
         cashback: ['', Validators.required],
         bimages: ['', Validators.required],

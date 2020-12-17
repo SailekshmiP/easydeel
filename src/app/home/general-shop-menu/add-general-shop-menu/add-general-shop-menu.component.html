@@ -21,7 +21,7 @@
                 <div class="col-sm-4">
                     <label for=""> Shop Name</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="sname" (change)="shopselcted(sname)" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
+                    <select name="" id="" class="form-control" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
                         <option value="" disabled selected>Choose a option </option>
                         <option *ngFor="let s of results" value="{{s._id}}" >{{s.shop_name}}</option>
                     </select>
@@ -48,7 +48,7 @@
                 <div class="col-sm-4">
                     <label for=""> Item Name</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="iname" (change)="shopselcted(iname)" [ngClass]="{ 'is-invalid': submitted && f.iname.errors }" formControlName="iname">
+                    <select name="" id="" class="form-control" [(ngModel)]="iname" [ngClass]="{ 'is-invalid': submitted && f.iname.errors }" formControlName="iname">
                         <option value="" disabled selected>Choose a option </option>
                         <option *ngFor="let s of generalmenu" value="{{s._id}}" >{{s.item_name}}</option>
                     </select>
@@ -135,6 +135,19 @@
                     <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div> -->
 
+                <div class="col-sm-4" style="margin-top: 20px;">
+                    <label for="">Add cleaning Charge?</label>
+                    <br> Yes
+                    <input type="radio" [(ngModel)]="charge" value="Yes" formControlName="charge"> No
+                    <input type="radio" [(ngModel)]="charge" value="No" formControlName="charge">
+                </div>
+
+                <div class="col-sm-4" *ngIf="charge == 'Yes'">
+                    <label for="">Cleaning Charge</label>
+                    <input type="number" class="form-control" placeholder="Enter the Cleaning Charge" [(ngModel)]="cleaning" formControlName="cleaning">
+
+
+                </div>
 
 
                 <div class="col-sm-12">

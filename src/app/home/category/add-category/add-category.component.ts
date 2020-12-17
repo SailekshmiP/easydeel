@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
@@ -12,7 +12,14 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class AddCategoryComponent implements OnInit {
   categoryFormRegistration:FormGroup;
   submitted = false;
-  
+  alldata :any =[
+    {
+      "location": "ALL",
+    "location_state": "Active",
+    "__v": 0,
+    "_id": "123456789"
+    }
+  ]
   files;
   currentphoto;
   cname;
@@ -27,6 +34,10 @@ export class AddCategoryComponent implements OnInit {
   formData = new FormData();
   isLoading = false;
   button = 'Submit';
+  sessiondayssRepat;
+  repeatsessiondays:any=[];
+  value;
+  locations :any =[];
   constructor(private formbuilder:FormBuilder,private toaster:ToastrService,
     private easydealservice:EasydealService,private router:Router) { }
 
@@ -42,8 +53,10 @@ export class AddCategoryComponent implements OnInit {
         // mtype: ['', Validators.required],
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
+        check: ['', Validators.required],
+        checkeddays: this.formbuilder.array([]),
     })
-
+    this.getalllocations();
   }
 get f() { return this.categoryFormRegistration.controls; }
 
@@ -88,6 +101,46 @@ get f() { return this.categoryFormRegistration.controls; }
      )
 
     }
+  }
+  onChange(time: string, isChecked: boolean) {
+    this.sessiondayssRepat = [];
+    const emailFormArray = <FormArray>this.categoryFormRegistration.controls.checkeddays;
+    if (isChecked) {
+      emailFormArray.push(new FormControl(time));
+      this.value = emailFormArray['value']
+      //console.log(this.value)
+
+      for (let j = 0; j < this.value.length; j++) {
+        this.sessiondayssRepat.push(this.value[j]);
+
+      }
+      console.log(this.sessiondayssRepat)
+
+    }
+
+    else {
+      let index = emailFormArray.controls.findIndex(x => x.value == time)
+      emailFormArray.removeAt(index);
+    }
+
+
+  }
+  getalllocations() {
+    this.easydealservice.getalllocations().subscribe(
+      data => {
+        console.log(data);
+
+        this.locations = data;
+        this.repeatsessiondays.push(this.alldata);
+        this.repeatsessiondays = this.locations;
+
+
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
   }
   addcategoryimage(event) {
 

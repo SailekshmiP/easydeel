@@ -69,7 +69,11 @@ export class EasydealService {
 
     return this.http.get(this.apiUrl + 'location');
   }
+  getallgeneralmenubypagination(page)
+  {
+    return this.http.get(this.apiUrl + 'generalitem/pagination?page='+page);
 
+  }
   addlocation(r) {
     return this.http.post(this.apiUrl + 'location/post', r);
   }

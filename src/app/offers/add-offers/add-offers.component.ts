@@ -33,6 +33,7 @@ export class AddOffersComponent implements OnInit {
   results: any=[];
   location;
   isLoading = false;
+  pprice;
   button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private toaster: ToastrService, private router: Router) { }
 
@@ -48,6 +49,7 @@ export class AddOffersComponent implements OnInit {
         tnusers: ['', Validators.required],
         oprice: ['', Validators.required],
         aprice: ['', Validators.required],
+        pprice: ['', Validators.required],
         adata: ['', Validators.required],
         atime: ['', Validators.required],
         ctime: ['', Validators.required],

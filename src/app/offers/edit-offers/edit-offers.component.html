@@ -55,7 +55,15 @@
                     </div>
                 </div>
 
+                <div class="col-sm-4">
+                    <label for="">Purchase Price </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Purchase Price" [(ngModel)]="pprice" [ngClass]="{ 'is-invalid': submitted && f.pprice.errors }" formControlName="pprice">
 
+                    <div *ngIf="submitted && f.pprice.errors" class="invalid-feedback">
+                        <div *ngIf="f.pprice.errors.required">Purchase price is required</div>
+
+                    </div>
+                </div>
                 <div class="col-sm-4">
                     <label for="">Offer Description </label>
                     <input type="text" class="form-control" placeholder="Enter the Offer Description" [(ngModel)]="odes" [ngClass]="{ 'is-invalid': submitted && f.odes.errors }" formControlName="odes">

@@ -38,6 +38,8 @@ export class EditShopMenuComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   restmenus:any =[];
+  profitpercenatge;
+
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -94,24 +96,42 @@ export class EditShopMenuComponent implements OnInit {
       return;
     }
     else {
+      this.calculateshopprofitpercentage();
       this.isLoading = true;
       this.button = 'Processing';
       this.prate = "0";
-      this.formData.append("shop_id", this.sname.toUpperCase())
-      this.formData.append("location_id", this.location)
-      this.formData.append("menu_id", this.mname)
-      this.formData.append("menu_desc", this.mdes)
-      this.formData.append("purchaseRate", this.prate)
-      this.formData.append("salesRate", this.srate)
-      this.formData.append("discount", this.dperc)
-      this.formData.append("discamountAmount", this.damount)
-      this.formData.append("closingTime", this.pctime)
-      this.formData.append("availableTime", this.patime)
-      this.formData.append("status", this.status)
-      this.formData.append("show", this.showorhide)
+      // this.formData.append("shop_id", this.sname.toUpperCase())
+      // this.formData.append("location_id", this.location)
+      // this.formData.append("menu_id", this.mname)
+      // this.formData.append("menu_desc", this.mdes)
+      // this.formData.append("purchaseRate", this.prate)
+      // this.formData.append("salesRate", this.srate)
+      // this.formData.append("discount", this.dperc)
+      // this.formData.append("discamountAmount", this.damount)
+      // this.formData.append("closingTime", this.pctime)
+      // this.formData.append("availableTime", this.patime)
+      // this.formData.append("status", this.status)
+      // this.formData.append("show", this.showorhide)
+      let req = {
+        "shop_id":this.sname,
+        "location_id":this.location,
+        "menu_id":this.mname,
+        "menu_desc":this.mdes,
+        "purchaseRate":this.prate,
+        "salesRate":this.srate,
+        "discount":this.dperc,
+        "discamountAmount":this.damount,
+        "closingTime":this.pctime,
+        "availableTime":this.patime,
+        "status":this.status,
+        "show":this.showorhide
+
+
+
+      }
       // this.formData.append("addrest_img", this.currentphoto)
 
-      this.easydealservice.editshopmenu(this.formData, this.id).subscribe(
+      this.easydealservice.editshopmenu(req, this.id).subscribe(
         data => {
           this.isLoading = false;
           this.button = 'Submit';
@@ -190,5 +210,15 @@ export class EditShopMenuComponent implements OnInit {
 
       }
     )
+  }
+  calculateshopprofitpercentage()
+  {
+    let ppcaluate;
+    let number = 100;
+    let res = (this.profitpercenatge/number)+1;
+    let profitrate = this.srate/res;
+    this.prate = profitrate.toFixed();
+    console.log(this.prate);
+    
   }
 }

@@ -106,7 +106,15 @@
 
                     </div>
                 </div>
+                <div class="col-sm-4">
+                    <label for="">Purchase Price </label>
+                    <input type="number" class="form-control" placeholder="Enter Your Purchase Price" [(ngModel)]="pprice" [ngClass]="{ 'is-invalid': submitted && f.pprice.errors }" formControlName="pprice">
 
+                    <div *ngIf="submitted && f.pprice.errors" class="invalid-feedback">
+                        <div *ngIf="f.pprice.errors.required">Purchase price is required</div>
+
+                    </div>
+                </div>
                 <div class="col-sm-4">
                     <label for="">Available Date </label>
                     <input type="date" class="form-control" placeholder="Enter Your Available Date" [(ngModel)]="adata" [ngClass]="{ 'is-invalid': submitted && f.adata.errors }" formControlName="adata">
@@ -179,8 +187,8 @@
                 <div class="col-sm-12">
                     <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
                     <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
-                        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
-                    {{button}}</button>
+                            [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
+                        {{button}}</button>
                 </div>
 
             </div>

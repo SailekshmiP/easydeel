@@ -33,6 +33,9 @@ export class EditGeneralShopMenuComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   generalshopmenu:any=[];
+  charge ="No";
+  cleaning;
+
   constructor(private formbuilder: FormBuilder,
      private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -144,6 +147,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
         "itm_discount": this.idpercent,
         "discamount": this.idamount,
         "mrp": this.imrp,
+        "charge":this.charge,
+        "cleaning":this.cleaning
       }
       this.easydeelservice.editgeneralmenu(req,this.id).subscribe(
 

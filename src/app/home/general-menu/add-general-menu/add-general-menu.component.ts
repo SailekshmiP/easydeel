@@ -33,7 +33,7 @@ export class AddGeneralMenuComponent implements OnInit {
   ngOnInit() {
     this.generalmenuFormRegistration = this.formbuilder.group(
       {
-        sname: ['', Validators.required],
+        // sname: ['', Validators.required],
         cname: ['', Validators.required],
         iname: ['', Validators.required],
         des: ['', [Validators.required, Validators.maxLength(50)]],

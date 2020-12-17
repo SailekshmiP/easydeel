@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col-sm-8">
-                <h4 class="page-title"> Edit General Shop Menu</h4>
+                <h4 class="page-title"> Add General Shop Menu</h4>
 
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <div class="col-sm-4">
                     <label for=""> Category Name</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="cname" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
+                    <select name="" id="" class="form-control" [(ngModel)]="cname" (change)="shopselcted(cname)" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
                         <option value="" disabled selected>Choose a option </option>
                         <option *ngFor="let s of cat" value="{{s._id}}" >{{s.category_name}}</option>
                     </select>
@@ -135,6 +135,19 @@
                     <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div> -->
 
+                <div class="col-sm-4" style="margin-top: 20px;">
+                    <label for="">Add cleaning Charge?</label>
+                    <br> Yes
+                    <input type="radio" [(ngModel)]="charge" value="Yes" formControlName="charge"> No
+                    <input type="radio" [(ngModel)]="charge" value="No" formControlName="charge">
+                </div>
+
+                <div class="col-sm-4" *ngIf="charge == 'Yes'">
+                    <label for="">Cleaning Charge</label>
+                    <input type="number" class="form-control" placeholder="Enter the Cleaning Charge" [(ngModel)]="cleaning" formControlName="cleaning">
+
+
+                </div>
 
 
                 <div class="col-sm-12">
@@ -142,6 +155,7 @@
                     <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
                         [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
                     {{button}}</button>
+
                 </div>
 
             </div>

@@ -36,7 +36,7 @@ export class EditGeneralMenuComponent implements OnInit {
   ngOnInit() {
     this.generalmenuFormRegistration = this.formbuilder.group(
       {
-        sname: ['', Validators.required],
+        // sname: ['', Validators.required],
         cname: ['', Validators.required],
         iname: ['', Validators.required],
         des: ['', [Validators.required, Validators.maxLength(50)]],
@@ -47,7 +47,7 @@ export class EditGeneralMenuComponent implements OnInit {
         // mstyle: ['', Validators.required],
       })
     this.generalmenu = JSON.parse(sessionStorage.getItem("generalmenu"));
-    this.sname = this.generalmenu.shop_id['_id']
+    // this.sname = this.generalmenu.shop_id['_id']
     this.cname = this.generalmenu.generalcat_id['_id']
     this.iname = this.generalmenu['item_name']
     this.des = this.generalmenu['itm_desc']

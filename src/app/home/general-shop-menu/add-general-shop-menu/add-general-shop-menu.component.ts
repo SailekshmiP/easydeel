@@ -29,6 +29,8 @@ export class AddGeneralShopMenuComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   generalshopmenu:any=[];
+  charge ="No";
+  cleaning;
 
     constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -45,8 +47,8 @@ export class AddGeneralShopMenuComponent implements OnInit {
         idpercent: ['', Validators.required],
         iname: ['', Validators.required],
 
-        // showorhide: ['', Validators.required],
-        // status: ['', Validators.required],
+        charge: ['', Validators.required],
+        cleaning: [''],
       })
     this.getallShop();
     this.getallcategorytype();
@@ -126,6 +128,8 @@ export class AddGeneralShopMenuComponent implements OnInit {
         "itm_discount": this.idpercent,
         "discamount": this.idamount,
         "mrp": this.imrp,
+        "charge":this.charge,
+        "cleaning":this.cleaning
       }
       this.easydeelservice.addgeneralshopmenu(req).subscribe(
 

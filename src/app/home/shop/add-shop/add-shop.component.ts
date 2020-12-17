@@ -65,7 +65,8 @@ export class AddShopComponent implements OnInit {
   locations: any = [];
   isLoading = false;
   button = 'Submit';
-  constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
+  constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService,
+     private router: Router,
     private toaster: ToastrService) { }
   formData = new FormData();
   ngOnInit() {
@@ -117,7 +118,6 @@ export class AddShopComponent implements OnInit {
     }
 
 
-    // console.log(emailFormArray)
   }
   get f() { return this.shopFormRegistration.controls; }
 
