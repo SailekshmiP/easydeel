@@ -39,7 +39,8 @@ export class EditShopMenuComponent implements OnInit {
   button = 'Submit';
   restmenus:any =[];
   profitpercenatge;
-
+  shopid;
+  profitrate;
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -76,8 +77,8 @@ export class EditShopMenuComponent implements OnInit {
     this.showorhide = this.shopmenu['show']
 
     this.id = this.shopmenu['_id'];
-
-
+// this.shopid = this.shopmenu['shop_id']._id;
+    this.getshopprofitbypercetage();
 
     this.getallShop();
     this.getalllocations();
@@ -86,6 +87,23 @@ export class EditShopMenuComponent implements OnInit {
   }
   get f() { return this.shopmenuFormRegistration.controls; }
 
+  getshopprofitbypercetage()
+  {
+    this.easydealservice.getalllocationbyshopid(this.sname).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+        this.profitpercenatge = data[0].profitpercentage;
+        
+        console.log("PROFIT PERCENTAGE",this.profitpercenatge);
+        
+      },
+      error =>{
+
+      }
+    )
+  }
   submit() {
     this.submitted = true;
     this.isLoading = true;
@@ -117,7 +135,7 @@ export class EditShopMenuComponent implements OnInit {
         "location_id":this.location,
         "menu_id":this.mname,
         "menu_desc":this.mdes,
-        "purchaseRate":this.prate,
+        "purchaseRate":this.profitrate.toFixed(),
         "salesRate":this.srate,
         "discount":this.dperc,
         "discamountAmount":this.damount,
@@ -154,6 +172,20 @@ export class EditShopMenuComponent implements OnInit {
   }
   shopselcted(s) {
     console.log(s);
+    this.easydealservice.getalllocationbyshopid(s).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+        this.profitpercenatge = data[0].profitpercentage;
+        
+
+      },
+      error =>{
+
+      }
+    )
+
 
   }
   getallShop() {
@@ -216,9 +248,11 @@ export class EditShopMenuComponent implements OnInit {
     let ppcaluate;
     let number = 100;
     let res = (this.profitpercenatge/number)+1;
-    let profitrate = this.srate/res;
-    this.prate = profitrate.toFixed();
-    console.log(this.prate);
+    this.profitrate = this.srate/res;
+    console.log("profitrate ",this.profitrate);
+
+    // this.prate = profitrate.toFixed();
+    // console.log(this.prate);
     
   }
 }
