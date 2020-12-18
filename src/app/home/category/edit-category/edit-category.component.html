@@ -67,7 +67,17 @@
                     <input type="radio" [(ngModel)]="status" value="Active" formControlName="status"> Inactive
                     <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div>
+                <div class="col-sm-12">
+                    <label for=""> Choose Locations</label>
+                    <div class="row" style="padding: 15px;">
+                        <div class="radio-toolbar" *ngFor="let repeatsessiondays of repeatsessiondays">
+                            <input formControlName="check" (change)="onChange(repeatsessiondays._id, $event.target.checked)" type="checkbox" id="{{repeatsessiondays.location}}" name="radioFruit" value="{{repeatsessiondays._id}}">
+                            <label for="{{repeatsessiondays.location}}">{{repeatsessiondays.location}}</label>
 
+                        </div>
+                    </div>
+
+                </div>
                 <div class="col-sm-12">
                     <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
                     <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"

@@ -78,6 +78,12 @@ get f() { return this.categoryFormRegistration.controls; }
       this.formData.append("category_menutype",this.mtype)
       this.formData.append("state",this.status)
       this.formData.append("cat_img",this.currentphoto)
+      for (let i = 0; i < this.sessiondayssRepat.length; i++) {
+        this.formData.append("locationId", this.sessiondayssRepat[i])
+
+      }
+
+
      this.easydealservice.addcategory(this.formData).subscribe(
        data=>{
         this.isLoading = false;

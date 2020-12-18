@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
@@ -29,6 +29,10 @@ export class EditCategoryComponent implements OnInit {
   getcatdetails;
   isLoading = false;
   button = 'Submit';
+  sessiondayssRepat;
+  repeatsessiondays:any=[];
+  value;
+  locations :any =[];
   constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
 
   ngOnInit() {
@@ -39,6 +43,8 @@ export class EditCategoryComponent implements OnInit {
         cimage: [''],
         showorhide:['', Validators.required],
         status:['',Validators.required],
+        check: ['', Validators.required],
+        checkeddays: this.formbuilder.array([]),
         // des: ['', Validators.required],
         // mtype: ['', Validators.required],
         // mctype: ['', Validators.required],
@@ -50,7 +56,10 @@ this.mtype=this.getcatdetails['category_menutype'];
 this.showorhide=this.getcatdetails['category_show'];
 this.status=this.getcatdetails['category_state'];
 this.cat_id=this.getcatdetails['_id']
+this.getalllocations();
+
   }
+
 get f() { return this.categoryFormRegistration.controls; }
 
   submit(){
@@ -71,6 +80,11 @@ get f() { return this.categoryFormRegistration.controls; }
       this.formData.append("category_menutype",this.mtype)
       this.formData.append("state",this.status)
       this.formData.append("cat_img",this.currentphoto)
+      for (let i = 0; i < this.sessiondayssRepat.length; i++) {
+        this.formData.append("locationId", this.sessiondayssRepat[i])
+
+      }
+
      this.easydealservice.editcategory(this.formData,this.cat_id).subscribe(
        data=>{
         this.isLoading = false;
@@ -98,5 +112,45 @@ get f() { return this.categoryFormRegistration.controls; }
     this.currentphoto = this.files.item(0);
     
     //  console.log(this.currentFoto)
+  }
+  getalllocations() {
+    this.easydealservice.getalllocations().subscribe(
+      data => {
+        console.log(data);
+
+        this.locations = data;
+        // this.repeatsessiondays.push(this.alldata);
+        this.repeatsessiondays = this.locations;
+
+
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
+  }
+  onChange(time: string, isChecked: boolean) {
+    this.sessiondayssRepat = [];
+    const emailFormArray = <FormArray>this.categoryFormRegistration.controls.checkeddays;
+    if (isChecked) {
+      emailFormArray.push(new FormControl(time));
+      this.value = emailFormArray['value']
+      //console.log(this.value)
+
+      for (let j = 0; j < this.value.length; j++) {
+        this.sessiondayssRepat.push(this.value[j]);
+
+      }
+      console.log(this.sessiondayssRepat)
+
+    }
+
+    else {
+      let index = emailFormArray.controls.findIndex(x => x.value == time)
+      emailFormArray.removeAt(index);
+    }
+
+
   }
 }

@@ -84,6 +84,12 @@
                         <mat-cell *matCellDef="let row"> {{row.discamountAmount}} </mat-cell>
                     </ng-container>
 
+                    <!-- Shop Name Column -->
+                    <ng-container matColumnDef="shopname">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Shop Name </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.shop_id.shop_name}} </mat-cell>
+                    </ng-container>
+
 
                     <!-- Action Column -->
                     <ng-container matColumnDef="action">

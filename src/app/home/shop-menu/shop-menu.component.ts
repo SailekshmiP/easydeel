@@ -12,7 +12,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 })
 export class ShopMenuComponent implements OnInit {
 
-  displayedColumns = ['id', 'menuname','purchaserate', 'salesrate', 'discountpercentage', 'discountamount', 'action'];
+  displayedColumns = ['id','menuname','purchaserate', 'salesrate', 'discountpercentage', 'discountamount', 'shopname', 'action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;
