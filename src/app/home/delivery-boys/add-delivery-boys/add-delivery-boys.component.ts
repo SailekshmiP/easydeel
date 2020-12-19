@@ -45,6 +45,8 @@ get f() { return this.deliveryboyFormRegistration.controls; }
 
     // stop here if form is invalid
     if (this.deliveryboyFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
         return;
     }
     else{

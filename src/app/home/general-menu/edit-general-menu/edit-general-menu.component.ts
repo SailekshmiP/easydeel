@@ -95,6 +95,8 @@ export class EditGeneralMenuComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.generalmenuFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {

@@ -122,6 +122,8 @@ export class EditOffersComponent implements OnInit {
     this.button = 'Processing';
     // stop here if form is invalid
     if (this.offerFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {

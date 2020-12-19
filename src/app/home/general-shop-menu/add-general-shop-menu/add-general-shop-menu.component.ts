@@ -14,7 +14,7 @@ export class AddGeneralShopMenuComponent implements OnInit {
   submitted = false;
   generalmenu;
   sname = '';
-  cname = '';
+  location = '';
   iquant;
   iprice;
   israte;
@@ -38,7 +38,8 @@ export class AddGeneralShopMenuComponent implements OnInit {
     this.generalshopmenuFormRegistration = this.formbuilder.group(
       {
         sname: ['', Validators.required],
-        cname: ['', Validators.required],
+        // cname: [''],
+        location: ['', Validators.required],
         iquant: ['', Validators.required],
         iprice: ['', Validators.required],
         israte: ['', Validators.required],
@@ -51,7 +52,7 @@ export class AddGeneralShopMenuComponent implements OnInit {
         cleaning: [''],
       })
     this.getallShop();
-    this.getallcategorytype();
+    // this.getallcategorytype();
     this.getallgeneralmenu();
   }
   get f() { return this.generalshopmenuFormRegistration.controls; }
@@ -79,19 +80,19 @@ export class AddGeneralShopMenuComponent implements OnInit {
       }
     )
   }
-  getallcategorytype() {
-    this.easydeelservice.getallgeneralcategory().subscribe(
-      data => {
+  // getallcategorytype() {
+  //   this.easydeelservice.getallgeneralcategory().subscribe(
+  //     data => {
 
-        this.cat = data;
+  //       this.cat = data;
 
-      },
-      error => {
+  //     },
+  //     error => {
 
-      },
-    )
+  //     },
+  //   )
 
-  }
+  // }
   getallgeneralmenu()
   {
   this.easydeelservice.getallgeneralmenu().subscribe(
@@ -113,6 +114,9 @@ export class AddGeneralShopMenuComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.generalshopmenuFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
+  
       return;
     }
     else {
@@ -120,7 +124,7 @@ export class AddGeneralShopMenuComponent implements OnInit {
       this.button = 'Processing';
       let req = {
         "shop_id": this.sname,
-        "category_id": this.cname,
+        // "category_id": this.cname,
         "generalmenu_id":this.iname,
         "quantity": this.iquant,
         "itemprice": this.iprice,

@@ -49,6 +49,8 @@ get f() { return this.restaurantmenuFormRegistration.controls; }
 
     // stop here if form is invalid
     if (this.restaurantmenuFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
         return;
     }
     else{

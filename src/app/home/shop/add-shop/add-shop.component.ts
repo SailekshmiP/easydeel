@@ -161,6 +161,8 @@ export class AddShopComponent implements OnInit {
     this.isLoading = true;
     this.button = 'Processing';
     if (this.shopFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {

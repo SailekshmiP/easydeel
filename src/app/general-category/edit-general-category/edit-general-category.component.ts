@@ -40,6 +40,8 @@ export class EditGeneralCategoryComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.categorytypeFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {

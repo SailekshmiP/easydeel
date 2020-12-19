@@ -73,6 +73,8 @@ export class AddShopMenuComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.shopmenuFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {

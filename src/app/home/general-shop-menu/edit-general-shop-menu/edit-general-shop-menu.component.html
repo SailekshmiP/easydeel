@@ -33,14 +33,14 @@
 
 
                 <div class="col-sm-4">
-                    <label for=""> Category Name</label>
+                    <label for=""> Location</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="cname" (change)="shopselcted(cname)" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
+                    <select name="" id="" class="form-control" [(ngModel)]=" location" (change)="shopselcted( location)" [ngClass]="{ 'is-invalid': submitted && f. location.errors }" formControlName=" location">
                         <option value="" disabled selected>Choose a option </option>
                         <option *ngFor="let s of cat" value="{{s._id}}" >{{s.category_name}}</option>
                     </select>
-                    <div *ngIf="submitted && f.cname.errors" class="invalid-feedback">
-                        <div *ngIf="f.cname.errors.required">Category name is required</div>
+                    <div *ngIf="submitted && f. location.errors" class="invalid-feedback">
+                        <div *ngIf="f. location.errors.required"> Location is required</div>
 
                     </div>
                 </div>
