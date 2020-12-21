@@ -21,7 +21,7 @@
                 <div class="col-sm-4">
                     <label for=""> Shop Name</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
+                    <select name="" id="" class="form-control" [(ngModel)]="sname" (change)="shopselcted(sname)" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
                         <option value="" disabled selected>Choose a option </option>
                         <option *ngFor="let s of results" value="{{s._id}}" >{{s.shop_name}}</option>
                     </select>
@@ -35,12 +35,12 @@
                 <div class="col-sm-4">
                     <label for=""> Location</label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]=" location" (change)="shopselcted( location)" [ngClass]="{ 'is-invalid': submitted && f. location.errors }" formControlName=" location">
+                    <select name="" id="" class="form-control" [(ngModel)]="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" formControlName="location">
                         <option value="" disabled selected>Choose a option </option>
-                        <option *ngFor="let s of cat" value="{{s._id}}" >{{s.category_name}}</option>
+                        <option *ngFor="let s of locations" value="{{s._id}}" >{{s.location}}</option>
                     </select>
-                    <div *ngIf="submitted && f. location.errors" class="invalid-feedback">
-                        <div *ngIf="f. location.errors.required"> Location is required</div>
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                        <div *ngIf="f.location.errors.required">Location is required</div>
 
                     </div>
                 </div>

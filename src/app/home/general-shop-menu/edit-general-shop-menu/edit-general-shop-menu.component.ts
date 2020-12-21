@@ -35,7 +35,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
   generalshopmenu:any=[];
   charge ="No";
   cleaning;
-
+  locations:any=[];
   constructor(private formbuilder: FormBuilder,
      private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -43,6 +43,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
     this.generalshopmenuFormRegistration = this.formbuilder.group(
       {
         sname: ['', Validators.required],
+        // cname: [''],
         location: ['', Validators.required],
         iquant: ['', Validators.required],
         iprice: ['', Validators.required],
@@ -52,6 +53,8 @@ export class EditGeneralShopMenuComponent implements OnInit {
         idpercent: ['', Validators.required],
         iname: ['', Validators.required],
 
+        charge: ['', Validators.required],
+        cleaning: [''],
         // showorhide: ['', Validators.required],
         // status: ['', Validators.required],
       })
@@ -67,13 +70,38 @@ export class EditGeneralShopMenuComponent implements OnInit {
       this.imrp = this.gmenu['itm_mrp']
       this.idamount = this.gmenu['itm_disc']
       this.idpercent = this.gmenu['itm_discam']
-      // this.cname = this.gmenu.category_id['_id']
+      // this.locations = this.gmenu.locationId
+      // console.log(this.locations);
+      // this.locations.push(this.gmenu.locationId)
+      this.getalllocationsByShopId();
+      let arr = [];
+      arr.push(this.gmenu.locationId)
+      this.locations = arr;
+
+      
       this.id = this.gmenu['_id']
     this.getallShop();
     // this.getallcategorytype();
     this.getallgeneralmenu();
+  
   }
   get f() { return this.generalshopmenuFormRegistration.controls; }
+  getalllocationsByShopId()
+  {
+    this.easydeelservice.getalllocationbyshopid(this.sname).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+
+        this.location = this.gmenu.locationId['_id']
+      },
+      error =>{
+
+      }
+    )
+    
+  }
   getallShop() {
     this.easydeelservice.getshopsbygeneralcategory().subscribe(
       data => {
@@ -142,6 +170,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
       let req = {
         "shop_id": this.sname,
         // "category_id": this.cname,
+        "locationId":this.location,
         "generalmenu_id":this.iname,
         "quantity": this.iquant,
         "itemprice": this.iprice,
@@ -169,5 +198,24 @@ export class EditGeneralShopMenuComponent implements OnInit {
       )
 
     }
+  }
+  shopselcted(s)
+  {
+    console.log(s);
+    this.easydeelservice.getalllocationbyshopid(s).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+    
+        
+
+      },
+      error =>{
+
+      }
+    )
+
+    
   }
 }

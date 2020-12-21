@@ -32,6 +32,7 @@ export class AddGeneralShopMenuComponent implements OnInit {
   charge ="No";
   cleaning;
 
+  locations:any=[];
     constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -125,6 +126,7 @@ export class AddGeneralShopMenuComponent implements OnInit {
       let req = {
         "shop_id": this.sname,
         // "category_id": this.cname,
+        "locationId":this.location,
         "generalmenu_id":this.iname,
         "quantity": this.iquant,
         "itemprice": this.iprice,
@@ -152,5 +154,24 @@ export class AddGeneralShopMenuComponent implements OnInit {
       )
 
     }
+  }
+  shopselcted(s)
+  {
+    console.log(s);
+    this.easydeelservice.getalllocationbyshopid(s).subscribe(
+      data =>
+      {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+    
+        
+
+      },
+      error =>{
+
+      }
+    )
+
+    
   }
 }
