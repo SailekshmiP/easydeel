@@ -22,7 +22,7 @@
 
                 <div class="col-sm-6">
                     <label for="">Category Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Your Category Name" [(ngModel)]="cname" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
+                    <input type="text" class="form-control" [disabled]="false" placeholder="Enter Your Category Name" [(ngModel)]="cname" [ngClass]="{ 'is-invalid': submitted && f.cname.errors }" formControlName="cname">
 
                     <div *ngIf="submitted && f.cname.errors" class="invalid-feedback">
                         <div *ngIf="f.cname.errors.required">Category name is required</div>

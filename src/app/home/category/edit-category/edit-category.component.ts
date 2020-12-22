@@ -33,6 +33,8 @@ export class EditCategoryComponent implements OnInit {
   repeatsessiondays:any=[];
   value;
   locations :any =[];
+  disbaledvalue = false;
+  disabled = false;
   constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
 
   ngOnInit() {
@@ -52,12 +54,20 @@ export class EditCategoryComponent implements OnInit {
     })
 this.getcatdetails=JSON.parse(sessionStorage.getItem("cat"));
 this.cname=this.getcatdetails['category_name'];
+
 this.mtype=this.getcatdetails['category_menutype'];
 this.showorhide=this.getcatdetails['category_show'];
 this.status=this.getcatdetails['category_state'];
 this.cat_id=this.getcatdetails['_id']
 this.getalllocations();
+if(this.cname == 'RESTAURANT')
+{
+  console.log("here");
+  
+  this.disabled = true;
+  this.categoryFormRegistration.get('cname').disable();
 
+}
   }
 
 get f() { return this.categoryFormRegistration.controls; }

@@ -74,6 +74,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
+import { ShopcredentialsComponent } from './settings/shopcredentials/shopcredentials.component';
+import { AddShopCredentialsComponent } from './settings/shopcredentials/add-shop-credentials/add-shop-credentials.component';
+import { EditShopCredentialsComponent } from './settings/shopcredentials/edit-shop-credentials/edit-shop-credentials.component';
 // import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
@@ -147,6 +150,9 @@ import { EditGeneralCategoryComponent } from './general-category/edit-general-ca
     GeneralCategoryComponent,
     AddGeneralCategoryComponent,
     EditGeneralCategoryComponent,
+    ShopcredentialsComponent,
+    AddShopCredentialsComponent,
+    EditShopCredentialsComponent,
     // MatSort
   ],
   imports: [

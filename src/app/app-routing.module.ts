@@ -47,6 +47,9 @@ import { MasteradminphonenumberComponent } from './settings/masteradminphonenumb
 import { AddPriceUpdatorComponent } from './settings/price-updator/add-price-updator/add-price-updator.component';
 import { PriceUpdatorComponent } from './settings/price-updator/price-updator.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AddShopCredentialsComponent } from './settings/shopcredentials/add-shop-credentials/add-shop-credentials.component';
+import { EditShopCredentialsComponent } from './settings/shopcredentials/edit-shop-credentials/edit-shop-credentials.component';
+import { ShopcredentialsComponent } from './settings/shopcredentials/shopcredentials.component';
 import { WalletpointsComponent } from './settings/walletpoints/walletpoints.component';
 import { AddShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/add-shop-admin-menu-name/add-shop-admin-menu-name.component';
 import { ShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/shop-admin-menu-name.component';
@@ -108,15 +111,14 @@ const routes: Routes = [
   {path:'addgeneralcategory',component:AddGeneralCategoryComponent},
   {path:'editgeneralcategory',component:EditGeneralCategoryComponent},
   {path:'editgeneralmenu',component:EditGeneralMenuComponent},
-
   {path:'editcoursetype',component:EditCoursetypeComponent},
   {path:'edit-rest-menu',component:EditRestaurantMenuComponent},
-
   {path:'edit-shop-menu',component:EditShopMenuComponent},
-
   {path:'edit-general-shop-menu',component:EditGeneralShopMenuComponent},
-
   {path:'edit-offers',component:EditOffersComponent},
+  {path:'shopcredentials',component:ShopcredentialsComponent},
+  {path:'addshopcredentials',component:AddShopCredentialsComponent},
+  {path:'editshopcredentials',component:EditShopCredentialsComponent},
 
 
   
