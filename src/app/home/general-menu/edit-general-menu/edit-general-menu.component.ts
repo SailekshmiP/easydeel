@@ -19,8 +19,8 @@ export class EditGeneralMenuComponent implements OnInit {
   iname;
   des;
   iimage;
-  showorhide;
-  status;
+  // showorhide;
+  // status;
   // mctype="";
   shops;
   category;
@@ -41,8 +41,8 @@ export class EditGeneralMenuComponent implements OnInit {
         iname: ['', Validators.required],
         des: ['', [Validators.required, Validators.maxLength(50)]],
         iimage: [''],
-        showorhide: ['', Validators.required],
-        status: ['', Validators.required],
+        // showorhide: ['', Validators.required],
+        // status: ['', Validators.required],
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
       })
@@ -51,7 +51,7 @@ export class EditGeneralMenuComponent implements OnInit {
     this.cname = this.generalmenu.generalcat_id['_id']
     this.iname = this.generalmenu['item_name']
     this.des = this.generalmenu['itm_desc']
-    this.status = this.generalmenu['state']
+    // this.status = this.generalmenu['state']
     this.id = this.generalmenu['_id']
 
     this.getallShop();

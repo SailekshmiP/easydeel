@@ -77,6 +77,9 @@ import { EditGeneralCategoryComponent } from './general-category/edit-general-ca
 import { ShopcredentialsComponent } from './settings/shopcredentials/shopcredentials.component';
 import { AddShopCredentialsComponent } from './settings/shopcredentials/add-shop-credentials/add-shop-credentials.component';
 import { EditShopCredentialsComponent } from './settings/shopcredentials/edit-shop-credentials/edit-shop-credentials.component';
+import { ChatBoxComponent } from './settings/chat-box/chat-box.component';
+import { AddChatBoxComponent } from './settings/chat-box/add-chat-box/add-chat-box.component';
+import { EditChatBoxComponent } from './settings/chat-box/edit-chat-box/edit-chat-box.component';
 // import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
@@ -153,6 +156,9 @@ import { EditShopCredentialsComponent } from './settings/shopcredentials/edit-sh
     ShopcredentialsComponent,
     AddShopCredentialsComponent,
     EditShopCredentialsComponent,
+    ChatBoxComponent,
+    AddChatBoxComponent,
+    EditChatBoxComponent,
     // MatSort
   ],
   imports: [

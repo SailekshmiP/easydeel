@@ -18,8 +18,8 @@ export class AddGeneralMenuComponent implements OnInit {
   iname;
   des;
   iimage;
-  showorhide;
-  status;
+  // showorhide;
+  // status;
   // mctype="";
   shops;
   category;
@@ -38,8 +38,8 @@ export class AddGeneralMenuComponent implements OnInit {
         iname: ['', Validators.required],
         des: ['', [Validators.required, Validators.maxLength(50)]],
         iimage: ['', Validators.required],
-        showorhide: ['', Validators.required],
-        status: ['', Validators.required],
+        // showorhide: ['', Validators.required],
+        // status: ['', Validators.required],
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
       })

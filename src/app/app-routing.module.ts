@@ -43,6 +43,9 @@ import { PurchaseComponent } from './reports/purchase/purchase.component';
 import { ReportsComponent } from './reports/reports.component';
 import { SalesComponent } from './reports/sales/sales.component';
 import { AddSettingsComponent } from './settings/add-settings/add-settings.component';
+import { AddChatBoxComponent } from './settings/chat-box/add-chat-box/add-chat-box.component';
+import { ChatBoxComponent } from './settings/chat-box/chat-box.component';
+import { EditChatBoxComponent } from './settings/chat-box/edit-chat-box/edit-chat-box.component';
 import { MasteradminphonenumberComponent } from './settings/masteradminphonenumber/masteradminphonenumber.component';
 import { AddPriceUpdatorComponent } from './settings/price-updator/add-price-updator/add-price-updator.component';
 import { PriceUpdatorComponent } from './settings/price-updator/price-updator.component';
@@ -119,6 +122,10 @@ const routes: Routes = [
   {path:'shopcredentials',component:ShopcredentialsComponent},
   {path:'addshopcredentials',component:AddShopCredentialsComponent},
   {path:'editshopcredentials',component:EditShopCredentialsComponent},
+  {path:'chatbox',component:ChatBoxComponent},
+  {path:'addchatbox',component:AddChatBoxComponent},
+  {path:'editchatbox',component:EditChatBoxComponent},
+  
 
 
   
