@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edit-chat-box.component.css']
 })
 export class EditChatBoxComponent implements OnInit {
-  addchatboxFormRegistration:FormGroup;
+ editchatboxFormRegistration:FormGroup;
   submitted = false;
   
   location;
@@ -21,7 +21,7 @@ export class EditChatBoxComponent implements OnInit {
   constructor(private formbuilder:FormBuilder) { }
 
   ngOnInit() {
-    this.addchatboxFormRegistration = this.formbuilder.group(
+    this.editchatboxFormRegistration = this.formbuilder.group(
       {
         location: ['', Validators.required],
         message: ['', Validators.required],
@@ -33,13 +33,13 @@ export class EditChatBoxComponent implements OnInit {
     })
 
   }
-get f() { return this.addchatboxFormRegistration.controls; }
+get f() { return this.editchatboxFormRegistration.controls; }
 
   submit(){
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.addchatboxFormRegistration.invalid) {
+    if (this.editchatboxFormRegistration.invalid) {
         return;
     }
     else{

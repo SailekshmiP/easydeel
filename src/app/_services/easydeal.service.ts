@@ -117,7 +117,7 @@ export class EasydealService {
 
   }
   getallmenus() {
-    return this.http.get(this.apiUrl + 'addrestaurantmenu');
+    return this.http.get(this.apiUrl + 'addrestaurantmenu/info');
 
   }
   addgeneralitemmenu(s) {
@@ -157,7 +157,7 @@ export class EasydealService {
     return this.http.patch(this.apiUrl + 'generalshopmenu/edit/' + id, s);
   }
   getallgeneralshopmenu() {
-    return this.http.get(this.apiUrl + 'generalshopmenu');
+    return this.http.get(this.apiUrl + 'generalshopmenu/info');
   }
   changegmstatus(s) {
     let req = {
@@ -209,4 +209,22 @@ export class EasydealService {
   {
     return this.http.get(this.apiUrl+'shop/category/menutype/general');
   }
+  getallorder()
+  {
+    return this.http.get(this.apiUrl+'orders');
+  }
+  addmessages(req)
+  {
+    return this.http.post(this.apiUrl+'message/add',req)
+  }
+  getmessages()
+  {
+
+    return this.http.get(this.apiUrl+'message')
+  }
+  deleteChatMessage(s)
+  {
+    return this.http.delete(this.apiUrl+'message/'+s);
+  }
+  
 }

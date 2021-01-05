@@ -41,6 +41,7 @@ export class EditShopMenuComponent implements OnInit {
   profitpercenatge;
   shopid;
   profitrate;
+  pperct;
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -51,6 +52,7 @@ export class EditShopMenuComponent implements OnInit {
         mname: ['', Validators.required],
         mdes: ['', [Validators.required, Validators.maxLength(50)]],
         prate: ['',],
+        pperct: ['', Validators.required],
         srate: ['', Validators.required],
         dperc: ['', Validators.required],
         damount: ['', Validators.required],
@@ -237,7 +239,20 @@ export class EditShopMenuComponent implements OnInit {
       data => {
         console.log(data);
         this.menu = data;
-
+        this.menu.sort(function (a,b)
+        {
+          if(a['menu_name'] <b['menu_name'])
+          {
+            return -1;
+          }
+          else if(a['menu_name'] >b['menu_name'])
+          {
+            return 1;
+          }
+          else {
+            return 0;
+          }
+        });
       },
       error => {
         console.log(error);

@@ -19,6 +19,7 @@ export class ShopMenuComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   options: any = "";
   results: any[];
+  shopmenu:any =[];
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -35,7 +36,9 @@ export class ShopMenuComponent implements OnInit {
       data =>{
         let arr:any = [];
         arr = data;
-        this.dataSource.data = arr;
+        this.shopmenu = data;
+        this.dataSource.data = this.shopmenu;
+        console.log(arr)
       },
       error =>{
 

@@ -94,6 +94,16 @@
 
 
                 <div class="col-sm-4">
+                    <label for="">Purchase Percentage</label>
+                    <input type="text" class="form-control" placeholder="Enter the Purchase Percentage" [(ngModel)]="pperct" [ngClass]="{ 'is-invalid': submitted && f.pperct.errors }" formControlName="pperct">
+
+                    <div *ngIf="submitted && f.mdes.errors" class="invalid-feedback">
+                        <div *ngIf="f.pperct.errors.required">Purchase Percentageis required</div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-4">
                     <label for="">Sales Rate </label>
                     <input type="number" class="form-control" placeholder="Enter Your Sales Rate" [(ngModel)]="srate" [ngClass]="{ 'is-invalid': submitted && f.srate.errors }" formControlName="srate">
 

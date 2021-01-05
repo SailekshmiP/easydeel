@@ -33,8 +33,8 @@ export class CategoryComponent implements OnInit {
 
   }
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    console.log(this.dataSource.sort);
+    // this.dataSource.sort = this.sort;
+    // console.log(this.dataSource.sort);
     
     this.dataSource.paginator = this.paginator;
   }
@@ -44,27 +44,27 @@ export class CategoryComponent implements OnInit {
     this.router.navigate(['/editcategory'])
 
   }
-  sortData(sort: Sort) {
-    const data = this.results.slice();
-    console.log(data);
-    this.dataSource.data = data;
-    if (!sort.active || sort.direction == '') {
-      this.results = data;
-      return;
-    }
+  // sortData(sort: Sort) {
+  //   const data = this.results.slice();
+  //   console.log(data);
+  //   this.dataSource.data = data;
+  //   if (!sort.active || sort.direction == '') {
+  //     this.results = data;
+  //     return;
+  //   }
 
-    this.results = data.sort((a, b) => {
-      let isAsc = sort.direction == 'asc';
-      switch (sort.active) {
-        case 'categoryname': return compare(a.name, b.name, isAsc);
-        case 'action': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(a.name, b.name, isAsc);
+  //   this.results = data.sort((a, b) => {
+  //     let isAsc = sort.direction == 'asc';
+  //     switch (sort.active) {
+  //       case 'categoryname': return compare(a.name, b.name, isAsc);
+  //       case 'action': return compare(a.name, b.name, isAsc);
+  //       case 'id': return compare(a.name, b.name, isAsc);
 
      
-        default: return 0;
-      }
-    });
-  }
+  //       default: return 0;
+  //     }
+  //   });
+  // }
   getallCategory() {
     this.easydealservice.getcat().subscribe(
       data => {
@@ -109,6 +109,6 @@ export class CategoryComponent implements OnInit {
   
 }
 
-function compare(a, b, isAsc) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+// function compare(a, b, isAsc) {
+//   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+// }
