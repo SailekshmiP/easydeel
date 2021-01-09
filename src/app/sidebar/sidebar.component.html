@@ -1,7 +1,7 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
-            <ul *ngIf="status =='masteradmin'">
+            <ul>
 
 
                 <li class="menu-title">MASTER ADMIN</li>
@@ -53,26 +53,26 @@
                 </li>
 
                 <li routerLinkActive="active">
-                    <a routerLink="/approvalrequest"><i class="fa fa-history"></i> <span>APPROVALS</span></a>
+                    <a routerLink="/approvalrequest" *ngIf="status =='masteradmin'"><i class="fa fa-history"></i> <span>APPROVALS</span></a>
                 </li>
 
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="status =='masteradmin'">
                     <a routerLink="/orders"><i class="fa fa-shopping-basket"></i> <span>ORDERS</span></a>
                 </li>
 
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="status =='masteradmin'">
                     <a routerLink="/preorders"><i class="fa fa-shopping-basket"></i> <span>PRE-ORDERS</span></a>
                 </li>
 
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="status =='masteradmin'">
                     <a routerLink="/users"><i class="fa fa-users"></i> <span>USERS</span></a>
                 </li>
 
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="status =='masteradmin'">
                     <a routerLink="/reports"><i class="fa fa-sticky-note"></i> <span>REPORTS</span></a>
                 </li>
 
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="status =='masteradmin'">
                     <a routerLink="/settings"><i class="fa fa-cog"></i> <span>SETTINGS</span></a>
                 </li>
             </ul>

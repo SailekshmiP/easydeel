@@ -13,7 +13,7 @@ import { EasydealService } from '../_services/easydeal.service';
 export class GeneralCategoryComponent implements OnInit {
   displayedColumns = ['id', 'categorytype', 'action'];
   dataSource = new MatTableDataSource();
-
+  status;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -24,6 +24,8 @@ export class GeneralCategoryComponent implements OnInit {
   constructor(private easydeelservice: EasydealService,private toaster:ToastrService,private router:Router) { }
 
   ngOnInit() {
+
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
     this.getallcategorytype();
   }
 

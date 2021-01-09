@@ -13,6 +13,9 @@ export class EasydealService {
     this.apiUrl;
 
   }
+  login(req){
+    return this.http.post(this.apiUrl+"admin/login",req);
+  }
   getcat() {
     console.log(this.apiUrl);
 
@@ -25,7 +28,13 @@ export class EasydealService {
     return this.http.patch(this.apiUrl + 'category/edit/' + cat_id, formData);
 
   }
-
+  addlocationadmin(req)
+  {
+    return this.http.post(this.apiUrl+'admin/signup',req);
+  }
+  getalladmindetails(){
+    return this.http.get(this.apiUrl+'admin');
+  }
   changecategorystatus(s) {
     let req = {
 
@@ -37,6 +46,11 @@ export class EasydealService {
     console.log(this.apiUrl);
 
     return this.http.get(this.apiUrl + 'shop');
+  }
+
+  getallshopsbylocation(id)
+  {
+    return this.http.get(this.apiUrl + 'shop/franchise/location/'+id);
   }
   addshop(formData) {
     return this.http.post(this.apiUrl + 'shop/post', formData);
@@ -120,6 +134,10 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'addrestaurantmenu/info');
 
   }
+  getallmenusbylocation(id){
+    return this.http.get(this.apiUrl + 'addrestaurantmenu/location/rest/'+id);
+
+  }
   addgeneralitemmenu(s) {
     return this.http.post(this.apiUrl + 'generalitem/post', s);
   }
@@ -159,6 +177,10 @@ export class EasydealService {
   getallgeneralshopmenu() {
     return this.http.get(this.apiUrl + 'generalshopmenu/info');
   }
+  getallshopmenubylocation(id)
+  {
+    return this.http.get(this.apiUrl + 'generalshopmenu/location/'+id);
+  }
   changegmstatus(s) {
     let req = {
 
@@ -181,6 +203,10 @@ export class EasydealService {
   getalloffers()
   {
     return this.http.get(this.apiUrl+'offers');
+
+  }
+  getalloffersybylocation(locationid){
+    return this.http.get(this.apiUrl+'offers/location/'+locationid);
 
   }
   editoffer(formData,id){

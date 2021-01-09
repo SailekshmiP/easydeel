@@ -18,6 +18,9 @@ export class ShopComponent implements OnInit {
   options: any = "";
   results: any=[];
   apiUrl;
+  loginstatus:any;
+  locationid;
+  userdetails;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     
@@ -28,20 +31,51 @@ export class ShopComponent implements OnInit {
   constructor(private easydealservice:EasydealService,private router:Router,) { }
 
   ngOnInit() {
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"))
+     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+    console.log(this.userdetails);
+    
+
     this.apiUrl="https://shopgi.in/";
     this.getallShop();
   }
   getallShop(){
-    this.easydealservice.getshop().subscribe(
+
+    if(this.loginstatus =='masteradmin')
+    {
+      this.easydealservice.getshop().subscribe(
+        data =>{
+          console.log(data);
+          this.results =data;
+          this.dataSource.data = this.results;
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+    }
+    else if(this.loginstatus == 'locationamin')   
+    {
+      this.locationid=this.userdetails['locationId']._id;
+      console.log(this.locationid);
+
+    this.easydealservice.getallshopsbylocation(this.locationid).subscribe(
       data =>{
         console.log(data);
         this.results =data;
         this.dataSource.data = this.results;
       },
       error =>{
-        console.log(error);
+
       }
     )
+      
+    }
+    else if(this.loginstatus =='shopadmin')
+    {
+
+    }
+    
   }
   
 

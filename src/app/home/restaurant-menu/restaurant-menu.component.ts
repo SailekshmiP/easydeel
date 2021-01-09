@@ -26,7 +26,7 @@ export class RestaurantMenuComponent implements OnInit {
   totalLength: number;
   pageIndex: number = 0;
   // pageLimit: number[] = [5, 10];
-
+  status;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -35,8 +35,12 @@ export class RestaurantMenuComponent implements OnInit {
   constructor(private easydealservice: EasydealService, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+
     this.apiUrl = "https://shopgi.in/";
     this.getallmenu();
+
+    console.log(status);
   }
 
   getallmenu() {

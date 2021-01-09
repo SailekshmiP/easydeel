@@ -19,7 +19,10 @@ export class ShopMenuComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   options: any = "";
   results: any[];
+  status;
   shopmenu:any =[];
+  userdetails;
+  locationid;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -28,22 +31,51 @@ export class ShopMenuComponent implements OnInit {
   constructor(private easydealservice:EasydealService,private toaster:ToastrService,private router:Router) { }
 
   ngOnInit() {
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getrestmentall();
+    console.log(status);
   }
   getrestmentall()
   {
-    this.easydealservice.getallmenus().subscribe(
-      data =>{
-        let arr:any = [];
-        arr = data;
-        this.shopmenu = data;
-        this.dataSource.data = this.shopmenu;
-        console.log(arr)
-      },
-      error =>{
 
-      }
-    )
+    if(this.status =='masteradmin')
+    {
+      this.easydealservice.getallmenus().subscribe(
+        data =>{
+          let arr:any = [];
+          arr = data;
+          this.shopmenu = data;
+          this.dataSource.data = this.shopmenu;
+          console.log(arr)
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if(this.status == 'locationamin')   
+    {
+      this.locationid=this.userdetails['locationId']._id;
+      console.log(this.locationid);
+      this.easydealservice.getallmenusbylocation(this.locationid).subscribe(
+        data =>{
+          let arr:any = [];
+          arr = data;
+          this.shopmenu = data;
+          this.dataSource.data = this.shopmenu;
+          console.log(arr)
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if(this.status =='shopadmin')
+    {
+
+    }
+    
   }
   edit(s)
   {

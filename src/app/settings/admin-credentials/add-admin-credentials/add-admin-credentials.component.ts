@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-add-admin-credentials',
@@ -18,10 +21,13 @@ export class AddAdminCredentialsComponent implements OnInit {
   disabled = false;
   isLoading = false;
   button = 'Submit';
-  constructor(private formbuilder: FormBuilder) { }
+  // easydealservices: any;
+  result:any =[];
+  constructor(private formbuilder: FormBuilder, 
+    private router:Router,private eaydeelservice:EasydealService,private toater:ToastrService) { }
 
   ngOnInit() {
-    this. addadmincredentialsFormRegistration= this.formbuilder.group(
+    this.addadmincredentialsFormRegistration= this.formbuilder.group(
     {
       
       emailusername: ['', Validators.required],
@@ -29,6 +35,22 @@ export class AddAdminCredentialsComponent implements OnInit {
       location: ['', Validators.required],
       
     })
+    this.getalllocations();
+  }
+
+  getalllocations(){
+    this.eaydeelservice.getalllocations().subscribe(
+      data =>{
+        console.log(data);
+        this.result= data;
+  
+        
+      },
+      error =>{
+        console.log(error);
+        
+      }
+    )
   }
     submit() {
      
@@ -47,6 +69,22 @@ export class AddAdminCredentialsComponent implements OnInit {
           
           this.isLoading = true;
           this.button = 'Processing';
+          let req = {
+            "userName":this.emailusername,
+            "phoneNumber":"123456789",
+            "password":this.password,
+            "locationId":this.location,
+            "role":2
+          }
+          this.eaydeelservice.addlocationadmin(req).subscribe(
+            data =>{
+                this.router.navigate(['/admincredentials'])
+            },
+            error =>{
+
+            }
+          )
+          
       }
      
     }

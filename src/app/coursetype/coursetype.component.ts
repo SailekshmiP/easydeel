@@ -13,7 +13,7 @@ import { EasydealService } from '../_services/easydeal.service';
 export class CoursetypeComponent implements OnInit {
   displayedColumns = ['id', 'coursetype', 'action'];
   dataSource = new MatTableDataSource();
-
+  status;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -25,6 +25,8 @@ export class CoursetypeComponent implements OnInit {
 
   ngOnInit() {
     this.getallcoursetype();
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    console.log(status);
   }
 
   getallcoursetype() {

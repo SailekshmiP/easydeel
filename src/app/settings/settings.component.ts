@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-
+  status;
   constructor() { }
 
   ngOnInit() {
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
   }
 
 }

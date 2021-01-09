@@ -17,6 +17,7 @@ export class CategoryComponent implements OnInit {
   displayedColumns = ['id', 'categoryname', 'image', 'action'];
 
   apiUrl;
+  status;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   results: any = [];
@@ -30,7 +31,8 @@ export class CategoryComponent implements OnInit {
 
 
     this.getallCategory();
-
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    console.log(status);
   }
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;

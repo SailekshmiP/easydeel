@@ -14,6 +14,9 @@ export class GeneralShopMenuComponent implements OnInit {
   displayedColumns = ['id','sname','itemname', 'itemprice', 'itemquantity', 'action'];
   dataSource = new MatTableDataSource();
   result;
+  status;
+  userdetails;
+  locationid;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -24,22 +27,50 @@ export class GeneralShopMenuComponent implements OnInit {
   constructor(private easydeelservice:EasydealService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit() {
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallgeneralshopmenu();
   }
   
 getallgeneralshopmenu(){
-this.easydeelservice.getallgeneralshopmenu().subscribe(
-  data =>
-  {
 
-    this.result=data;
-    this.dataSource.data=this.result;
-  },
-  error =>
+  if(this.status =='masteradmin')
+  {
+    this.easydeelservice.getallgeneralshopmenu().subscribe(
+      data =>
+      {
+    
+        this.result=data;
+        this.dataSource.data=this.result;
+      },
+      error =>
+      {
+    
+      }
+    )
+  }
+  else if(this.status == 'locationamin')   
+  {
+    this.locationid=this.userdetails['locationId']._id;
+    console.log(this.locationid);
+    this.easydeelservice.getallshopmenubylocation(this.locationid).subscribe(
+      data =>
+      {
+    
+        this.result=data;
+        this.dataSource.data=this.result;
+      },
+      error =>
+      {
+    
+      }
+    )
+  }
+  else if(this.status == 'shopadmin')   
   {
 
   }
-)
+
 }
 active(s)
 {

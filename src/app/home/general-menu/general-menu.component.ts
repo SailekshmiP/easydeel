@@ -15,6 +15,8 @@ export class GeneralMenuComponent implements OnInit {
   dataSource = new MatTableDataSource();
   results;
   apiUrl;
+  status;
+  userdetails;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   page: number = 0;
@@ -23,6 +25,7 @@ export class GeneralMenuComponent implements OnInit {
   totalLength: number;
   pageIndex: number = 0;
   // pageLimit: number[] = [5, 10];
+  
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -33,7 +36,8 @@ export class GeneralMenuComponent implements OnInit {
 
   ngOnInit() {
     this.apiUrl = "https://shopgi.in/";
-
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallgeneralmenu();
   }
 
