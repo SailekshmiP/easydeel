@@ -54,7 +54,8 @@ export class EditShopComponent implements OnInit {
       saddress: ['', Validators.required],
 
       sln: ['', Validators.required],
-      sphn: ['', Validators.required],
+      sphn: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
+
       sotime: ['', Validators.required],
 
       sctime: ['', Validators.required],

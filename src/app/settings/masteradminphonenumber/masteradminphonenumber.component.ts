@@ -24,7 +24,8 @@ export class MasteradminphonenumberComponent implements OnInit {
     this.masteradminphonenumberFormRegistration = this.formbuilder.group(
       {
         aname: ['', Validators.required],
-        aphn: ['', Validators.required],
+        aphn: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
+
         // cimage:['', Validators.required],
         // des: ['', Validators.required],
         // mtype: ['', Validators.required],

@@ -35,6 +35,7 @@
 
                     <div *ngIf="submitted && f.aphn.errors" class="invalid-feedback">
                         <div *ngIf="f.aphn.errors.required">Admin phone number is required</div>
+                        <div *ngIf="f.aphn.errors.pattern">Phone number must be valid number</div>
 
                     </div>
 

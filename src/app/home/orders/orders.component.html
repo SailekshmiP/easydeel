@@ -74,17 +74,6 @@
 
 
 
-                    <ng-container matColumnDef="action">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-                        <mat-cell *matCellDef="let row">
-                            <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
-                            <!-- <button class="btn btn-success" (click)="Approval(row)" *ngIf="row.orderpayment_sts == 'Pending'">Approval </button>&nbsp;
-                            <button class="btn btn-danger" (click)="Reject(row)" *ngIf="row.orderpayment_sts == 'Pending'">Reject </button> -->
-
-                        </mat-cell>
-                    </ng-container>
-
-
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;">
                     </mat-row>

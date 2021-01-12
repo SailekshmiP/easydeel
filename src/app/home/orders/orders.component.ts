@@ -14,7 +14,7 @@ import { ViewOrderDetailsComponent } from './view-order-details/view-order-detai
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  displayedColumns = ['orderid', 'customeraddress',  'time',  'date', 'ordertstatus', 'assign', 'action'];
+  displayedColumns = ['orderid', 'customeraddress',  'time',  'date', 'ordertstatus', 'assign'];
   dataSource = new MatTableDataSource();
 result:any=[];
   // @ViewChild(MatSort) sort: MatSort;

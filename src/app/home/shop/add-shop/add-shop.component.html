@@ -70,10 +70,11 @@
 
                     <div *ngIf="submitted && f.sphn.errors" class="invalid-feedback">
                         <div *ngIf="f.sphn.errors.required">Shop phone number is required</div>
+                        <div *ngIf="f.sphn.errors.pattern">Phone number must be valid number</div>
 
                     </div>
                 </div>
-
+    
                 <div class="col-sm-4">
                     <label for="">Shop Opening Time </label>
                     <input type="time" class="form-control" placeholder="Enter Your Shop Opening Time" [(ngModel)]="sotime" [ngClass]="{ 'is-invalid': submitted && f.sotime.errors }" formControlName="sotime">
