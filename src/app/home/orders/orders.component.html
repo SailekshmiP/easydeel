@@ -30,7 +30,7 @@
                     <!-- Customer Address Column -->
                     <ng-container matColumnDef="customeraddress">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Customer Address</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.customeraddress}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.customer_id.name}} </mat-cell>
                     </ng-container>
 
 
@@ -66,7 +66,8 @@
                     <!--Assign  Column -->
                     <ng-container matColumnDef="assign">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Assign </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> <button style="background-color: #00bff1;" class="btn btn-dark"> Assign Delivery Boys</button> </mat-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button style="background-color: #00bff1;" *ngIf="row.order_status =='Pending'" class="btn btn-dark" (click)="assign(row)"> Assign Delivery Boys</button> </mat-cell>
                     </ng-container>
 
 
@@ -77,8 +78,8 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
                             <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
-                            <button class="btn btn-success" (click)="Approval(row)" *ngIf="row.orderpayment_sts == 'Pending'">Approval </button>&nbsp;
-                            <button class="btn btn-danger" (click)="Reject(row)" *ngIf="row.orderpayment_sts == 'Pending'">Reject </button>
+                            <!-- <button class="btn btn-success" (click)="Approval(row)" *ngIf="row.orderpayment_sts == 'Pending'">Approval </button>&nbsp;
+                            <button class="btn btn-danger" (click)="Reject(row)" *ngIf="row.orderpayment_sts == 'Pending'">Reject </button> -->
 
                         </mat-cell>
                     </ng-container>

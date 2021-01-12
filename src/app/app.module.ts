@@ -83,6 +83,7 @@ import { EditChatBoxComponent } from './settings/chat-box/edit-chat-box/edit-cha
 import { AdminCredentialsComponent } from './settings/admin-credentials/admin-credentials.component';
 import { AddAdminCredentialsComponent } from './settings/admin-credentials/add-admin-credentials/add-admin-credentials.component';
 import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit-admin-credentials/edit-admin-credentials.component';
+import { ViewOrderDetailsComponent } from './home/orders/view-order-details/view-order-details.component';
 // import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
@@ -165,6 +166,7 @@ import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit
     AdminCredentialsComponent,
     AddAdminCredentialsComponent,
     EditAdminCredentialsComponent,
+    ViewOrderDetailsComponent,
     // MatSort
   ],
   imports: [
@@ -177,6 +179,8 @@ import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit
     MaterialModule,
     BrowserAnimationsModule,
   ],
+
+  entryComponents: [ViewOrderDetailsComponent],
   providers: [{provide: LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })

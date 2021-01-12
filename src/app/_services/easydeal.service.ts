@@ -252,5 +252,20 @@ export class EasydealService {
   {
     return this.http.delete(this.apiUrl+'message/'+s);
   }
-  
+  adddeliveryboy(req)
+  {
+    return this.http.post(this.apiUrl+"deliveryboy/signup",req)
+  }
+  getalldeliveryboy(){
+    return this.http.get(this.apiUrl+'deliveryboy');
+
+  }
+  getorerbyuserid(s){
+    return this.http.get(this.apiUrl+'orders/items/'+s);
+
+  }
+  assignorder(s,userid,easydeel)
+  {
+    return this.http.patch(this.apiUrl+'orders/delivery/'+userid+'/'+easydeel,s);
+  }
 }

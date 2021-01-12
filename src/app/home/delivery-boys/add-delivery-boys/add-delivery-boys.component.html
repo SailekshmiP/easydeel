@@ -54,6 +54,7 @@
 
                     <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
                         <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+                        <div *ngIf="f.mobile.errors.pattern">Phone number must be valid number</div>
 
                     </div>
                 </div>
