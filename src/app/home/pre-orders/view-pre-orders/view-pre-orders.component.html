@@ -7,7 +7,6 @@
 <p>Booking ID : {{details.order_id}}</p>
 <p>Total Amount : {{details.total_price}}</p>
 <p>Payment Mode : {{details.order_pmode}}</p>
-<p *ngIf="isStatus">Order Assigned to : {{dboyName}}</p>
 <hr>
 
 <table class="table">
@@ -31,16 +30,11 @@
 
 </table>
 
-<div *ngIf="isStatus">
-    <label for="">Select a delivery Boy</label>
-    <select [(ngModel)]="dboyid" class="form-control">
-        <option *ngFor="let deliveryboys of deliveryboys" value="{{deliveryboys._id}}" >{{deliveryboys.name}}</option>
-    </select>
-</div>
+
 
 
 <div class="row" style="justify-content: center !important;margin-top: 30px;">
-    <Button *ngIf="isStatus" class="btn btn-dark" (click)="assgin()">Assign</Button> &nbsp;
+    <Button class="btn btn-dark" *ngIf="status == 'Pending'" (click)="confirm()">Confirm</Button> &nbsp;
     <!-- <Button class="btn btn-success">Approve</Button>&nbsp; -->
-    <Button *ngIf="isStatus" class="btn btn-danger" (click)="reject()">Reject</Button>
+    <Button class="btn btn-danger" *ngIf="status == 'Pending'" (click)="cancel()">Cancel</Button>
 </div>

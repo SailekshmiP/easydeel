@@ -271,4 +271,19 @@ export class EasydealService {
   reject(s,uid,esdeelid){
     return this.http.patch(this.apiUrl+'orders/status/'+uid+'/'+esdeelid,s);
   }
+  getallpreorders(){
+    return this.http.get(this.apiUrl+'preorders');
+  }
+  getpreorerbyuserid(id){
+    return this.http.get(this.apiUrl+'preorders/items/'+id);
+
+  }
+  confirmorder(req,id)
+  {
+    return this.http.patch(this.apiUrl+"preorders/status/"+id,req);
+  }
+  getallusers()
+  {
+    return this.http.get(this.apiUrl+'users');
+  }
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
+import { ViewimageComponent } from './viewimage/viewimage.component';
 
 @Component({
   selector: 'app-restaurant-menu',
@@ -32,7 +34,8 @@ export class RestaurantMenuComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydealservice: EasydealService, private toastr: ToastrService, private router: Router) { }
+  constructor(private easydealservice: EasydealService, public dialog: MatDialog,
+    private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.status = JSON.parse(localStorage.getItem("loginstatus"));
@@ -153,6 +156,20 @@ export class RestaurantMenuComponent implements OnInit {
 
       }
     )
+  }
+  view(s)
+  {
+    console.log(s);
+    const dialogRef = this.dialog.open(ViewimageComponent, {
+      data: s,
+    
+      height:"auto"
+    }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ngOnInit();
+    });
   }
 }
 

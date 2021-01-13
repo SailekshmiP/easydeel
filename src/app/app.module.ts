@@ -84,6 +84,8 @@ import { AdminCredentialsComponent } from './settings/admin-credentials/admin-cr
 import { AddAdminCredentialsComponent } from './settings/admin-credentials/add-admin-credentials/add-admin-credentials.component';
 import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit-admin-credentials/edit-admin-credentials.component';
 import { ViewOrderDetailsComponent } from './home/orders/view-order-details/view-order-details.component';
+import { ViewimageComponent } from './home/restaurant-menu/viewimage/viewimage.component';
+import { ViewPreOrdersComponent } from './home/pre-orders/view-pre-orders/view-pre-orders.component';
 // import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
@@ -167,6 +169,8 @@ import { ViewOrderDetailsComponent } from './home/orders/view-order-details/view
     AddAdminCredentialsComponent,
     EditAdminCredentialsComponent,
     ViewOrderDetailsComponent,
+    ViewimageComponent,
+    ViewPreOrdersComponent,
     // MatSort
   ],
   imports: [
@@ -180,7 +184,7 @@ import { ViewOrderDetailsComponent } from './home/orders/view-order-details/view
     BrowserAnimationsModule,
   ],
 
-  entryComponents: [ViewOrderDetailsComponent],
+  entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent],
   providers: [{provide: LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })

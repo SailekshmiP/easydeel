@@ -36,27 +36,40 @@ export class LoginComponent implements OnInit {
       data =>{
           console.log(data)
           this.resposne = data['responce'];
-          this.toater.success("Login Succesfully");
+          if(data['responce']=="enter valid password")
+          {
+            this.toater.error("Invalid Password")
+          }
+          else{
+            
+          }
           if(this.resposne['role']==1)
           {
           localStorage.setItem("loginstatus",JSON.stringify("masteradmin"));
           localStorage.setItem("userdetails",JSON.stringify(this.resposne));
+          this.toater.success("Login Succesfully");
+
 
           this.router.navigate(['/home']);
           }
           else  if(this.resposne['role']==2){
             localStorage.setItem("loginstatus",JSON.stringify("locationamin"));
             localStorage.setItem("userdetails",JSON.stringify(this.resposne));
+          this.toater.success("Login Succesfully");
+
             this.router.navigate(['/home']);
           }
           else  if(this.resposne['role']==3){
             localStorage.setItem("loginstatus",JSON.stringify("shopadmin"));
             localStorage.setItem("userdetails",JSON.stringify(this.resposne));
+          this.toater.success("Login Succesfully");
+
             this.router.navigate(['/home']);
           }
+        
       },
       error =>{
-
+        this.toater.error(error.error['responce'])
       }
     )
  

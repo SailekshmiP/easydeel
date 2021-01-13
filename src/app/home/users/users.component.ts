@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-users',
@@ -18,10 +19,23 @@ export class UsersComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor() { }
+  constructor(private easydeelervice:EasydealService) { }
 
   ngOnInit() {
+    this.getallusers();
   }
+  getallusers()
+  {
+    this.easydeelervice.getallusers().subscribe(
+      data =>{
+        let a :any = [];
+        a = data;
+        this.dataSource.data = a;
+      },
+      error =>{
 
+      }
+    )
+  }
 
 }
