@@ -36,5 +36,5 @@
 <div class="row" style="justify-content: center !important;margin-top: 30px;">
     <Button class="btn btn-dark" *ngIf="status == 'Pending'" (click)="confirm()">Confirm</Button> &nbsp;
     <!-- <Button class="btn btn-success">Approve</Button>&nbsp; -->
-    <Button class="btn btn-danger" *ngIf="status == 'Pending'" (click)="cancel()">Cancel</Button>
+    <Button class="btn btn-danger" *ngIf="status == 'Pending'" (click)="cancelled()">Cancel</Button>
 </div>
