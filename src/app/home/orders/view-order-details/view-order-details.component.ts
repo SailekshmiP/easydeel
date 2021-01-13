@@ -15,12 +15,36 @@ export class ViewOrderDetailsComponent implements OnInit {
   oid;
   deliveryboys :any = [];
   dboyid;
+  status ;
+  dboyName;
+  isStatus= false;
   constructor(@Inject(MAT_DIALOG_DATA) data, private easydeelservice:EasydealService,private toaster:ToastrService,
   private dialogRef: MatDialogRef<ViewOrderDetailsComponent>) 
   { 
     this.details = data;
     console.log(this.details);
-    
+    this.status = this.details.order_status;
+    console.log(this.status);
+    if(this.details.dboy_id == null)
+    {
+      this.dboyName = "";
+    }
+    else{
+      this.dboyName = this.details.dboy_id['name']
+
+    }
+    if(this.status == 'Pending')
+    {
+      console.log('here');
+      
+      this.isStatus = true;
+    }
+    else{
+      console.log('ele');
+      this.isStatus = false;
+
+    }
+
     this.result = data['items'];
     this.getorderbyorderid();
     this.getalldeliveryboy();
@@ -66,5 +90,19 @@ export class ViewOrderDetailsComponent implements OnInit {
 
         }
       )
+  }
+  reject(){
+    let req = {
+      "order_status":"Reject"
+    }
+    this.easydeelservice.reject(req,this.details.customer_id['_id'],this.details.order_id).subscribe(
+      data =>{
+        this.toaster.success("Order Assigned");
+        this.dialogRef.close();
+      },
+      error =>{
+
+      }
+    )
   }
 }

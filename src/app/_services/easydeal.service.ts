@@ -268,4 +268,7 @@ export class EasydealService {
   {
     return this.http.patch(this.apiUrl+'orders/delivery/'+userid+'/'+easydeel,s);
   }
+  reject(s,uid,esdeelid){
+    return this.http.patch(this.apiUrl+'orders/status/'+uid+'/'+esdeelid,s);
+  }
 }

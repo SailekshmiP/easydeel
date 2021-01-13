@@ -67,7 +67,9 @@
                     <ng-container matColumnDef="assign">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Assign </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button style="background-color: #00bff1;" *ngIf="row.order_status =='Pending'" class="btn btn-dark" (click)="assign(row)"> Assign Delivery Boys</button> </mat-cell>
+                            <button style="background-color: #00bff1;" *ngIf="row.order_status =='Pending'" class="btn btn-dark" (click)="assign(row)"> Assign Delivery Boys</button>
+                            <button *ngIf="row.order_status !='Pending'" class="btn btn-warning" (click)="assign(row)"> View</button> </mat-cell>
+
                     </ng-container>
 
 
