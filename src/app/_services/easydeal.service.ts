@@ -286,4 +286,12 @@ export class EasydealService {
   {
     return this.http.get(this.apiUrl+'users');
   }
+  addupinumber(req)
+  {
+    return this.http.post(this.apiUrl+'upinumber/post',req);
+  }
+  getallupinumbers(){
+    return this.http.get(this.apiUrl+'upinumber');
+
+  }
 }

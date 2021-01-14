@@ -56,6 +56,9 @@ import { SettingsComponent } from './settings/settings.component';
 import { AddShopCredentialsComponent } from './settings/shopcredentials/add-shop-credentials/add-shop-credentials.component';
 import { EditShopCredentialsComponent } from './settings/shopcredentials/edit-shop-credentials/edit-shop-credentials.component';
 import { ShopcredentialsComponent } from './settings/shopcredentials/shopcredentials.component';
+import { AddUpiComponent } from './settings/upi/add-upi/add-upi.component';
+import { EditUpiComponent } from './settings/upi/edit-upi/edit-upi.component';
+import { UpiComponent } from './settings/upi/upi.component';
 import { WalletpointsComponent } from './settings/walletpoints/walletpoints.component';
 import { AddShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/add-shop-admin-menu-name/add-shop-admin-menu-name.component';
 import { ShopAdminMenuNameComponent } from './shop_admin_section/shop-admin-menu-name/shop-admin-menu-name.component';
@@ -131,6 +134,10 @@ const routes: Routes = [
   {path:'admincredentials',component:AdminCredentialsComponent},
   {path:'addadmincredentials',component:AddAdminCredentialsComponent},
   {path:'editadmincredentials',component:EditAdminCredentialsComponent},
+  {path:'upi',component:UpiComponent},
+  {path:'addupi',component:AddUpiComponent},
+  {path:'editupi',component:EditUpiComponent},
+
 
 
 

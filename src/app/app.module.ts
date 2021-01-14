@@ -86,6 +86,9 @@ import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit
 import { ViewOrderDetailsComponent } from './home/orders/view-order-details/view-order-details.component';
 import { ViewimageComponent } from './home/restaurant-menu/viewimage/viewimage.component';
 import { ViewPreOrdersComponent } from './home/pre-orders/view-pre-orders/view-pre-orders.component';
+import { UpiComponent } from './settings/upi/upi.component';
+import { AddUpiComponent } from './settings/upi/add-upi/add-upi.component';
+import { EditUpiComponent } from './settings/upi/edit-upi/edit-upi.component';
 // import { MatSort } from '@angular/material/sort';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
@@ -171,6 +174,9 @@ import { ViewPreOrdersComponent } from './home/pre-orders/view-pre-orders/view-p
     ViewOrderDetailsComponent,
     ViewimageComponent,
     ViewPreOrdersComponent,
+    UpiComponent,
+    AddUpiComponent,
+    EditUpiComponent,
     // MatSort
   ],
   imports: [
