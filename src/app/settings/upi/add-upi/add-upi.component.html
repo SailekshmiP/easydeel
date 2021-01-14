@@ -22,24 +22,21 @@
                 <div class="col-sm-4">
                     <label for="">Location </label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="location"  formControlName="location">
+                    <select name="" id="" class="form-control" [(ngModel)]="location" formControlName="location">
                         <option value="" disabled selected>Choose a option </option>
                         <option  *ngFor="let l of results" value="{{l._id}}">{{l.location}}</option>
                         
                     </select>
-                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-                        <div *ngIf="f.location.errors.required">Location is required</div>
 
-                    </div>
                 </div>
 
 
                 <div class="col-sm-4">
                     <label>UPI Number</label>
-                    <input type="text" class="form-control" [disabled]="false" placeholder="Enter the UPI Number" [(ngModel)]="upi"  formControlName="upi">
+                    <input type="text" class="form-control" [disabled]="false" placeholder="Enter the UPI Number" [(ngModel)]="upi" formControlName="upi">
 
                 </div>
-                
+
 
 
 

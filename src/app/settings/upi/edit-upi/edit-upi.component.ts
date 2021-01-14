@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
@@ -17,7 +18,9 @@ export class EditUpiComponent implements OnInit {
   disable = false;
   disabled = false;
   results :any=[];
-  constructor(private formbuilder: FormBuilder,private easydeelservices:EasydealService,private router:Router) { }
+  upidetails:any =[];
+  constructor(private formbuilder: FormBuilder,private toaster:ToastrService,
+    private easydeelservices:EasydealService,private router:Router) { }
 
 
   ngOnInit() {
@@ -29,9 +32,11 @@ export class EditUpiComponent implements OnInit {
       
     })
     this.getalllocations();
-
+    this.upidetails =JSON.parse(sessionStorage.getItem("upi"))
+    this.location = this.upidetails.location_id['_id'];
+    this.upi = this.upidetails['upi']
   }
-    submit() {
+  submit() {
       this.submitted = true;
   
       // stop here if form is invalid
@@ -39,7 +44,19 @@ export class EditUpiComponent implements OnInit {
         return;
       }
       else {
-  
+        let req = {
+          "location":this.location,
+          "upi":this.upi
+        }
+        this.easydeelservices.updateupi(req,this.upidetails['_id']).subscribe(
+          data =>{
+            this.toaster.success("Upi number updated succesfully");
+            this.router.navigate(['/upi']);
+          },
+          error =>{
+            this.toaster.error("Already a number added in same location");
+          }
+        )
       }
     }
     getalllocations(){

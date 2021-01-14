@@ -36,9 +36,11 @@ export class AddShopMenuComponent implements OnInit {
   status = "Active";
   isLoading = false;
   button = 'Submit';
-  restmenus:any=[];
+  restmenus: any = [];
   profitpercenatge;
   pperct;
+  loginstatus;
+  userdetails;
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -47,23 +49,25 @@ export class AddShopMenuComponent implements OnInit {
         sname: ['', Validators.required],
         location: ['', Validators.required],
         mname: ['', Validators.required],
-        mdes: ['', [Validators.required,Validators.maxLength(50)]],
-        prate: ['', ],
-        pperct:['', Validators.required],
+        mdes: ['', [Validators.required, Validators.maxLength(50)]],
+        prate: ['',],
+        pperct: ['', Validators.required],
         srate: ['', Validators.required],
         dperc: ['', Validators.required],
         damount: ['', Validators.required],
         patime: ['', Validators.required],
         pctime: ['', Validators.required],
         // mimages: ['', Validators.required],
-        showorhide:['', Validators.required],
-        status:['',Validators.required],
+        showorhide: ['', Validators.required],
+        status: ['', Validators.required],
         // mstyle: ['', Validators.required],
       })
-      
-      this.getallShop();
-      this.getalllocations();
-      this.getallmenu();
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"))
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+    
+    this.getallShop();
+    this.getalllocations();
+    this.getallmenu();
 
   }
   get f() { return this.shopmenuFormRegistration.controls; }
@@ -99,28 +103,28 @@ export class AddShopMenuComponent implements OnInit {
       // this.formData.append("addrest_img",this.currentphoto)
 
       let req = {
-        "shop_id":this.sname,
-        "location_id":this.location,
-        "menu_id":this.mname,
-        "menu_desc":this.mdes,
-        "purchaseRate":this.prate,
-        "salesRate":this.srate,
-        "discount":this.dperc,
-        "discamountAmount":this.damount,
-        "closingTime":this.pctime,
-        "availableTime":this.patime,
-        "status":this.status,
-        "show":this.showorhide
+        "shop_id": this.sname,
+        "location_id": this.location,
+        "menu_id": this.mname,
+        "menu_desc": this.mdes,
+        "purchaseRate": this.prate,
+        "salesRate": this.srate,
+        "discount": this.dperc,
+        "discamountAmount": this.damount,
+        "closingTime": this.pctime,
+        "availableTime": this.patime,
+        "status": this.status,
+        "show": this.showorhide
 
 
       }
-      
+
       this.easydealservice.addrestmenusss(req).subscribe(
-        data =>{
+        data => {
           this.ToastrService.success("Shop Menu added sucessfully ")
           this.router.navigate(['/shopmenu']);
         },
-        error =>{
+        error => {
           this.isLoading = false;
           this.button = 'Submit';
           this.ToastrService.error("Shop Menu unable to add sucessfully ")
@@ -129,55 +133,71 @@ export class AddShopMenuComponent implements OnInit {
       )
     }
   }
-  addshopimage(event)
-  {
-    
+  addshopimage(event) {
+
     this.files = event.target.files;
     this.currentphoto = this.files.item(0);
   }
-  shopselcted(s)
-  {
+  shopselcted(s) {
     console.log(s);
     this.easydealservice.getalllocationbyshopid(s).subscribe(
-      data =>
-      {
+      data => {
         this.locations = data[0].locationId;
         console.log(this.locations);
         this.profitpercenatge = data[0].profitpercentage;
-        
 
-      },
-      error =>{
 
-      }
-    )
-
-    
-  }
-  getallShop() {
-    this.easydealservice.getallshopmappedtorestaurant().subscribe(
-      data => {
-        console.log(data);
-        // this.shops = data;
-        this.restmenus=data;
-        for(let i=0;i<this.restmenus.length;i++)
-        {
-          if(this.restmenus[i].category_id==null)
-          {
-
-          }
-          else
-          {
-
-            this.shops.push(this.restmenus[i])
-          }
-        }
-        // this.dataSource.data = this.results;
       },
       error => {
-        console.log(error);
+
       }
     )
+
+
+  }
+  getallShop() {
+
+
+    if (this.loginstatus == 'masteradmin') {
+      this.easydealservice.getallshopmappedtorestaurant().subscribe(
+        data => {
+          console.log(data);
+          // this.shops = data;
+          this.restmenus = data;
+          for (let i = 0; i < this.restmenus.length; i++) {
+            if (this.restmenus[i].category_id == null) {
+  
+            }
+            else {
+  
+              this.shops.push(this.restmenus[i])
+            }
+          }
+          // this.dataSource.data = this.results;
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+    else if (this.loginstatus == 'locationamin') {
+      console.log(this.loginstatus);
+      let ud = this.userdetails['locationId']._id;
+      this.easydealservice.getallshopsbylocation(ud).subscribe(
+        data =>{
+          console.log(data);
+         this.shops =data;
+          // this.dataSource.data = this.results;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if (this.loginstatus == 'shopadmin') {
+
+    }
+   
   }
   getalllocations() {
     // this.easydealservice.getalllocations().subscribe(
@@ -205,21 +225,18 @@ export class AddShopMenuComponent implements OnInit {
         console.log(data);
         this.menu = data;
 
-        this.menu.sort(function (a,b)
-        {
-          if(a['menu_name'] <b['menu_name'])
-          {
+        this.menu.sort(function (a, b) {
+          if (a['menu_name'] < b['menu_name']) {
             return -1;
           }
-          else if(a['menu_name'] >b['menu_name'])
-          {
+          else if (a['menu_name'] > b['menu_name']) {
             return 1;
           }
           else {
             return 0;
           }
         });
-    
+
       },
       error => {
         console.log(error);
@@ -227,14 +244,13 @@ export class AddShopMenuComponent implements OnInit {
       }
     )
   }
-  calculateshopprofitpercentage()
-  {
+  calculateshopprofitpercentage() {
     let ppcaluate;
     let number = 100;
-    let res = (this.profitpercenatge/number)+1;
-    let profitrate = this.srate/res;
+    let res = (this.profitpercenatge / number) + 1;
+    let profitrate = this.srate / res;
     this.prate = profitrate.toFixed();
     console.log(this.prate);
-    
+
   }
 }

@@ -294,4 +294,8 @@ export class EasydealService {
     return this.http.get(this.apiUrl+'upinumber');
 
   }
+  updateupi(req,id)
+  {
+    return this.http.patch(this.apiUrl+'upinumber/edit/'+id,req);
+  }
 }
