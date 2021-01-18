@@ -24,21 +24,21 @@
                     <!--Menu Name Column -->
                     <ng-container matColumnDef="mname">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Name </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.mname}} </mat-cell>
+                        <mat-cell *matCellDef="let row"> {{row.menu_name}} </mat-cell>
                     </ng-container>
 
                     <!--Shop Name Column -->
                     <ng-container matColumnDef="sname">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Shop Name</mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.sname}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Course Name</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.courceId.cource_name}} </mat-cell>
                     </ng-container>
 
 
 
                     <!--Location Column -->
                     <ng-container matColumnDef="location">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> menu_img </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> <img style="width: 100px;" src="https://shopgi.in/location_addrestaurent/get/image/{{row._id}}" alt=""> </mat-cell>
                     </ng-container>
 
 
@@ -76,7 +76,12 @@
                     <!-- Action Column -->
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-                        <mat-cell *matCellDef="let row"> {{row.action}} </mat-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button class="btn btn-primary">Edit</button> &nbsp;
+                            <button class="btn btn-success" (click)="approve(row)">Approve</button>&nbsp;
+                            <button class="btn btn-danger" (click)="Reject(row)">Reject</button>
+
+                        </mat-cell>
                     </ng-container>
 
 

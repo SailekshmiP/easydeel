@@ -93,7 +93,10 @@ import { EditUpiComponent } from './settings/upi/edit-upi/edit-upi.component';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
 // import { EditPriceUpdatorComponent } from './settings/edit-price-updator/edit-price-updator.component';
-
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { AddmenuForApprovalComponent } from './home/approval-request/addmenu-for-approval/addmenu-for-approval.component';
+import { EditmenuForApprovalComponent } from './home/approval-request/editmenu-for-approval/editmenu-for-approval.component';
+import { LocationAdminViewPendingrequestComponent } from './home/approval-request/location-admin-view-pendingrequest/location-admin-view-pendingrequest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -177,6 +180,9 @@ import { EditUpiComponent } from './settings/upi/edit-upi/edit-upi.component';
     UpiComponent,
     AddUpiComponent,
     EditUpiComponent,
+    AddmenuForApprovalComponent,
+    EditmenuForApprovalComponent,
+    LocationAdminViewPendingrequestComponent,
     // MatSort
   ],
   imports: [
@@ -188,6 +194,7 @@ import { EditUpiComponent } from './settings/upi/edit-upi/edit-upi.component';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
+    NgxMatSelectSearchModule
   ],
 
   entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent],

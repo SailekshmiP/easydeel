@@ -55,7 +55,9 @@
                 <li routerLinkActive="active">
                     <a routerLink="/approvalrequest" *ngIf="status =='masteradmin'"><i class="fa fa-history"></i> <span>APPROVALS</span></a>
                 </li>
-
+                <li routerLinkActive="active">
+                    <a routerLink="/locationadminviewrequest" *ngIf="status =='locationamin'"><i class="fa fa-history"></i> <span>APPROVALS</span></a>
+                </li>
                 <li routerLinkActive="active" *ngIf="status =='masteradmin'">
                     <a routerLink="/orders"><i class="fa fa-shopping-basket"></i> <span>ORDERS</span></a>
                 </li>

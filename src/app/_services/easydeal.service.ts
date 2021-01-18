@@ -99,6 +99,10 @@ export class EasydealService {
     return this.http.get(this.apiUrl + 'cource');
 
   }
+  addrestmenuforapproval(req){
+    return this.http.post(this.apiUrl + 'location_addrestaurent/post', req);
+
+  }
   addrestmenu(r) {
     return this.http.post(this.apiUrl + 'menurest/post', r);
 
@@ -271,6 +275,10 @@ export class EasydealService {
   reject(s,uid,esdeelid){
     return this.http.patch(this.apiUrl+'orders/status/'+uid+'/'+esdeelid,s);
   }
+  getshopdetailsbyorderid(d)
+  {
+    return this.http.get(this.apiUrl+"orders/shop/item/"+d);
+  }
   getallpreorders(){
     return this.http.get(this.apiUrl+'preorders');
   }
@@ -297,5 +305,12 @@ export class EasydealService {
   updateupi(req,id)
   {
     return this.http.patch(this.apiUrl+'upinumber/edit/'+id,req);
+  }
+  getallmeusforapproval(){
+    return this.http.get(this.apiUrl+'location_addrestaurent');
+  }
+  approvemenu(s,id){
+    return this.http.patch(this.apiUrl+'location_addrestaurent/approved/'+id,s);
+
   }
 }

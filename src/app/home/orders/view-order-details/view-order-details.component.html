@@ -7,7 +7,8 @@
 <p>Booking ID : {{details.order_id}}</p>
 <p>Total Amount : {{details.total_price}}</p>
 <p>Payment Mode : {{details.order_pmode}}</p>
-<p *ngIf="isStatus">Order Assigned to : {{dboyName}}</p>
+<!-- <p>Shop Name : {{shopdetails.shop_id.shop_name}}</p> -->
+<p *ngIf="!isStatus">Order Assigned to : {{dboyName}}</p>
 <hr>
 
 <table class="table">
@@ -17,6 +18,7 @@
             <th scope="col">Produt</th>
             <th scope="col">Quantity</th>
             <th scope="col">Price</th>
+
         </tr>
     </thead>
     <tbody>

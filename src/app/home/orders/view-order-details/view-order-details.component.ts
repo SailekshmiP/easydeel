@@ -18,6 +18,7 @@ export class ViewOrderDetailsComponent implements OnInit {
   status ;
   dboyName;
   isStatus= false;
+  shopdetails: any=[];
   constructor(@Inject(MAT_DIALOG_DATA) data, private easydeelservice:EasydealService,private toaster:ToastrService,
   private dialogRef: MatDialogRef<ViewOrderDetailsComponent>) 
   { 
@@ -48,6 +49,7 @@ export class ViewOrderDetailsComponent implements OnInit {
     this.result = data['items'];
     this.getorderbyorderid();
     this.getalldeliveryboy();
+    this.gethopdetailsbyorderid();
   }
 
   ngOnInit() {
@@ -99,6 +101,24 @@ export class ViewOrderDetailsComponent implements OnInit {
       data =>{
         this.toaster.success("Order Assigned");
         this.dialogRef.close();
+      },
+      error =>{
+
+      }
+    )
+  }
+  gethopdetailsbyorderid()
+  {
+    this.easydeelservice.getshopdetailsbyorderid(this.details.order_id).subscribe(
+      data =>{
+          let req :any=[];
+
+          req = data['data'];
+          console.log(data['data'].shop_id);
+          
+          this.shopdetails = req;
+          // console.log(this.shopdetails[0].shop);
+          
       },
       error =>{
 

@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import { MatSelect, throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, ReplaySubject } from 'rxjs';
 import { EasydealService } from 'src/app/_services/easydeal.service';
+import {startWith, map} from 'rxjs/operators';
+
+
+
+
 
 @Component({
   selector: 'app-add-shop-menu',
@@ -41,6 +47,10 @@ export class AddShopMenuComponent implements OnInit {
   pperct;
   loginstatus;
   userdetails;
+  control = new FormControl();
+  filteredStates: Observable<any[]>;
+
+  
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -69,7 +79,11 @@ export class AddShopMenuComponent implements OnInit {
     this.getalllocations();
     this.getallmenu();
 
+   
+
   }
+
+ 
   get f() { return this.shopmenuFormRegistration.controls; }
 
   submit() {
@@ -237,6 +251,9 @@ export class AddShopMenuComponent implements OnInit {
           }
         });
 
+        
+       
+
       },
       error => {
         console.log(error);
@@ -253,4 +270,6 @@ export class AddShopMenuComponent implements OnInit {
     console.log(this.prate);
 
   }
+
+
 }
