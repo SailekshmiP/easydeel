@@ -55,6 +55,7 @@ export class AddShopComponent implements OnInit {
   sdamnt;
   pucharge;
   dcharge;
+  dtime;
   showorhide = "Show";
   status = "Active";
   check;
@@ -76,7 +77,7 @@ export class AddShopComponent implements OnInit {
       saddress: ['', Validators.required],
       sln: [''],
       sphn: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
-
+      dtime: ['', Validators.required],
       sotime: ['', Validators.required],
       sctime: ['', Validators.required],
       profit: ['', Validators.required],
@@ -175,6 +176,7 @@ export class AddShopComponent implements OnInit {
       this.formData.append("shop_landline", this.sln)
       this.formData.append("open_time",this.sotime)
       this.formData.append("clos_time",this.sctime)
+      this.formData.append("deliveryTime",this.dtime)
       // this.formData.append("open_time", "10")
       // this.formData.append("clos_time", "50")
       this.formData.append("shop_discount", this.sdperc)

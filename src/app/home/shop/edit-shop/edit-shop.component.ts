@@ -30,6 +30,7 @@ export class EditShopComponent implements OnInit {
   sdperc;
   pucharge;
   dcharge;
+  dtime;
   showorhide = "Show";
   status = "Active";
   check;
@@ -55,7 +56,6 @@ export class EditShopComponent implements OnInit {
 
       sln: ['', Validators.required],
       sphn: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
-
       sotime: ['', Validators.required],
 
       sctime: ['', Validators.required],
@@ -65,7 +65,7 @@ export class EditShopComponent implements OnInit {
       sdperc: ['', Validators.required],
       pucharge: ['', Validators.required],
       dcharge: ['', Validators.required],
-
+      dtime: ['', Validators.required],
       sdamnt: ['', Validators.required],
       simage: [''],
       showorhide: ['', Validators.required],
@@ -77,7 +77,7 @@ export class EditShopComponent implements OnInit {
     this.getalllocations();
     this.shopdetails = JSON.parse(sessionStorage.getItem("shop"));
     this.sname = this.shopdetails['shop_name']
-
+    this.dtime = this.shopdetails['deliveryTime']
     this.scat = this.shopdetails.category_id['_id']
     this.saddress = this.shopdetails['shop_address']
     this.sln = this.shopdetails['shop_landline']

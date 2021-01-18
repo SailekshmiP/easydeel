@@ -157,6 +157,16 @@
                 </div>
 
                 <div class="col-sm-4">
+                    <label for="">Delivery Time</label>
+                    <input type="text" class="form-control" placeholder="Enter Your Delivery Time" [(ngModel)]="dtime" [ngClass]="{ 'is-invalid': submitted && f.dtime.errors }" formControlName="dtime">
+
+                    <div *ngIf="submitted && f.dtime.errors" class="invalid-feedback">
+                        <div *ngIf="f.dtime.errors.required">Delivery time is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
                     <label for="">Shop Image</label>
                     <input class="form-control" #file type="file" (change)="addshopimage($event)" [ngClass]="{ 'is-invalid': submitted && f.simage.errors }" formControlName="simage">
 
