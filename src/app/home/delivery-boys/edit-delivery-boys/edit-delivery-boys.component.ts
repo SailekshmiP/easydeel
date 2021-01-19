@@ -21,7 +21,7 @@ export class EditDeliveryBoysComponent implements OnInit {
   password;
   isLoading = false;
   button = 'Submit';
-
+  location;
 
   constructor(private formbuilder: FormBuilder,
     private router:Router,
@@ -36,7 +36,7 @@ export class EditDeliveryBoysComponent implements OnInit {
         mobile: ['', [Validators.required,Validators.pattern('[6-9]\\d{9}')]],
         aadhar: ['', Validators.required],
         password: ['', Validators.required],
-
+        location:['', Validators.required],
       })
 
   }

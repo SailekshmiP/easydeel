@@ -27,8 +27,7 @@ export class AddmenuForApprovalComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   locationdetails;
-  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,
-    private toastr:ToastrService, private router:Router) { }
+  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private toastr:ToastrService, private router:Router) { }
 
   ngOnInit() {
     this.restaurantmenuFormRegistration = this.formbuilder.group(

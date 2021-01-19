@@ -23,9 +23,7 @@ export class AddDeliveryBoysComponent implements OnInit {
   button = 'Submit';
   locations:any = [];
   location;
-  constructor(private formbuilder: FormBuilder,
-    private router:Router,
-    private toaster:ToastrService,private easydeelservie:EasydealService) { }
+  constructor(private formbuilder: FormBuilder, private router:Router, private toastr:ToastrService,private easydeelservie:EasydealService) { }
 
   ngOnInit() {
     this.deliveryboyFormRegistration = this.formbuilder.group(
@@ -68,14 +66,14 @@ export class AddDeliveryBoysComponent implements OnInit {
       }
       this.easydeelservie.adddeliveryboy(req).subscribe(
         data =>{
-          this.toaster.success("Delivery Boy Added");
+          this.toastr.success("Delivery Boy Added");
           this.router.navigate(['/deliveryboys']);
         },
         error =>{
           this.isLoading = false;
           this.button = 'submit';
           // this.toaster.error(error.error)
-          this.toaster.error(error.error['responce']);
+          this.toastr.error(error.error['responce']);
           
           // this.toaster.error("Unable to add Delivery Boy");
         }

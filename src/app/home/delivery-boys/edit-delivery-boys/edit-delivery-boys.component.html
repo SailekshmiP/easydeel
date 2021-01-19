@@ -70,6 +70,19 @@
                 </div>
 
                 <div class="col-sm-4">
+                    <label for=""> Location</label>
+
+                    <select name="" id="" class="form-control" [(ngModel)]="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" formControlName="location">
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let l of locations" value="{{l._id}}">{{l.location}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                        <div *ngIf="f.location.errors.required">Location is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
                     <label for="">Password </label>
                     <input type="password" class="form-control" placeholder="Enter Your Password" [(ngModel)]="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password">
 

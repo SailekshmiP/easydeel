@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-masteradminphonenumber',
@@ -12,13 +15,16 @@ export class MasteradminphonenumberComponent implements OnInit {
   
   aname;
   aphn;
+  isLoading = false;
+  button = 'Submit';
   // cimage;
   // des;  
   // mtype="";
   // mctype="";
   // mstyle="";
   
-  constructor(private formbuilder:FormBuilder) { }
+  constructor(private formbuilder:FormBuilder,private easydealservices:EasydealService,private router:Router,private toastr:ToastrService) { }
+
 
   ngOnInit() {
     this.masteradminphonenumberFormRegistration = this.formbuilder.group(
@@ -38,13 +44,37 @@ get f() { return this.masteradminphonenumberFormRegistration.controls; }
 
   submit(){
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
+
 
     // stop here if form is invalid
     if (this.masteradminphonenumberFormRegistration.invalid) {
-        return;
+      this.isLoading = false;
+      this.button = 'submit';
+      return;
     }
-    else{
+    else {
+      this.isLoading = true;
+      this.button = 'Processing';
+      let req = {
 
+        
+      }
+      this.easydealservices.addgencat(req).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+
+          this.toastr.success("Phone Number added successfully");
+        
+        },
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+
+        }
+      )
     }
   }
 }

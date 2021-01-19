@@ -45,6 +45,13 @@ export class EditShopComponent implements OnInit {
   button = 'Submit';
   sessionarray:any=[];
   condtionyesorno = 'no';
+  fileData: any;
+error;
+imagePreview;
+employee
+isvalidphoto = false;
+
+
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
     private toaster: ToastrService) { }
   formData = new FormData();
@@ -235,4 +242,42 @@ export class EditShopComponent implements OnInit {
     }
 
   }
+  addcategoryimage(event) {
+    this.isvalidphoto = true;
+    window.URL = window.URL;
+    
+    
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.files = event.target.files[0];
+    
+      let img = new Image();
+    
+      img.src = window.URL.createObjectURL( this.files );
+      reader.readAsDataURL(this.files);
+      reader.onload = () => {
+        setTimeout(() => {
+          const width = img.naturalWidth;
+          const height = img.naturalHeight;
+    
+          window.URL.revokeObjectURL( img.src );
+          console.log(width + '*' + height);
+          if ( width !== 100 && height !== 100) {
+            this.isvalidphoto = true;
+              console.log(width,height)
+            this.toaster.error('photo should be 100*100 size');
+            
+            // form.reset();
+          } else {
+            this.isvalidphoto = false;
+              console.log(width,height)
+            // this.imgURL = reader.result;
+            this.currentphoto = this.files.item(0);
+          
+          }
+        }, 2000);
+          };
+      }
+      }
+    
 }

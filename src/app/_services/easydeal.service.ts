@@ -313,4 +313,8 @@ export class EasydealService {
     return this.http.patch(this.apiUrl+'location_addrestaurent/approved/'+id,s);
 
   }
+  getwalletpoints()
+{
+  return this.http.get(this.apiUrl+'walletpoint')
+}
 }

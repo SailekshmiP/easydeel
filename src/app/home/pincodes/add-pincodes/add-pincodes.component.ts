@@ -15,6 +15,8 @@ export class AddPincodesComponent implements OnInit {
   submitted = false;
   
   location;
+  isLoading = false;
+  button = 'Submit';
   // cimage;
   // des;  
   // mtype="";
@@ -39,12 +41,18 @@ get f() { return this.locationFormRegistration.controls; }
 
   submit(){
     this.submitted = true;
+  this.isLoading = true;
+  this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.locationFormRegistration.invalid) {
-        return;
+      this.isLoading = false;
+      this.button = 'submit';
+      return;
     }
-    else{
+    else{ 
+      this.isLoading = true;
+      this.button = 'Processing';
 
       let req={
         "location":this.location,
@@ -53,11 +61,15 @@ get f() { return this.locationFormRegistration.controls; }
       this.easydealservice.addlocation(req).subscribe(
         data =>
         {
+        this.isLoading = false;
+        this.button = 'Submit';
         this.router.navigate(['/pincodes']);
         this.taostr.success("location added successfully");
         },
 
         error =>{
+          this.isLoading = false;
+        this.button = 'Submit';
           this.taostr.error("location added unsuccessful");
 
         }

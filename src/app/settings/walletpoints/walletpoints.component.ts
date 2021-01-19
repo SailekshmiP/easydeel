@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-walletpoints',
@@ -14,13 +17,15 @@ export class WalletpointsComponent implements OnInit {
   rpoints;
   avalue;
   ramount;
+  isLoading = false;
+  button = 'Submit';
   // cimage;
   // des;  
   // mtype="";
   // mctype="";
   // mstyle="";
   
-  constructor(private formbuilder:FormBuilder) { }
+  constructor(private formbuilder:FormBuilder,private easydealservices:EasydealService,private router:Router,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.walletpointsFormRegistration = this.formbuilder.group(
@@ -34,19 +39,55 @@ export class WalletpointsComponent implements OnInit {
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
     })
-
+    this.getallwalletpoints();
   }
 get f() { return this.walletpointsFormRegistration.controls; }
+getallwalletpoints(){
+  this.easydealservices.getwalletpoints().subscribe(
+  data =>{
 
-  submit(){
-    this.submitted = true;
+    this.rpoints=data[0].reward_point;
+    this.avalue =data[0].amount_value;
+    this.ramount = data[0].redeem_amount;
+  },
+  error=>{
+    
+  })
 
-    // stop here if form is invalid
-    if (this.walletpointsFormRegistration.invalid) {
-        return;
-    }
-    else{
+}
+submit(){
+  this.submitted = true;
+  this.isLoading = true;
+  this.button = 'Processing';
 
-    }
+
+  // stop here if form is invalid
+  if (this.walletpointsFormRegistration.invalid) {
+    this.isLoading = false;
+    this.button = 'submit';
+    return;
   }
+  else {
+    this.isLoading = true;
+    this.button = 'Processing';
+    let req = {
+
+      
+    }
+    this.easydealservices.addgencat(req).subscribe(
+      data => {
+        this.isLoading = false;
+        this.button = 'Submit';
+
+        this.toastr.success("Wallet Points added successfully");
+      
+      },
+      error => {
+        this.isLoading = false;
+        this.button = 'Submit';
+
+      }
+    )
+  }
+}
 }
