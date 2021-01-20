@@ -62,7 +62,7 @@ export class AddDeliveryBoysComponent implements OnInit {
         "aadhar_id": this.aadhar,
         "password": this.password,
         "locationId":this.location,
-        "state":"Active"
+     
       }
       this.easydeelservie.adddeliveryboy(req).subscribe(
         data =>{

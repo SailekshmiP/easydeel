@@ -12,6 +12,8 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class EditUpiComponent implements OnInit {
   editupicredentialsFormRegistration: FormGroup;
   submitted = false;
+  isLoading = false;
+  button = 'Submit';
 
   location ="";
   upi; 
@@ -37,23 +39,33 @@ export class EditUpiComponent implements OnInit {
     this.upi = this.upidetails['upi']
   }
   submit() {
-      this.submitted = true;
+    this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
   
       // stop here if form is invalid
       if (this.editupicredentialsFormRegistration.invalid) {
+        this.isLoading = false;
+        this.button = 'submit';
         return;
       }
-      else {
+      else {  
+        this.isLoading = true;
+        this.button = 'Processing';
         let req = {
           "location":this.location,
           "upi":this.upi
         }
         this.easydeelservices.updateupi(req,this.upidetails['_id']).subscribe(
           data =>{
+            this.isLoading = false;
+            this.button = 'Submit';
             this.toaster.success("Upi number updated succesfully");
             this.router.navigate(['/upi']);
           },
           error =>{
+            this.isLoading = false;
+            this.button = 'Submit';
             this.toaster.error("Already a number added in same location");
           }
         )

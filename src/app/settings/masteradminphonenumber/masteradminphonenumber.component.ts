@@ -17,6 +17,7 @@ export class MasteradminphonenumberComponent implements OnInit {
   aphn;
   isLoading = false;
   button = 'Submit';
+  results: any=[];
   // cimage;
   // des;  
   // mtype="";
@@ -38,6 +39,29 @@ export class MasteradminphonenumberComponent implements OnInit {
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
     })
+this.getadminphone();
+  }
+  getadminphone()
+  {
+    this.easydealservices.getadminphone().subscribe(
+      data=>{
+        this.results =data;
+        console.log(this.results.length);
+        if(this.results.length== 0)
+        {
+         
+        }
+        else{
+          this.aname=this.results[0].name;
+          this.aphn = this.results[0].phone;
+        }
+
+      },
+      error=>{
+        console.log(error);
+      }
+      
+    )
 
   }
 get f() { return this.masteradminphonenumberFormRegistration.controls; }
@@ -58,23 +82,48 @@ get f() { return this.masteradminphonenumberFormRegistration.controls; }
       this.isLoading = true;
       this.button = 'Processing';
       let req = {
+        "name":this.aname,
+        "phone":this.aphn,
 
         
       }
-      this.easydealservices.addgencat(req).subscribe(
-        data => {
-          this.isLoading = false;
-          this.button = 'Submit';
-
-          this.toastr.success("Phone Number added successfully");
+      if(this.results.length == 0)
+      {
+        this.easydealservices.addadminphone(req).subscribe(
+          data => {
+            this.isLoading = false;
+            this.button = 'Submit';
+            this.router.navigate(['/settings'])
+            this.toastr.success("Phone Number added successfully");
+          
+          },
+          error => {
+            this.isLoading = false;
+            this.button = 'Submit';
+  
+          }
+        )
+      }
+      else
+      {
         
-        },
-        error => {
-          this.isLoading = false;
-          this.button = 'Submit';
-
-        }
-      )
+        this.easydealservices.updateadminphone(req,this.results[0]._id).subscribe(
+          data => {
+            this.isLoading = false;
+            this.button = 'Submit';
+            this.router.navigate(['/settings'])
+  
+            this.toastr.success("Phone Number added successfully");
+          
+          },
+          error => {
+            this.isLoading = false;
+            this.button = 'Submit';
+  
+          }
+        )
+      }
+     
     }
   }
 }

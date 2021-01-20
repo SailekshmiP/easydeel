@@ -22,7 +22,8 @@ export class EditDeliveryBoysComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   location;
-
+  deliveryboy:any =[];
+  locations:any=[];
   constructor(private formbuilder: FormBuilder,
     private router:Router,
     private toaster:ToastrService,private easydeelservie:EasydealService) { }
@@ -38,9 +39,21 @@ export class EditDeliveryBoysComponent implements OnInit {
         password: ['', Validators.required],
         location:['', Validators.required],
       })
-
+      this.getalllocations();
+      this.deliveryboy = JSON.parse(sessionStorage.getItem("deliveryboys"));
+      this.location = this.deliveryboy['locationId']._id;
+      this.dname = this.deliveryboy['name'];
+      this.uname = this.deliveryboy['userName'];
+      this.address = this.deliveryboy['address'];
+      this.mobile = this.deliveryboy['mobileNo'];
+      this.aadhar = this.deliveryboy['aadhar_id'];
+      this.password = this.deliveryboy['password'];
+      console.log(this.location);
+      
   }
   get f() { return this.deliveryboyFormRegistration.controls; }
+
+
 
   submit() {
 
@@ -80,5 +93,18 @@ export class EditDeliveryBoysComponent implements OnInit {
       )
 
     }
+  }
+  getalllocations(){
+    this.easydeelservie.getalllocations().subscribe(
+      data =>{
+        console.log(data);
+        this.locations = data;
+        
+      },
+      error =>{
+        console.log(error);
+        
+      }
+    )
   }
 }

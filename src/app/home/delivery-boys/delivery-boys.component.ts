@@ -13,7 +13,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class DeliveryBoysComponent implements OnInit {
   displayedColumns = ['id', 'name', 'address', 'mobilenumber' ,'status', 'action'];
   dataSource = new MatTableDataSource();
-
+  status;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -39,5 +39,9 @@ export class DeliveryBoysComponent implements OnInit {
 
       }
     )
+  }
+  edit(s) {
+    sessionStorage.setItem("deliveryboys", JSON.stringify(s));
+    this.router.navigate(['/editdeliveryboys'])
   }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
   selector: 'app-add-price-updator',
@@ -10,14 +13,16 @@ export class AddPriceUpdatorComponent implements OnInit {
 
   addpriceupdatorFormRegistration: FormGroup;
   submitted = false;
-
+  isLoading = false;
+  button = 'Submit';
   sname ="";
   sprice ="";
   amount;
   percentage;
   disable = false;
   disabled = false;
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private formbuilder:FormBuilder,private easydealservices:EasydealService,private router:Router,private toastr:ToastrService) { }
+
 
   ngOnInit() {
     this.addpriceupdatorFormRegistration = this.formbuilder.group(
@@ -34,13 +39,36 @@ export class AddPriceUpdatorComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.button = 'Processing';
 
     // stop here if form is invalid
     if (this.addpriceupdatorFormRegistration.invalid) {
+      this.isLoading = false;
+      this.button = 'submit';
       return;
     }
     else {
+      this.isLoading = true;
+      this.button = 'Processing';
+      let req = {
 
+        
+      }
+      this.easydealservices.addgencat(req).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+
+          this.toastr.success("Price Updated successfully");
+        
+        },
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+
+        }
+      )
     }
   }
 

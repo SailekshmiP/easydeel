@@ -24,6 +24,7 @@ export class WalletpointsComponent implements OnInit {
   // mtype="";
   // mctype="";
   // mstyle="";
+  results:any =[];
   
   constructor(private formbuilder:FormBuilder,private easydealservices:EasydealService,private router:Router,private toastr:ToastrService) { }
 
@@ -45,7 +46,7 @@ get f() { return this.walletpointsFormRegistration.controls; }
 getallwalletpoints(){
   this.easydealservices.getwalletpoints().subscribe(
   data =>{
-
+    this.results = data;
     this.rpoints=data[0].reward_point;
     this.avalue =data[0].amount_value;
     this.ramount = data[0].redeem_amount;
@@ -71,23 +72,46 @@ submit(){
     this.isLoading = true;
     this.button = 'Processing';
     let req = {
+      "reward_point":this.rpoints,
+      "amount_value":this.avalue,
+      "redeem_amount":this.ramount
 
-      
     }
-    this.easydealservices.addgencat(req).subscribe(
-      data => {
-        this.isLoading = false;
-        this.button = 'Submit';
-
-        this.toastr.success("Wallet Points added successfully");
-      
-      },
-      error => {
-        this.isLoading = false;
-        this.button = 'Submit';
-
-      }
-    )
+    if(this.results.length == 0)
+    {
+      this.easydealservices.addwalletpoints(req).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          this.router.navigate(['/settings']);
+          this.toastr.success("Wallet Points added successfully");
+        
+        },
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+  
+        }
+      )
+    }
+    else{
+      this.easydealservices.updatewalletpoints(req,this.results[0]._id).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          this.router.navigate(['/settings']);
+  
+          this.toastr.success("Wallet Points added successfully");
+        
+        },
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+  
+        }
+      )
+    }
+   
   }
 }
 }

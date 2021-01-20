@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col-sm-8">
-                <h4 class="page-title"> Price Updater</h4>
+                <h4 class="page-title">Add Price Updater</h4>
 
             </div>
         </div>
@@ -65,9 +65,12 @@
                 </div>
 
 
+                <div class="col-sm-12">
+                    <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
+                    <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
+                        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
+                    {{button}}</button>
 
-                <div class="col-sm-12 ">
-                    <button class="btn btn-warning " (click)="submit() ">SUBMIT</button>
                 </div>
 
             </div>

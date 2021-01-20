@@ -14,6 +14,7 @@ import { AddCategoryComponent } from './home/category/add-category/add-category.
 import { EditCategoryComponent } from './home/category/edit-category/edit-category.component';
 import { AddDeliveryBoysComponent } from './home/delivery-boys/add-delivery-boys/add-delivery-boys.component';
 import { DeliveryBoysComponent } from './home/delivery-boys/delivery-boys.component';
+import { EditDeliveryBoysComponent } from './home/delivery-boys/edit-delivery-boys/edit-delivery-boys.component';
 import { AddGeneralMenuComponent } from './home/general-menu/add-general-menu/add-general-menu.component';
 import { EditGeneralMenuComponent } from './home/general-menu/edit-general-menu/edit-general-menu.component';
 import { GeneralMenuComponent } from './home/general-menu/general-menu.component';
@@ -51,6 +52,9 @@ import { EditAdminCredentialsComponent } from './settings/admin-credentials/edit
 import { AddChatBoxComponent } from './settings/chat-box/add-chat-box/add-chat-box.component';
 import { ChatBoxComponent } from './settings/chat-box/chat-box.component';
 import { EditChatBoxComponent } from './settings/chat-box/edit-chat-box/edit-chat-box.component';
+import { AddLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/add-location-admin-phonenumber/add-location-admin-phonenumber.component';
+import { EditLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/edit-location-admin-phonenumber/edit-location-admin-phonenumber.component';
+import { LocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/location-admin-phonenumber.component';
 import { MasteradminphonenumberComponent } from './settings/masteradminphonenumber/masteradminphonenumber.component';
 import { AddPriceUpdatorComponent } from './settings/price-updator/add-price-updator/add-price-updator.component';
 import { PriceUpdatorComponent } from './settings/price-updator/price-updator.component';
@@ -87,6 +91,7 @@ const routes: Routes = [
   {path:'users',component:UsersComponent},
   {path:'addpincodes',component:AddPincodesComponent},
   {path:'adddeliveryboys',component:AddDeliveryBoysComponent},
+  {path:'editdeliveryboys',component:EditDeliveryBoysComponent},
   {path:'generalmenu',component:GeneralMenuComponent},
   {path:'generalshopmenu',component:GeneralShopMenuComponent},
   {path:'addgeneralmenu',component:AddGeneralMenuComponent},
@@ -141,7 +146,9 @@ const routes: Routes = [
   {path:'editupi',component:EditUpiComponent},
   {path:'locationadminviewrequest',component:LocationAdminViewPendingrequestComponent},
   {path:'addmenuforapproval',component:AddmenuForApprovalComponent},
-
+  {path:'locationadminphonenumber',component:LocationAdminPhonenumberComponent},
+  {path:'addlocationadminphonenumber',component:AddLocationAdminPhonenumberComponent},
+  {path:'editlocationadminphonenumber',component:EditLocationAdminPhonenumberComponent},
 
 ];
 

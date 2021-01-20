@@ -97,6 +97,9 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { AddmenuForApprovalComponent } from './home/approval-request/addmenu-for-approval/addmenu-for-approval.component';
 import { EditmenuForApprovalComponent } from './home/approval-request/editmenu-for-approval/editmenu-for-approval.component';
 import { LocationAdminViewPendingrequestComponent } from './home/approval-request/location-admin-view-pendingrequest/location-admin-view-pendingrequest.component';
+import { LocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/location-admin-phonenumber.component';
+import { AddLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/add-location-admin-phonenumber/add-location-admin-phonenumber.component';
+import { EditLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/edit-location-admin-phonenumber/edit-location-admin-phonenumber.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -183,6 +186,9 @@ import { LocationAdminViewPendingrequestComponent } from './home/approval-reques
     AddmenuForApprovalComponent,
     EditmenuForApprovalComponent,
     LocationAdminViewPendingrequestComponent,
+    LocationAdminPhonenumberComponent,
+    AddLocationAdminPhonenumberComponent,
+    EditLocationAdminPhonenumberComponent,
     // MatSort
   ],
   imports: [

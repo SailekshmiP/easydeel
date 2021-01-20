@@ -5,33 +5,35 @@ import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
-  selector: 'app-add-chat-box',
-  templateUrl: './add-chat-box.component.html',
-  styleUrls: ['./add-chat-box.component.css']
+  selector: 'app-add-location-admin-phonenumber',
+  templateUrl: './add-location-admin-phonenumber.component.html',
+  styleUrls: ['./add-location-admin-phonenumber.component.css']
 })
-export class AddChatBoxComponent implements OnInit {
-  addchatboxFormRegistration: FormGroup;
+export class AddLocationAdminPhonenumberComponent implements OnInit {
+  addlocationadminphonenumberformregistration: FormGroup;
   submitted = false;
-  isLoading = false;
-  button = 'Submit';
 
   location;
-  message;
+  aphn;
+  isLoading = false;
+  button = 'Submit';
   results: any = [];
+  locations: any = [];
   // cimage;
   // des;  
   // mtype="";
   // mctype="";
   // mstyle="";
 
-  constructor(private formbuilder: FormBuilder,private router:Router,
-     private easydealservices: EasydealService,private toaster:ToastrService) { }
+  constructor(private formbuilder: FormBuilder, private easydealservices: EasydealService, private router: Router, private toastr: ToastrService) { }
+
 
   ngOnInit() {
-    this.addchatboxFormRegistration = this.formbuilder.group(
+    this.addlocationadminphonenumberformregistration = this.formbuilder.group(
       {
         location: ['', Validators.required],
-        message: ['', Validators.required],
+        aphn: ['', [Validators.required, Validators.pattern('[6-9]\\d{9}')]],
+
         // cimage:['', Validators.required],
         // des: ['', Validators.required],
         // mtype: ['', Validators.required],
@@ -40,12 +42,14 @@ export class AddChatBoxComponent implements OnInit {
       })
     this.getalllocations();
   }
+
   getalllocations() {
     this.easydealservices.getalllocations().subscribe(
       data => {
+        console.log(data);
+        let results: any = [];
+        this.locations = data;
 
-        this.results = data;
-        // this.dataSource.data = results;
 
       },
       error => {
@@ -54,14 +58,16 @@ export class AddChatBoxComponent implements OnInit {
       }
     )
   }
-  get f() { return this.addchatboxFormRegistration.controls; }
+  get f() { return this.addlocationadminphonenumberformregistration.controls; }
 
   submit() {
     this.submitted = true;
     this.isLoading = true;
     this.button = 'Processing';
+
+
     // stop here if form is invalid
-    if (this.addchatboxFormRegistration.invalid) {
+    if (this.addlocationadminphonenumberformregistration.invalid) {
       this.isLoading = false;
       this.button = 'submit';
       return;
@@ -70,23 +76,27 @@ export class AddChatBoxComponent implements OnInit {
       this.isLoading = true;
       this.button = 'Processing';
       let req = {
-        "location": this.location,
-        "message": this.message
+        "location_id": this.location,
+        "phone": this.aphn,
+
+
       }
-      this.easydealservices.addmessages(req).subscribe(
+
+      this.easydealservices.addlocationadminphone(req).subscribe(
         data => {
           this.isLoading = false;
           this.button = 'Submit';
+          this.router.navigate(['/locationadminphonenumber'])
+          this.toastr.success("Phone Number added successfully");
 
-          this.toaster.success("messages added successfully");
-          this.router.navigate(['/chatbox']);
         },
         error => {
           this.isLoading = false;
           this.button = 'Submit';
-         this.toaster.error(error.error.responce);
-          
-        })
+
+        }
+      )
+
     }
   }
 }
