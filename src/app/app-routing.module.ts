@@ -24,6 +24,7 @@ import { GeneralShopMenuComponent } from './home/general-shop-menu/general-shop-
 import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './home/orders/orders.component';
 import { AddPincodesComponent } from './home/pincodes/add-pincodes/add-pincodes.component';
+import { EditPincodesComponent } from './home/pincodes/edit-pincodes/edit-pincodes.component';
 import { PincodesComponent } from './home/pincodes/pincodes.component';
 import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
 import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
@@ -90,6 +91,7 @@ const routes: Routes = [
   {path:'deliveryboys',component:DeliveryBoysComponent},
   {path:'users',component:UsersComponent},
   {path:'addpincodes',component:AddPincodesComponent},
+  {path:'editpincodes',component:EditPincodesComponent},
   {path:'adddeliveryboys',component:AddDeliveryBoysComponent},
   {path:'editdeliveryboys',component:EditDeliveryBoysComponent},
   {path:'generalmenu',component:GeneralMenuComponent},

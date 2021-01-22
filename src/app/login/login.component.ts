@@ -16,13 +16,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    
   }
 
   shopadmin(){
 
     localStorage.setItem("loginstatus",JSON.stringify("shopadmin"));
     this.router.navigate(['/home']);
+  }
+  onKeydown(event)
+  {
+  if(event.key === 'Enter')
+  {
+    this.Masteradminlogin();
+
+  }
+
   }
   Masteradminlogin()
   {

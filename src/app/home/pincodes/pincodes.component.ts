@@ -10,7 +10,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
   styleUrls: ['./pincodes.component.css']
 })
 export class PincodesComponent implements OnInit {
-  displayedColumns = ['id', 'location'];
+  displayedColumns = ['id', 'location','action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;
@@ -39,6 +39,11 @@ getalllocations(){
       
     }
   )
+}
+edit(s)
+{
+  sessionStorage.setItem("location",JSON.stringify(s));
+  this.router.navigate(['/editpincodes']);
 }
 
 }

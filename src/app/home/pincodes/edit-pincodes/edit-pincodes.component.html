@@ -11,22 +11,35 @@
 
         <div class="row">
             <div class="col-sm-8">
-                <h4 class="page-title">Pincodes</h4>
+                <h4 class="page-title">Edit Location</h4>
 
             </div>
         </div>
+        <form [formGroup]="editlocationFormRegistration">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-sm-6">
-                <label for="">Pincode</label>
-                <input type="number" class="form-control" placeholder="Enter Your Pincode">
+                <div class="col-sm-6">
+                    <label for="">Location</label>
+                    <input type="text" class="form-control" placeholder="Enter Your location" [(ngModel)]="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" formControlName="location">
+
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                        <div *ngIf="f.location.errors.required">Location is required</div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
+                    <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
+                        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
+                    {{button}}</button>
+
+                </div>
+
             </div>
+        </form>
 
-            <div class="col-sm-12">
-                <button class="btn btn-warning">SUBMIT</button>
-           </div>
-
-       </div>
-   </div>
+    </div>
 </div>

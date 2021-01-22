@@ -323,4 +323,8 @@ export class EasydealService {
 {
   return this.http.patch(this.apiUrl+'branch_phone/edit/'+id,req);
 }
+updatelocation(req,id)
+{
+  return this.http.patch(this.apiUrl+'location/edit/'+id,req);
+}
 }

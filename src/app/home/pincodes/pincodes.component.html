@@ -33,6 +33,22 @@
                         <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
                     </ng-container>
 
+                    <!--Action Column -->
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <!-- <button class="btn btn-success"> -->
+                            <!-- <i class="fa fa-edit" (click)="edit(row)"></i> -->
+                            <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
+                            <div>
+                                <button class="btn btn-warning" (click)="active(row)" *ngIf="row.menu_state == 'Inactive'">Active </button>&nbsp;
+                                <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.menu_state == 'Active'">In-Active  </button>
+
+                            </div>
+
+                        </mat-cell>
+                    </ng-container>
+
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;">
                     </mat-row>
