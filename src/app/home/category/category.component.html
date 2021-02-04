@@ -19,7 +19,7 @@
                 <button *ngIf="status =='masteradmin'" class="btn btn-primary" style="float: right;" routerLink="/addcategory"> Add Main Category</button>
             </div>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="search here">
+                <input type="text" class="form-control" placeholder="search here" (keyup)="applyFilter($event.target.value)">
             </div>
         </div>
         <div class="row">

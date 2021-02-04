@@ -103,6 +103,7 @@ get f() { return this.categoryFormRegistration.controls; }
      
         this.router.navigate(['/home']);
         this.formData.delete;
+        window.location.reload();
        },
        error=>{
         this.isLoading = false;

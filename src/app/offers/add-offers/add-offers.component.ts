@@ -34,6 +34,7 @@ export class AddOffersComponent implements OnInit {
   location;
   isLoading = false;
   pprice;
+  showorhide = "Show";
   button = 'Submit';
   constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private toaster: ToastrService, private router: Router) { }
 
@@ -43,6 +44,8 @@ export class AddOffersComponent implements OnInit {
 
         sname: ['', Validators.required],
         mname: [''],
+        showorhide:['', Validators.required],
+
         oloc: ['', Validators.required],
         odes: ['', Validators.required],
         tqpurc: ['', Validators.required],
@@ -55,6 +58,7 @@ export class AddOffersComponent implements OnInit {
         ctime: ['', Validators.required],
         cashback: ['', Validators.required],
         bimages: ['', Validators.required],
+
       })
       this.getallShop();
       this.getalllocations();

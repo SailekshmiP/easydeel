@@ -78,7 +78,11 @@ export class ShopComponent implements OnInit {
     
   }
   
-
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
   selectedevent(s) {
     console.log(s);
     if (s == "s") {

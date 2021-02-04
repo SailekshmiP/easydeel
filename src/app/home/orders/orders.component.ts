@@ -19,6 +19,9 @@ export class OrdersComponent implements OnInit {
 result:any=[];
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  status: any =[];
+  userdetails: any=[];
+  locationid;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -28,22 +31,46 @@ result:any=[];
     private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallorder() 
   }
 getallorder()
 {
-this.easydealservice.getallorder().subscribe(
-  data =>
-  {
+  if(this.status =='masteradmin')
+    {
+      this.easydealservice.getallorder().subscribe(
+        data =>
+        {
+      
+          this.result=data['data'];
+          this.dataSource.data=this.result;
+        },
+        error =>
+        {
+      
+        }
+      )
+    }
+    else if(this.status == 'locationamin')
+    {
+      this.locationid=this.userdetails['locationId']._id;
+      console.log(this.locationid);
+      this.easydealservice.getallorderBylocation(this.locationid).subscribe(
+        data =>{
+          this.result=data['data'];
+          this.dataSource.data=this.result;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else
+    {
 
-    this.result=data['data'];
-    this.dataSource.data=this.result;
-  },
-  error =>
-  {
+    }
 
-  }
-)
 }
 assign(s){
   const dialogRef = this.dialog.open(ViewOrderDetailsComponent, {

@@ -10,7 +10,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class AdminCredentialsComponent implements OnInit {
 
   
-  displayedColumns = ['slno', 'emailusername','role','location'];
+  displayedColumns = ['slno', 'emailusername','role','location','password'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;

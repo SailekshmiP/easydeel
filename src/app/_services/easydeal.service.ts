@@ -231,6 +231,11 @@ export class EasydealService {
   getallorder() {
     return this.http.get(this.apiUrl + 'orders');
   }
+  getallorderBylocation(s)
+  {
+    return this.http.get(this.apiUrl + 'orders/location/'+s);
+
+  }
   addmessages(req) {
     return this.http.post(this.apiUrl + 'message/add', req)
   }

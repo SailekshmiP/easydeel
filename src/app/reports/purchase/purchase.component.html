@@ -28,7 +28,7 @@
                   </select>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="search here">
+                <input type="text" class="form-control" placeholder="search here" (keyup)="applyFilter($event.target.value)">
             </div>
         </div>
 

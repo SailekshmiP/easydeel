@@ -100,7 +100,8 @@ get f() { return this.categoryFormRegistration.controls; }
           this.toaster.success("Category Added Successfully")
           this.formData.delete;
           this.router.navigate(['/home']);
-         },
+          window.location.reload();
+                 },
          error=>{
           this.isLoading = false;
           this.button = 'Submit';
@@ -172,41 +173,43 @@ get f() { return this.categoryFormRegistration.controls; }
     
   // }
   addcategoryimage(event) {
-    this.isvalidphoto = true;
-    window.URL = window.URL;
+    this.files = event.target.files;
+
+    this.currentphoto = this.files.item(0);
+
+    // this.isvalidphoto = true;
+    // window.URL = window.URL;
     
     
-    let reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      this.files = event.target.files[0];
+    // let reader = new FileReader();
+    // if (event.target.files && event.target.files.length > 0) {
+    //   this.files = event.target.files[0];
     
-      let img = new Image();
+    //   let img = new Image();
     
-      img.src = window.URL.createObjectURL( this.files );
-      reader.readAsDataURL(this.files);
-      reader.onload = () => {
-        setTimeout(() => {
-          const width = img.naturalWidth;
-          const height = img.naturalHeight;
+    //   img.src = window.URL.createObjectURL( this.files );
+    //   reader.readAsDataURL(this.files);
+    //   reader.onload = () => {
+    //     setTimeout(() => {
+    //       const width = img.naturalWidth;
+    //       const height = img.naturalHeight;
     
-          window.URL.revokeObjectURL( img.src );
-          console.log(width + '*' + height);
-          if ( width !== 1000 && height !== 554) {
-            this.isvalidphoto = true;
-              console.log(width,height)
-            this.toaster.error('photo should be 1000*554 size');
+    //       window.URL.revokeObjectURL( img.src );
+    //       console.log(width + '*' + height);
+    //       if ( width !== 1000 && height !== 554) {
+    //         this.isvalidphoto = true;
+    //           console.log(width,height)
+    //         this.toaster.error('photo should be 1000*554 size');
             
-            // form.reset();
-          } else {
-            this.isvalidphoto = false;
-              console.log(width,height)
-            // this.imgURL = reader.result;
-            this.currentphoto = this.files.item(0);
+    //       } else {
+    //         this.isvalidphoto = false;
+    //           console.log(width,height)
+    //         this.currentphoto = this.files.item(0);
           
-          }
-        }, 2000);
-          };
-      }
+    //       }
+    //     }, 2000);
+    //       };
+    //   }
       }
     
 }

@@ -25,10 +25,8 @@
                     <ng-container matColumnDef="orderid">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </mat-header-cell>
                         <mat-cell *matCellDef="let row;let i=index;">
-                            <!-- <img *ngIf="i == 0" src="./assets/img/new.gif" alt="">  -->
-                            {{row.order_id}} </mat-cell>
+                            <img *ngIf="row.order_status == 'Pending'" src="./assets/img/new.gif" alt=""> {{row.order_id}} </mat-cell>
                     </ng-container>
-
                     <!-- Customer Address Column -->
                     <ng-container matColumnDef="customeraddress">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Customer Address</mat-header-cell>
