@@ -60,7 +60,7 @@
                 <ng-container matColumnDef="menuimage">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Image </mat-header-cell>
                     <mat-cell *matCellDef="let row">
-                        <!-- <img src="{{apiUrl}}menurest/get/image/{{row._id}}" alt="" style="width: 100px;">  -->
+                        <!-- <img src="{{apiUrl}}menurest/get/image/{{row._id}}" alt=""> -->
                         <button matTooltip="View Image" (click)="view(row._id)"> <i class="fa fa-eye"></i> </button>
                     </mat-cell>
                 </ng-container>

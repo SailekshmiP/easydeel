@@ -9,7 +9,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'address', 'phonenumber', 'email','redeempoint', 'action'];
+  displayedColumns = ['id', 'name', 'address', 'phonenumber','redeempoint', 'action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;

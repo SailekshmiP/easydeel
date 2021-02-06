@@ -37,6 +37,7 @@ export class EditOffersComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   pprice;
+  showorhide = "Show";
 
   constructor(private formbuilder: FormBuilder,
     private easydeelservice: EasydealService,
@@ -61,7 +62,8 @@ export class EditOffersComponent implements OnInit {
         pprice: ['', Validators.required],
         ctime: ['', Validators.required],
         cashback: ['', Validators.required],
-        bimages: ['', Validators.required],
+        bimages: [''],
+        showorhide:['', Validators.required],
       })
 
     this.offer = JSON.parse(sessionStorage.getItem("offer"));
@@ -80,8 +82,8 @@ export class EditOffersComponent implements OnInit {
     this.atime = this.offer['av_time'];
     this.cashback = this.offer['cashback'];
     this.ctime = this.offer['clos_time'];
-
-
+    this.pprice = this.offer['purch_price'];
+    this.showorhide = this.offer['offr_show'];
   }
   getallShop() {
     this.easydeelservice.getshop().subscribe(
@@ -142,7 +144,8 @@ export class EditOffersComponent implements OnInit {
       this.formData.append("clos_time", this.ctime);
       this.formData.append("cashback", this.cashback);
       this.formData.append("offer_img", this.currentphoto);
-
+      this.formData.append("purchase_price",this.pprice);
+      this.formData.append("show",this.showorhide);
 
       this.easydeelservice.editoffer(this.formData, this.id).subscribe(
         data => {

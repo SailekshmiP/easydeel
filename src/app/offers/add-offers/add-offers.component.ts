@@ -123,7 +123,8 @@ export class AddOffersComponent implements OnInit {
       this.formData.append("clos_time", this.ctime);
       this.formData.append("cashback", this.cashback);
       this.formData.append("offer_img", this.currentphoto);
-
+      this.formData.append("purchase_price",this.pprice);
+      this.formData.append("show",this.showorhide);
       this.easydeelservice.addoffer(this.formData).subscribe(
         data => {
           this.isLoading = false;

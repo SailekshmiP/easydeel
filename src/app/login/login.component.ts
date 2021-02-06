@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EasydealService } from '../_services/easydeal.service';
@@ -12,10 +13,15 @@ export class LoginComponent implements OnInit {
   password:any;
   userName:any;
   resposne:any;
-  constructor(private router:Router,private eaydeelservice:EasydealService,private toater:ToastrService) { }
+  vehicleimage2:any;
+  constructor(private router:Router,private Domsantizer:DomSanitizer,
+    private eaydeelservice:EasydealService,private toater:ToastrService) { }
 
   ngOnInit() {
-
+    // let data = "http://45.79.122.125:8080/prestige/api/unprotect/ins-report/view/825";
+    //   var unnsafeimage = URL.createObjectURL(data);
+    //     console.log(unnsafeimage)
+    //     this.vehicleimage2 = this.Domsantizer.bypassSecurityTrustUrl(unnsafeimage);
   }
 
   shopadmin(){
