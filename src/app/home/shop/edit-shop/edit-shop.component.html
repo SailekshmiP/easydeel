@@ -200,6 +200,14 @@
                     <label for="">Selected Locations</label>
                     <p *ngFor="let sessiondayssRepat of sessiondayssRepat">{{sessiondayssRepat.location}}</p>
                 </div> -->
+                <div class="col-sm-4" *ngFor="let catloations of shoplocations">
+                    <div class="card" style="background: #666;
+                    color: white;    width: auto;
+                    text-align: center;
+                    padding: 6px;" *ngIf="condtionyesorno == 'no'">
+                        <p style="    margin-top: 8px;">{{catloations.location}}</p>
+                    </div>
+                </div>
 
                 <div class="col-sm-12" *ngIf="condtionyesorno == 'yes'">
                     <label for=""> Choose Locations</label>

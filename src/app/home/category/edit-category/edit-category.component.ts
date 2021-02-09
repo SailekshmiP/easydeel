@@ -10,9 +10,9 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 })
 export class EditCategoryComponent implements OnInit {
 
-  categoryFormRegistration:FormGroup;
+  categoryFormRegistration: FormGroup;
   submitted = false;
-  
+
   cat_id;
   files;
   currentphoto;
@@ -30,12 +30,15 @@ export class EditCategoryComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   sessiondayssRepat;
-  repeatsessiondays:any=[];
+  repeatsessiondays: any = [];
   value;
-  locations :any =[];
+  locations: any = [];
   disbaledvalue = false;
   disabled = false;
-  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private router:Router) { }
+  catloations: any = [];
+  arr:any=[];
+  condtionyesorno = "no";
+  constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router) { }
 
   ngOnInit() {
     this.categoryFormRegistration = this.formbuilder.group(
@@ -43,36 +46,45 @@ export class EditCategoryComponent implements OnInit {
         cname: ['', Validators.required],
         mtype: ['', Validators.required],
         cimage: [''],
-        showorhide:['', Validators.required],
-        status:['',Validators.required],
+        showorhide: ['', Validators.required],
+        status: ['', Validators.required],
         check: [''],
         checkeddays: this.formbuilder.array([]),
         // des: ['', Validators.required],
         // mtype: ['', Validators.required],
         // mctype: ['', Validators.required],
         // mstyle: ['', Validators.required],
-    })
-this.getcatdetails=JSON.parse(sessionStorage.getItem("cat"));
-this.cname=this.getcatdetails['category_name'];
+      })
+    this.getcatdetails = JSON.parse(sessionStorage.getItem("cat"));
+    this.cname = this.getcatdetails['category_name'];
 
-this.mtype=this.getcatdetails['category_menutype'];
-this.showorhide=this.getcatdetails['category_show'];
-this.status=this.getcatdetails['category_state'];
-this.cat_id=this.getcatdetails['_id']
-this.getalllocations();
-if(this.cname == 'RESTAURANT')
-{
-  console.log("here");
-  
-  this.disabled = true;
-  this.categoryFormRegistration.get('cname').disable();
+    this.mtype = this.getcatdetails['category_menutype'];
+    this.showorhide = this.getcatdetails['category_show'];
+    this.status = this.getcatdetails['category_state'];
+    this.cat_id = this.getcatdetails['_id']
+    this.catloations = this.getcatdetails['locationId'];
+    this.getalllocations();
 
-}
+  //   for (let i = 0; i < this.catloations.length; i++) {
+
+  //       this.arr.push(this.catloations[i]['_id'])    
+
+  //   }
+  //   console.log(this.arr);
+  //  const email =  <FormArray>this.categoryFormRegistration.controls.checkeddays;
+  // email.push(this.arr);
+    if (this.cname == 'RESTAURANT') {
+      console.log("here");
+
+      this.disabled = true;
+      this.categoryFormRegistration.get('cname').disable();
+
+    }
   }
 
-get f() { return this.categoryFormRegistration.controls; }
+  get f() { return this.categoryFormRegistration.controls; }
 
-  submit(){
+  submit() {
     this.submitted = true;
     this.isLoading = true;
     this.button = 'Processing';
@@ -80,40 +92,40 @@ get f() { return this.categoryFormRegistration.controls; }
     if (this.categoryFormRegistration.invalid) {
       this.isLoading = false;
       this.button = 'Submit';
-        return;
+      return;
     }
-    else{
+    else {
       this.isLoading = true;
       this.button = 'Processing';
-      this.formData.append("category_name",this.cname.toUpperCase( ))
-      this.formData.append("show",this.showorhide)
-      this.formData.append("category_menutype",this.mtype)
-      this.formData.append("state",this.status)
-      this.formData.append("cat_img",this.currentphoto)
+      this.formData.append("category_name", this.cname.toUpperCase())
+      this.formData.append("show", this.showorhide)
+      this.formData.append("category_menutype", this.mtype)
+      this.formData.append("state", this.status)
+      this.formData.append("cat_img", this.currentphoto)
       for (let i = 0; i < this.sessiondayssRepat.length; i++) {
         this.formData.append("locationId", this.sessiondayssRepat[i])
 
       }
 
-     this.easydealservice.editcategory(this.formData,this.cat_id).subscribe(
-       data=>{
-        this.isLoading = false;
-        this.button = 'Submit';
-        console.log(data);
-     
-        this.router.navigate(['/home']);
-        this.formData.delete;
-        window.location.reload();
-       },
-       error=>{
-        this.isLoading = false;
-        this.button = 'Submit';
-         console.log(error);
-        this.formData.delete;
-         
-       }
-       
-     )
+      this.easydealservice.editcategory(this.formData, this.cat_id).subscribe(
+        data => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          console.log(data);
+
+          this.router.navigate(['/home']);
+          this.formData.delete;
+          window.location.reload();
+        },
+        error => {
+          this.isLoading = false;
+          this.button = 'Submit';
+          console.log(error);
+          this.formData.delete;
+
+        }
+
+      )
 
     }
   }
@@ -121,7 +133,7 @@ get f() { return this.categoryFormRegistration.controls; }
 
     this.files = event.target.files;
     this.currentphoto = this.files.item(0);
-    
+
     //  console.log(this.currentFoto)
   }
   getalllocations() {

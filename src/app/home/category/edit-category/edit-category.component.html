@@ -67,7 +67,24 @@
                     <input type="radio" [(ngModel)]="status" value="Active" formControlName="status"> Inactive
                     <input type="radio" [(ngModel)]="status" value="Inactive" formControlName="status">
                 </div>
-                <div class="col-sm-12">
+
+                <div class="col-sm-6" style="margin-top: 20px;">
+                    <label for="">Do you want to update the shop Location?</label>
+                    <br> yes
+                    <input type="radio" [(ngModel)]="condtionyesorno" value="yes" [ngModelOptions]="{standalone: true}"> No
+                    <input type="radio" [(ngModel)]="condtionyesorno" value="no" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="col-sm-4" *ngFor="let catloations of catloations">
+                    <div class="card" style="background: #666;
+                    color: white;    width: auto;
+                    text-align: center;
+                    padding: 6px;" *ngIf="condtionyesorno == 'no'">
+                        <p style="    margin-top: 8px;">{{catloations.location}}</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" *ngIf="condtionyesorno == 'yes'">
                     <label for=""> Choose Locations</label>
                     <div class="row" style="padding: 15px;">
                         <div class="radio-toolbar" *ngFor="let repeatsessiondays of repeatsessiondays">
@@ -78,12 +95,17 @@
                     </div>
 
                 </div>
+
                 <div class="col-sm-12">
                     <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
                     <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
                         [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
                     {{button}}</button>
                 </div>
+
+            </div>
+            <div class="row">
+
 
             </div>
         </form>

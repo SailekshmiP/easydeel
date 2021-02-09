@@ -50,7 +50,7 @@ error;
 imagePreview;
 employee
 isvalidphoto = false;
-
+shoplocations:any=[];
 
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router,
     private toaster: ToastrService) { }
@@ -100,15 +100,16 @@ isvalidphoto = false;
     this.showorhide = this.shopdetails['shop_show']
     this.status = this.shopdetails['shop_state']
     this.id=this.shopdetails['_id']
-    this.sessiondayssRepat = this.shopdetails['locationId'];
-    console.log(this.sessiondayssRepat);
-    // let arr = [];
-    for(let i=0;i<this.sessiondayssRepat.length;i++)
-    {
-      this.sessionarray.push(this.sessiondayssRepat[i]._id)
-    }
-    console.log(this.sessionarray);
-    this.sessiondayssRepat = this.sessionarray;
+    this.shoplocations = this.shopdetails['locationId'];
+    // this.sessiondayssRepat = this.shopdetails['locationId'];
+    // console.log(this.sessiondayssRepat);
+    // // let arr = [];
+    // for(let i=0;i<this.sessiondayssRepat.length;i++)
+    // {
+    //   this.sessionarray.push(this.sessiondayssRepat[i]._id)
+    // }
+    // console.log(this.sessionarray);
+    // this.sessiondayssRepat = this.sessionarray;
     
     // this.repeatsessiondays=this.shopdetails['locationId']
     // console.log(this.repeatsessiondays);
