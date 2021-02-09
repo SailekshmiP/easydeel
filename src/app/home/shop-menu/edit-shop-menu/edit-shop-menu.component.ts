@@ -52,7 +52,7 @@ export class EditShopMenuComponent implements OnInit {
         mname: ['', Validators.required],
         mdes: ['', [Validators.required, Validators.maxLength(50)]],
         prate: ['',],
-        pperct: ['', Validators.required],
+        // pperct: [''],
         srate: ['', Validators.required],
         dperc: ['', Validators.required],
         damount: ['', Validators.required],

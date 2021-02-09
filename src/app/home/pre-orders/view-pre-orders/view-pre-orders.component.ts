@@ -19,6 +19,7 @@ export class ViewPreOrdersComponent implements OnInit {
   status ;
   dboyName;
   isStatus= false;
+  bookingid;
   constructor(@Inject(MAT_DIALOG_DATA) data, private easydeelservice:EasydealService,
   private toaster:ToastrService,
   private dialogRef: MatDialogRef<ViewPreOrdersComponent>) 

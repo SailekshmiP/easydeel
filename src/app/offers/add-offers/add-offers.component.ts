@@ -36,6 +36,7 @@ export class AddOffersComponent implements OnInit {
   pprice;
   showorhide = "Show";
   button = 'Submit';
+  locations: any=[];
   constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -81,6 +82,26 @@ export class AddOffersComponent implements OnInit {
       }
     )
   }
+
+  shopselcted(s) {
+    console.log(s);
+    this.easydeelservice.getalllocationbyshopid(s).subscribe(
+      data => {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+
+
+      },
+      error => {
+
+      }
+    )
+
+
+  }
+
+
+  
   getalllocations(){
     this.easydeelservice.getalllocations().subscribe(
       data =>{

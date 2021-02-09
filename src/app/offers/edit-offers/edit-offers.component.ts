@@ -38,6 +38,7 @@ export class EditOffersComponent implements OnInit {
   button = 'Submit';
   pprice;
   showorhide = "Show";
+  locations: any=[];
 
   constructor(private formbuilder: FormBuilder,
     private easydeelservice: EasydealService,
@@ -84,6 +85,18 @@ export class EditOffersComponent implements OnInit {
     this.ctime = this.offer['clos_time'];
     this.pprice = this.offer['purch_price'];
     this.showorhide = this.offer['offr_show'];
+
+    this.easydeelservice.getalllocationbyshopid(this.sname).subscribe(
+      data => {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+
+
+      },
+      error => {
+
+      }
+    )
   }
   getallShop() {
     this.easydeelservice.getshop().subscribe(
@@ -96,6 +109,23 @@ export class EditOffersComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  shopselcted(s) {
+    console.log(s);
+    this.easydeelservice.getalllocationbyshopid(s).subscribe(
+      data => {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+
+
+      },
+      error => {
+
+      }
+    )
+
+
   }
   getalllocations() {
     this.easydeelservice.getalllocations().subscribe(
