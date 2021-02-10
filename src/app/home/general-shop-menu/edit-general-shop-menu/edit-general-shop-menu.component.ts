@@ -36,6 +36,9 @@ export class EditGeneralShopMenuComponent implements OnInit {
   charge ="No";
   cleaning;
   locations:any=[];
+  loginstatus;
+  userdetails;
+  lId;
   constructor(private formbuilder: FormBuilder,
      private easydeelservice: EasydealService, private router: Router, private toastr: ToastrService) { }
 
@@ -59,8 +62,12 @@ export class EditGeneralShopMenuComponent implements OnInit {
         // status: ['', Validators.required],
       })
       this.gmenu = JSON.parse(sessionStorage.getItem("gmenu"));
+
       console.log(this.gmenu);
-      
+        this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+      this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+      this.lId = this.userdetails['locationId']._id;
+      this.getallShop();
 
       this.sname = this.gmenu.shop_id['_id']
       this.iname = this.gmenu.generalmenu_id['_id']
@@ -80,7 +87,6 @@ export class EditGeneralShopMenuComponent implements OnInit {
 
       
       this.id = this.gmenu['_id']
-    this.getallShop();
     // this.getallcategorytype();
     this.getallgeneralmenu();
   
@@ -103,28 +109,54 @@ export class EditGeneralShopMenuComponent implements OnInit {
     
   }
   getallShop() {
-    this.easydeelservice.getshopsbygeneralcategory().subscribe(
-      data => {
-        console.log(data);
-        // this.results = data;
-        this.generalshopmenu=data;
-        for(let i=0;i<this.generalshopmenu.length;i++)
-        {
-          if(this.generalshopmenu[i].category_id==null)
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+    console.log(this.loginstatus);
+    
+    if (this.loginstatus == 'masteradmin') {
+      this.easydeelservice.getshopsbygeneralcategory().subscribe(
+        data => {
+          console.log(data);
+          // this.results = data;
+          this.generalshopmenu=data;
+          for(let i=0;i<this.generalshopmenu.length;i++)
           {
-
+            if(this.generalshopmenu[i].category_id==null)
+            {
+  
+            }
+            else
+            {
+              
+              this.results.push(this.generalshopmenu[i])
+            }
           }
-          else
-          {
-            
-            this.results.push(this.generalshopmenu[i])
-          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    )
+      )
+    }
+    else if (this.loginstatus == 'locationamin') {
+      // let ud;
+      // this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+      console.log(this.lId)
+
+      // let ud = this.userdetails['locationId']._id;
+      // console.log(JSON.parse(localStorage.getItem("userdetails")));
+      
+      this.easydeelservice.getallshopsbylocation(this.lId).subscribe(
+        data =>{
+          console.log(data);
+         this.results =data;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if (this.loginstatus == 'shopadmin') {
+
+    }
   }
   // getallcategorytype() {
   //   this.easydeelservice.getallgeneralcategory().subscribe(

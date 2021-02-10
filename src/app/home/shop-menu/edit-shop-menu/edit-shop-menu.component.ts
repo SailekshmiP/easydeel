@@ -42,6 +42,8 @@ export class EditShopMenuComponent implements OnInit {
   shopid;
   profitrate;
   pperct;
+  loginstatus;
+  userdetails;
   constructor(private formbuilder: FormBuilder, private easydealservice: EasydealService, private router: Router, private ToastrService: ToastrService) { }
 
   ngOnInit() {
@@ -80,6 +82,8 @@ export class EditShopMenuComponent implements OnInit {
 
     this.id = this.shopmenu['_id'];
 // this.shopid = this.shopmenu['shop_id']._id;
+this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getshopprofitbypercetage();
 
     this.getallShop();
@@ -193,29 +197,45 @@ export class EditShopMenuComponent implements OnInit {
 
   }
   getallShop() {
-    this.easydealservice.getallshopmappedtorestaurant().subscribe(
-      data => {
-        console.log(data);
-        // this.shops = data;
-        this.restmenus=data;
-        for(let i=0;i<this.restmenus.length;i++)
-        {
-          if(this.restmenus[i].category_id==null)
+    if (this.loginstatus == 'masteradmin') {
+      this.easydealservice.getallshopmappedtorestaurant().subscribe(
+        data => {
+          console.log(data);
+          // this.shops = data;
+          this.restmenus=data;
+          for(let i=0;i<this.restmenus.length;i++)
           {
-
+            if(this.restmenus[i].category_id==null)
+            {
+  
+            }
+            else
+            {
+              
+              this.shops.push(this.restmenus[i])
+            }
           }
-          else
-          {
-            
-            this.shops.push(this.restmenus[i])
-          }
+          // this.dataSource.data = this.results;
+        },
+        error => {
+          console.log(error);
         }
-        // this.dataSource.data = this.results;
-      },
-      error => {
-        console.log(error);
-      }
-    )
+      )
+    }
+    if (this.loginstatus == 'locationamin') {
+      let ud = this.userdetails['locationId']._id;
+      this.easydealservice.getallshopsbylocation(ud).subscribe(
+        data =>{
+          console.log(data);
+         this.shops =data;
+          // this.dataSource.data = this.results;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    
   }
   getalllocations() {
     this.easydealservice.getalllocations().subscribe(

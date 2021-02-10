@@ -72,7 +72,7 @@ export class AddShopMenuComponent implements OnInit {
         status: ['', Validators.required],
         // mstyle: ['', Validators.required],
       })
-    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"))
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     
     this.getallShop();

@@ -36,7 +36,10 @@ export class AddOffersComponent implements OnInit {
   pprice;
   showorhide = "Show";
   button = 'Submit';
-  locations: any=[];
+  loginstatus;
+  locations:any=[];
+  userdetails;
+  lId;
   constructor(private formbuilder: FormBuilder, private easydeelservice: EasydealService, private toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
@@ -61,6 +64,10 @@ export class AddOffersComponent implements OnInit {
         bimages: ['', Validators.required],
 
       })
+      this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+      this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+      console.log(this.userdetails)
+      this.lId = this.userdetails['locationId']._id;
       this.getallShop();
       this.getalllocations();
   }
@@ -71,16 +78,40 @@ export class AddOffersComponent implements OnInit {
     this.currentphoto = this.files.item(0);
   }
   getallShop(){
-    this.easydeelservice.getshop().subscribe(
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+    console.log(this.loginstatus);
+
+    
+    if(this.loginstatus =='masteradmin')
+    {
+      this.easydeelservice.getshop().subscribe(
+        data =>{
+          console.log(data);
+          this.results =data;
+       
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+    }
+    else if(this.loginstatus == 'locationamin')   
+    {
+      // this.locationid=this.userdetails['locationId']._id;
+      // console.log(this.locationid);
+
+    this.easydeelservice.getallshopsbylocation(this.lId).subscribe(
       data =>{
         console.log(data);
         this.results =data;
-     
+        // this.dataSource.data = this.results;
       },
       error =>{
-        console.log(error);
+
       }
     )
+      
+    }
   }
 
   shopselcted(s) {

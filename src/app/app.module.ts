@@ -204,6 +204,7 @@ import { EditLocationAdminPhonenumberComponent } from './settings/location-admin
   ],
 
   entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent],
+  
   providers: [{provide: LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })

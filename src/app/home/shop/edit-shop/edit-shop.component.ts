@@ -139,6 +139,8 @@ shoplocations:any=[];
     else {
       let index = emailFormArray.controls.findIndex(x => x.value == time)
       emailFormArray.removeAt(index);
+
+      // this.sessiondayssRepat.push(this.shoplocations);
     }
 
 
@@ -215,11 +217,22 @@ shoplocations:any=[];
       this.formData.append("shop_address", this.saddress)
 
       // this.formData.append("locationId", this.sessiondayssRepat['0'])
-      for (let i = 0; i < this.sessiondayssRepat.length; i++) {
-        this.formData.append("locationId",this.sessiondayssRepat[i])
-        // console.log("locationId", this.sessiondayssRepat[i]['_id']);
-        
+      console.log(this.sessiondayssRepat);
+      if(this.condtionyesorno == 'yes')
+      {
+        for (let i = 0; i < this.sessiondayssRepat.length; i++) {
+          this.formData.append("locationId",this.sessiondayssRepat[i])
+          // console.log("locationId", this.sessiondayssRepat[i]['_id']);
+          
+        }
       }
+      else{
+        for(let i=0;i<this.shoplocations.length;i++)
+        {
+          this.formData.append("locationId",this.shoplocations[i]._id)
+        }
+      }
+   
 
       this.easydealservice.editshop(this.formData,this.id).subscribe(
         data => {
