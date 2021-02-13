@@ -16,20 +16,23 @@
                 </div>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
+                <select class="form-control" id="" [(ngModel)]="options" (change)="filter1(options)">
                 <option value="" selected>Choose a option</option>
                 <option value="s">Shop Name</option>
-                <option value="m">Menu Name</option>
                 <option value="l">Location</option>
                 
 
               </select>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" id="">
+                <select class="form-control" [(ngModel)]="options2" (change)="filter2(options2)">
                     <option value="" selected>Choose a option</option>
-                   <option value="" *ngFor="let results of results">{{results.shopmenu}}</option>
-    
+                   <option *ngFor="let results of filter2results" value="{{results._id}}" >
+                    <p *ngIf="options== 's'">{{results.shop_name}}</p> 
+                    <p *ngIf="options== 'l'">{{results.location}}</p>  
+                    </option>
+                    
+                    
                   </select>
             </div>
             <div class="col-sm-4">
@@ -112,7 +115,8 @@
                     </mat-row>
                 </mat-table>
 
-                <mat-paginator></mat-paginator>
+
+                <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" (page)="changePage($event)"></mat-paginator>
             </div>
         </div>
     </div>

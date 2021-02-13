@@ -12,23 +12,32 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 })
 export class ShopMenuComponent implements OnInit {
 
-  displayedColumns = ['id','menuname','purchaserate', 'salesrate', 'discountpercentage', 'discountamount', 'shopname', 'action'];
+  displayedColumns = ['id', 'menuname', 'purchaserate', 'salesrate', 'discountpercentage', 'discountamount', 'shopname', 'action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   options: any = "";
+  options2: any = "";
   results: any[];
   status;
-  shopmenu:any =[];
+  shopmenu: any = [];
+  filter2results:any=[];
   userdetails;
   locationid;
+
+  page: number = 0;
+  limit: number = 25;
+  // skip: number = 0;
+  totalLength: number;
+  pageIndex: number = 0;
+  pagenumber = 0;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydealservice:EasydealService,private toaster:ToastrService,private router:Router) { }
+  constructor(private easydealservice: EasydealService, private toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.status = JSON.parse(localStorage.getItem("loginstatus"));
@@ -36,139 +45,199 @@ export class ShopMenuComponent implements OnInit {
     this.getrestmentall();
     console.log(status);
   }
-  getrestmentall()
-  {
+  getrestmentall() {
 
-    if(this.status =='masteradmin')
-    {
-      this.easydealservice.getallmenus().subscribe(
-        data =>{
-          let arr:any = [];
+    if (this.status == 'masteradmin') {
+      this.easydealservice.getallmenus(this.page).subscribe(
+        data => {
+          let arr: any = [];
           arr = data;
-          this.shopmenu = data;
+          this.shopmenu = data['shop'];
           this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
           console.log(arr)
         },
-        error =>{
-  
+        error => {
+
         }
       )
     }
-    else if(this.status == 'locationamin')   
-    {
-      this.locationid=this.userdetails['locationId']._id;
+    else if (this.status == 'locationamin') {
+      this.locationid = this.userdetails['locationId']._id;
       console.log(this.locationid);
-      this.easydealservice.getallmenusbylocation(this.locationid).subscribe(
-        data =>{
-          let arr:any = [];
+      this.easydealservice.getallmenusbylocation(this.locationid,this.page).subscribe(
+        data => {
+          let arr: any = [];
           arr = data;
-          this.shopmenu = data;
+          this.shopmenu = data['posts'];
           this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
           console.log(arr)
         },
-        error =>{
-  
+        error => {
+
         }
       )
     }
-    else if(this.status =='shopadmin')
-    {
+    else if (this.status == 'shopadmin') {
 
     }
-    
+
   }
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  edit(s)
-  {
-    sessionStorage.setItem("shopmenu",JSON.stringify(s));
+  edit(s) {
+    sessionStorage.setItem("shopmenu", JSON.stringify(s));
     this.router.navigate(['/edit-shop-menu'])
   }
-  selectedevent(s) {
+  filter1(s) {
     console.log(s);
-    if (s == "s") {
-      this.results = [
-        {
-        "id": "`1",
-        "shopmenu": "Blackforest"
-      },
-      {
-        "id": "`1",
-        "shopmenu": "Adithya"
-      },   {
-        "id": "`1",
-        "shopmenu": "Murali"
-      },   {
-        "id": "`1",
-        "shopmenu": "Thaza"
-      },
-    ]
+    if (this.status == 'masteradmin') {
+      if (s == "s") {
+        this.easydealservice.getshop().subscribe(
+          data =>{
+            console.log(data);
+            this.filter2results = data;
+           
+          },
+          error =>{
+            console.log(error);
+          }
+        )
+      }
+     
+      else  {
+        this.easydealservice.getalllocations().subscribe(
+          data =>{
+            console.log(data);
+            let results:any =[];
+            results = data;
+            this.filter2results= results;
+            
+          },
+          error =>{
+            console.log(error);
+            
+          }
+        )
+      }
     }
-    else if (s == "m") {
-      this.results = [
-        {
-        "id": "`1",
-        "shopmenu": "Kerala"
-      },
-      {
-        "id": "`1",
-        "shopmenu": "Italian"
-      },   {
-        "id": "`1",
-        "shopmenu": "Chineese"
-      },   {
-        "id": "`1",
-        "shopmenu": "Mexico"
-      },
-    ]
+    else if (this.status == 'locationamin') 
+    {
+      if (s == "s") {
+      
+      }
+      else {
+       
+      }
     }
-    else if (s == "l") {
-      this.results = [
-        {
-        "id": "`1",
-        "shopmenu": "Haripad"
-      },
-      {
-        "id": "`1",
-        "shopmenu": "Kayamkulam"
-      },   {
-        "id": "`1",
-        "shopmenu": "Mavelikara"
-      },   {
-        "id": "`1",
-        "shopmenu": "Karunagappally"
-      },
-    ]
+    else{
+
     }
+  
 
   }
-  active(r)
+  filter2(s)
   {
+    console.log(s);
+    
+  }
+  active(r) {
     this.easydealservice.changerestaurantmenuactive(r._id).subscribe(
-      data =>{
-        this.ngOnInit();
+      data => {
+
+        // this.ngOnInit();
+        this.getdataforpagenumber();
       },
-      error =>{
-        this.ngOnInit();
+      error => {
+        // this.ngOnInit();
+        this.getdataforpagenumber();
 
       },
     )
 
   }
-  inactive(r)
-  {
+  inactive(r) {
     this.easydealservice.changerestaurantmenuactive(r._id).subscribe(
-      data =>{
-        this.ngOnInit();
+      data => {
+        // this.ngOnInit();
+        this.getdataforpagenumber();
       },
-      error =>{
-        this.ngOnInit();
+      error => {
+        // this.ngOnInit();
+        this.getdataforpagenumber();
 
       },
     )
 
+  }
+  getdataforpagenumber() {
+   
+    this.easydealservice.getallmenus(this.pagenumber).subscribe(
+      data => {
+        let arr: any = [];
+        arr = data;
+        this.shopmenu = data['shop'];
+        this.dataSource.data = this.shopmenu;
+        let totalelements = data['totalPages'] * 25;
+        this.totalLength = totalelements;
+        console.log(arr)
+      },
+      error => {
+
+      }
+    )
+  }
+
+  changePage(event) {
+    if (this.status == 'masteradmin')
+    {
+      console.log(event.pageIndex)
+      this.pagenumber = event.pageIndex;
+      this.easydealservice.getallmenus(event.pageIndex).subscribe(
+        data => {
+          this.dataSource = new MatTableDataSource();
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['shop'];
+  
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
+          console.log(this.totalLength)
+        },
+        error => {
+  
+        }
+      )
+  
+    }
+    else if (this.status == 'locationamin') {
+      console.log(event.pageIndex)
+      this.pagenumber = event.pageIndex;
+      this.easydealservice.getallmenusbylocation(this.locationid,event.pageIndex).subscribe(
+        data => {
+          this.dataSource = new MatTableDataSource();
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['posts'];
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+
+          this.totalLength = totalelements;
+          console.log(this.totalLength)
+          console.log(arr)
+        },
+        error => {
+
+        }
+      )
+    }
+   
   }
 }

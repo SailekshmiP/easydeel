@@ -66,7 +66,11 @@ export class EditGeneralShopMenuComponent implements OnInit {
       console.log(this.gmenu);
         this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
       this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
-      this.lId = this.userdetails['locationId']._id;
+      // if(this.loginstatus =='locationamin')
+      // {
+      //   this.lId = this.userdetails['locationId']._id;
+
+      // }
       this.getallShop();
 
       this.sname = this.gmenu.shop_id['_id']
@@ -138,6 +142,7 @@ export class EditGeneralShopMenuComponent implements OnInit {
     }
     else if (this.loginstatus == 'locationamin') {
       // let ud;
+      this.lId = this.userdetails['locationId']._id;
       // this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
       console.log(this.lId)
 

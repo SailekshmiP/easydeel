@@ -17,19 +17,19 @@
             </div>
 
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options">
+                <select class="form-control" id="" [(ngModel)]="options" (change)="filter1(options)">
                 <option value="" selected>Choose a option</option>
                 <option value="c">Course Type</option>
-                <option value="m">Menu Name</option>
+                <!-- <option value="m">Menu Name</option> -->
               
             </select>
             </div>
 
 
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options">
+                <select class="form-control" id="" [(ngModel)]="options2">
                    <option value="" selected>Choose a option</option>
-                   <option value="" *ngFor="let results of results">{{results.restaurantmenu}}</option>
+                   <option  *ngFor="let results of courcetypes" value="{{results._id}}">{{results.cource_name}}</option>
     
                   </select>
             </div>
@@ -60,8 +60,8 @@
                 <ng-container matColumnDef="menuimage">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Image </mat-header-cell>
                     <mat-cell *matCellDef="let row">
-                        <!-- <img src="{{apiUrl}}menurest/get/image/{{row._id}}" alt=""> -->
-                        <button matTooltip="View Image" (click)="view(row._id)"> <i class="fa fa-eye"></i> </button>
+                        <img src="{{apiUrl}}menurest/get/image/{{row._id}}" alt="" style="width: 100px;">
+                        <!-- <button matTooltip="View Image" (click)="view(row._id)"> <i class="fa fa-eye"></i> </button> -->
                     </mat-cell>
                 </ng-container>
 

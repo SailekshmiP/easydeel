@@ -9,6 +9,8 @@
 <p>Payment Mode : {{details.order_pmode}}</p>
 <p>Shop Name : {{sname}}</p>
 <p>Shop Contact Number : {{sphone}}</p>
+<button *ngIf="status == 'Assigned'" (click)="pending()" style="    float: right;">Reject Order</button>
+
 <!-- <p>Shop Name : {{shopdetails.shop_id.shop_name}}</p> -->
 <p *ngIf="!isStatus">Order Assigned to : {{dboyName}}</p>
 

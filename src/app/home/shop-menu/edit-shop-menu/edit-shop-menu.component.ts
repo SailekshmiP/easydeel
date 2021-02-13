@@ -280,16 +280,15 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
       }
     )
   }
-  calculateshopprofitpercentage()
-  {
+  calculateshopprofitpercentage() {
     let ppcaluate;
     let number = 100;
-    let res = (this.profitpercenatge/number)+1;
-    this.profitrate = this.srate/res;
-    console.log("profitrate ",this.profitrate);
+    let res = (this.profitpercenatge / number);
+    let res2 = (this.srate*res);
+    let profitrate = this.srate - res2;
+    this.prate = profitrate.toFixed();
+    console.log(this.prate);
 
-    // this.prate = profitrate.toFixed();
-    // console.log(this.prate);
-    
   }
+
 }

@@ -39,12 +39,16 @@ export class EditOffersComponent implements OnInit {
   pprice;
   showorhide = "Show";
   locations: any=[];
-
+  loginstatus;
+  userdetails;
+  lId;
   constructor(private formbuilder: FormBuilder,
     private easydeelservice: EasydealService,
     private toaster: ToastrService, private router: Router) { }
 
   ngOnInit() {
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallShop();
     this.getalllocations();
     this.offerFormRegistration = this.formbuilder.group(
@@ -98,19 +102,54 @@ export class EditOffersComponent implements OnInit {
       }
     )
   }
-  getallShop() {
-    this.easydeelservice.getshop().subscribe(
-      data => {
-        console.log(data);
-        this.results = data;
+  // getallShop() {
+  //   this.easydeelservice.getshop().subscribe(
+  //     data => {
+  //       console.log(data);
+  //       this.results = data;
 
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
+  getallShop(){
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+    console.log(this.loginstatus);
+
+    
+    if(this.loginstatus =='masteradmin')
+    {
+      this.easydeelservice.getshop().subscribe(
+        data =>{
+          console.log(data);
+          this.results =data;
+       
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+    }
+    else if(this.loginstatus == 'locationamin')   
+    {
+      // this.locationid=this.userdetails['locationId']._id;
+      // console.log(this.locationid);
+      this.lId = this.userdetails['locationId']._id;
+    this.easydeelservice.getallshopsbylocation(this.lId).subscribe(
+      data =>{
+        console.log(data);
+        this.results =data;
+        // this.dataSource.data = this.results;
       },
-      error => {
-        console.log(error);
+      error =>{
+
       }
     )
+      
+    }
   }
-
   shopselcted(s) {
     console.log(s);
     this.easydeelservice.getalllocationbyshopid(s).subscribe(

@@ -58,7 +58,11 @@ export class AddGeneralShopMenuComponent implements OnInit {
     this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     console.log(this.userdetails)
-    this.lId = this.userdetails['locationId']._id;
+    // if(this.loginstatus =='locationamin')
+    // {
+    //   this.lId = this.userdetails['locationId']._id;
+
+    // }
     this.getallShop();
     this.getallgeneralmenu();
 
@@ -97,7 +101,7 @@ export class AddGeneralShopMenuComponent implements OnInit {
       // let ud;
       // this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
       console.log(this.lId)
-
+      this.lId = this.userdetails['locationId']._id;
       // let ud = this.userdetails['locationId']._id;
       // console.log(JSON.parse(localStorage.getItem("userdetails")));
       

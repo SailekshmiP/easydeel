@@ -14,6 +14,8 @@ export class DeliveryBoysComponent implements OnInit {
   displayedColumns = ['id', 'name', 'address', 'mobilenumber' ,'status', 'action'];
   dataSource = new MatTableDataSource();
   status;
+  loginstatus;
+  userdetails;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -25,20 +27,42 @@ export class DeliveryBoysComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit() {
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getalldeliveryboy();
+
+
   }
   getalldeliveryboy()
   {
-    this.easydeelervice.getalldeliveryboy().subscribe(
-      data =>{
-        let s :any= [];
-        s= data;
-        this.dataSource.data = s;
-      },
-      error =>{
 
-      }
-    )
+    if (this.loginstatus == 'masteradmin') {
+      this.easydeelervice.getalldeliveryboy().subscribe(
+        data =>{
+          let s :any= [];
+          s= data;
+          this.dataSource.data = s;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if (this.loginstatus == 'locationamin') 
+    {
+      let ud = this.userdetails['locationId']._id;
+      this.easydeelervice.getalldeliveryboybylocations(ud).subscribe(
+        data =>{
+          let s :any= [];
+          s= data;
+          this.dataSource.data = s;
+        },
+        error =>{
+  
+        }
+      )
+    }
+ 
   }
   edit(s) {
     sessionStorage.setItem("deliveryboys", JSON.stringify(s));

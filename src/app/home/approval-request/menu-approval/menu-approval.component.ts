@@ -12,7 +12,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 })
 export class MenuApprovalComponent implements OnInit {
 
-  displayedColumns = ['mname', 'sname',  'location',  'action'];
+  displayedColumns = ['mname', 'sname',  'location','menuimage',  'action'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;

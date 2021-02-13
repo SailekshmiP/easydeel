@@ -20,12 +20,12 @@ export class GeneralMenuComponent implements OnInit {
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   page: number = 0;
-  limit: number = 20;
+  limit: number = 25;
   // skip: number = 0;
   totalLength: number;
   pageIndex: number = 0;
   // pageLimit: number[] = [5, 10];
-  
+  pagenumber  = 0;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -61,12 +61,13 @@ export class GeneralMenuComponent implements OnInit {
     this.easydeelservice.changestatus(s._id).subscribe(
       data => {
         this.toastr.success("Status Updated");
-        this.ngOnInit();
+        console.log("curent numbere"+this.pagenumber);
+        this.getdataforpagenumber(this.pagenumber);
       },
       error => {
         this.toastr.error("Unable to Update status");
-        this.ngOnInit();
-
+        console.log("curent numbere"+this.pagenumber);
+        this.getdataforpagenumber(this.pagenumber);
       }
     )
   }
@@ -75,11 +76,13 @@ export class GeneralMenuComponent implements OnInit {
     this.easydeelservice.changestatus(s._id).subscribe(
       data => {
         this.toastr.success("Status Updated");
-        this.ngOnInit();
+        console.log("curent numbere"+this.pagenumber);
+        this.getdataforpagenumber(this.pagenumber);
       },
       error => {
         this.toastr.error("Unable to Update status");
-        this.ngOnInit();
+        console.log("curent numbere"+this.pagenumber);
+        this.getdataforpagenumber(this.pagenumber);
 
       }
     )
@@ -88,9 +91,32 @@ export class GeneralMenuComponent implements OnInit {
     sessionStorage.setItem("generalmenu", JSON.stringify(s));
     this.router.navigate(['/editgeneralmenu'])
   }
+
+  getdataforpagenumber(s)
+  {
+    this.easydeelservice.getallgeneralmenubypagination(s).subscribe(
+
+      data => {
+        this.dataSource = new MatTableDataSource();
+
+        console.log(data);
+        this.results = data['gmenu'];
+        this.dataSource.data = this.results;
+        // this.totalLength = data['totalPages'] * 20;
+        // this.totalLength = 100;
+        let totalelements = data['totalPages'] * 20;
+        console.log(totalelements)
+        this.totalLength = totalelements;
+      },
+      error => {
+        console.log(error);
+
+      }
+    )
+  }
   changePage(event) {
     console.log(event.pageIndex)
-
+    this.pagenumber =event.pageIndex;
     this.easydeelservice.getallgeneralmenubypagination(event.pageIndex).subscribe(
 
       data => {

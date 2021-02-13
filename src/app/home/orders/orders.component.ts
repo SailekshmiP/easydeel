@@ -34,6 +34,7 @@ result:any=[];
     this.status = JSON.parse(localStorage.getItem("loginstatus"));
     this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallorder() 
+  
   }
 getallorder()
 {
@@ -84,4 +85,5 @@ assign(s){
     this.ngOnInit();
   });
 }
+
 }

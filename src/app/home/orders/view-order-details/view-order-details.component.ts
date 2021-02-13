@@ -109,6 +109,21 @@ export class ViewOrderDetailsComponent implements OnInit {
       }
     )
   }
+  pending()
+  {
+    let req = {
+      "order_status":"Pending"
+    }
+    this.easydeelservice.reject(req,this.details.customer_id['_id'],this.details.order_id).subscribe(
+      data =>{
+        this.toaster.success("Order Status changed");
+        this.dialogRef.close();
+      },
+      error =>{
+
+      }
+    )
+  }
   gethopdetailsbyorderid()
   {
     this.easydeelservice.getshopdetailsbyorderid(this.details.order_id).subscribe(

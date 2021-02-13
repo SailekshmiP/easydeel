@@ -67,7 +67,7 @@ export class AddOffersComponent implements OnInit {
       this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"));
       this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
       console.log(this.userdetails)
-      this.lId = this.userdetails['locationId']._id;
+     
       this.getallShop();
       this.getalllocations();
   }
@@ -99,7 +99,7 @@ export class AddOffersComponent implements OnInit {
     {
       // this.locationid=this.userdetails['locationId']._id;
       // console.log(this.locationid);
-
+      this.lId = this.userdetails['locationId']._id;
     this.easydeelservice.getallshopsbylocation(this.lId).subscribe(
       data =>{
         console.log(data);
