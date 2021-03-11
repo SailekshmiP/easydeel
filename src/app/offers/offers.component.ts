@@ -112,4 +112,15 @@ export class OffersComponent implements OnInit {
     )
 
   }
+  sendpushnotification(s){
+    this.easydeelservice.sendpushnotifiation(s._id).subscribe(
+      data =>{
+        this.toaster.success("Notification Sent Sucesfully");
+      },
+      error=>{
+        this.toaster.error("Network Error! Unable to sent notification");
+        
+      }
+    )
+  }
 }

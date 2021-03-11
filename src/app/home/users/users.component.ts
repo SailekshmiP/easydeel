@@ -11,8 +11,9 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class UsersComponent implements OnInit {
   displayedColumns = ['id', 'name', 'address', 'phonenumber','redeempoint', 'action'];
   dataSource = new MatTableDataSource();
-
-  // @ViewChild(MatSort) sort: MatSort;
+  loginstatus;
+  userdetails;
+  // @ViewChiloginstatusld(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
@@ -22,20 +23,45 @@ export class UsersComponent implements OnInit {
   constructor(private easydeelervice:EasydealService) { }
 
   ngOnInit() {
+    this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"))
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallusers();
+
   }
   getallusers()
   {
-    this.easydeelervice.getallusers().subscribe(
-      data =>{
-        let a :any = [];
-        a = data;
-        this.dataSource.data = a;
-      },
-      error =>{
-
-      }
-    )
+    if(this.loginstatus =='masteradmin')
+    {
+      this.easydeelervice.getallusers().subscribe(
+        data =>{
+          let a :any = [];
+          a = data;
+          this.dataSource.data = a;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if(this.loginstatus == 'locationamin')   {
+      let locationid=this.userdetails['locationId']._id;
+      console.log(locationid);
+      this.easydeelervice.getallusersbyloation(locationid).subscribe(
+        data =>{
+          let a :any = [];
+          a = data['User'];
+          this.dataSource.data = a;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    
   }
-
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 }

@@ -131,6 +131,7 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
       // this.formData.append("menu_id", this.mname)
       // this.formData.append("menu_desc", this.mdes)
       // this.formData.append("purchaseRate", this.prate)
+
       // this.formData.append("salesRate", this.srate)
       // this.formData.append("discount", this.dperc)
       // this.formData.append("discamountAmount", this.damount)
@@ -143,7 +144,7 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
         "location_id":this.location,
         "menu_id":this.mname,
         "menu_desc":this.mdes,
-        "purchaseRate":this.profitrate.toFixed(),
+        "purchaseRate":this.prate,
         "salesRate":this.srate,
         "discount":this.dperc,
         "discamountAmount":this.damount,
@@ -286,8 +287,8 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     let res = (this.profitpercenatge / number);
     let res2 = (this.srate*res);
     let profitrate = this.srate - res2;
-    this.prate = profitrate.toFixed();
-    console.log(this.prate);
+    this.prate = profitrate;
+    console.log("profit rate"+profitrate);
 
   }
 

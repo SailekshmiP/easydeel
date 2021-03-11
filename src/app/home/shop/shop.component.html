@@ -92,10 +92,10 @@
 
                     <!--Status Column -->
                     <ng-container matColumnDef="status">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header>Status </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Shop Status </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <p style="font-weight: bold; color: green;" *ngIf="row.shop_state == 'Active'">{{row.shop_state}} </p>
-                            <p style="font-weight: bold; color: red;" *ngIf="row.shop_state == 'Inactive'">{{row.shop_state}} </p>
+                            <p style="font-weight: bold; color: green;" *ngIf="row.shop_state == 'Active'">Opened </p>
+                            <p style="font-weight: bold; color: red;" *ngIf="row.shop_state == 'Inactive'">Closed </p>
                         </mat-cell>
                     </ng-container>
 
@@ -106,8 +106,8 @@
                         <mat-cell *matCellDef="let row">
                             <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit" style="color: white;"></i></button> &nbsp;
                             <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
-                            <button class="btn btn-warning" (click)="active(row)" *ngIf="row.shop_state == 'Inactive'">Active </button>&nbsp;
-                            <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.shop_state == 'Active'">In-Active </button>
+                            <button class="btn btn-warning" (click)="active(row)" *ngIf="row.shop_maualstatus == 'Inactive'">Active </button>&nbsp;
+                            <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.shop_maualstatus == 'Active'">In-Active </button>
 
                         </mat-cell>
                     </ng-container>

@@ -65,7 +65,7 @@
                             <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
                             <button class="btn btn-warning" (click)="active(row)" *ngIf="row.offr_state == 'Inactive'">Active </button>&nbsp;
                             <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.offr_state == 'Active'">In-Active </button>
-
+                            <button class="btn btn-primary" (click)="sendpushnotification(row)">Notification</button>
                         </mat-cell>
                     </ng-container>
 

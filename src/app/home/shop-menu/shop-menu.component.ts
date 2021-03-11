@@ -32,6 +32,8 @@ export class ShopMenuComponent implements OnInit {
   totalLength: number;
   pageIndex: number = 0;
   pagenumber = 0;
+  filterselectedornot = false;
+  selectedshopId;
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -87,9 +89,23 @@ export class ShopMenuComponent implements OnInit {
 
   }
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    // filterValue = filterValue.trim(); // Remove whitespace
+    // filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    // this.dataSource.filter = filterValue;
+    // this.filterselectedornot = true;
+    if( this.filterselectedornot == true)
+    {
+      this.easydealservice.searchbyitemname(this.selectedshopId,filterValue).subscribe(
+        data =>{
+          this.shopmenu = data['fulldata'];
+          this.dataSource.data = this.shopmenu;
+        },
+        error =>{
+
+        }
+      )
+    }
+    
   }
   edit(s) {
     sessionStorage.setItem("shopmenu", JSON.stringify(s));
@@ -130,7 +146,17 @@ export class ShopMenuComponent implements OnInit {
     else if (this.status == 'locationamin') 
     {
       if (s == "s") {
-      
+        this.locationid=this.userdetails['locationId']._id;
+      console.log(this.locationid);
+
+    this.easydealservice.getallshopsbylocation(this.locationid).subscribe(
+      data =>{
+        console.log(data);
+        this.filter2results = data;
+      },
+      error =>{
+
+      })
       }
       else {
        
@@ -145,6 +171,18 @@ export class ShopMenuComponent implements OnInit {
   filter2(s)
   {
     console.log(s);
+    this.selectedshopId = s;
+    this.filterselectedornot = true;
+    this.easydealservice.getrestmenubyshopid(s).subscribe(
+      data =>{
+        console.log(data);
+        this.shopmenu = data['data'];
+        this.dataSource.data = this.shopmenu;
+      },
+      error =>{
+
+      }
+    )
     
   }
   active(r) {
@@ -177,25 +215,47 @@ export class ShopMenuComponent implements OnInit {
 
   }
   getdataforpagenumber() {
-   
-    this.easydealservice.getallmenus(this.pagenumber).subscribe(
-      data => {
-        let arr: any = [];
-        arr = data;
-        this.shopmenu = data['shop'];
-        this.dataSource.data = this.shopmenu;
-        let totalelements = data['totalPages'] * 25;
-        this.totalLength = totalelements;
-        console.log(arr)
-      },
-      error => {
+    if (this.status == 'masteradmin') {
+      this.easydealservice.getallmenus(this.pagenumber).subscribe(
+        data => {
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['shop'];
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
+          console.log(arr)
+        },
+        error => {
 
-      }
-    )
+        }
+      )
+    }
+    else if (this.status == 'locationamin') {
+      this.locationid = this.userdetails['locationId']._id;
+      console.log(this.locationid);
+      this.easydealservice.getallmenusbylocation(this.locationid,this.pagenumber).subscribe(
+        data => {
+          let arr: any = [];
+          arr = data;
+          this.shopmenu = data['posts'];
+          this.dataSource.data = this.shopmenu;
+          let totalelements = data['totalPages'] * 25;
+          this.totalLength = totalelements;
+          console.log(arr)
+        },
+        error => {
+
+        }
+      )
+    }
+   
   }
 
   changePage(event) {
-    if (this.status == 'masteradmin')
+    if(this.filterselectedornot == false)
+    {
+      if (this.status == 'masteradmin')
     {
       console.log(event.pageIndex)
       this.pagenumber = event.pageIndex;
@@ -238,6 +298,8 @@ export class ShopMenuComponent implements OnInit {
         }
       )
     }
+    }
+    
    
   }
 }

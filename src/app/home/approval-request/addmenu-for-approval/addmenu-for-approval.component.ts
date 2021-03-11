@@ -26,8 +26,10 @@ export class AddmenuForApprovalComponent implements OnInit {
   formData = new FormData();
   isLoading = false;
   button = 'Submit';
+  isvalidphoto = false;
   locationdetails;
-  constructor(private formbuilder:FormBuilder,private easydealservice:EasydealService,private toastr:ToastrService, private router:Router) { }
+  constructor(private formbuilder:FormBuilder,private toaster:ToastrService,
+    private easydealservice:EasydealService,private toastr:ToastrService, private router:Router) { }
 
   ngOnInit() {
     this.restaurantmenuFormRegistration = this.formbuilder.group(
@@ -56,6 +58,10 @@ export class AddmenuForApprovalComponent implements OnInit {
         return;
     }
     else{
+      if(this.isvalidphoto == true)
+      {
+
+     
       this.isLoading = true;
       this.button = 'Processing';
       let lid = this.locationdetails['locationId']._id;
@@ -84,6 +90,11 @@ export class AddmenuForApprovalComponent implements OnInit {
          }
          
        )
+      }
+      else{
+        this.toaster.error('photo should be 300*300 size');
+        
+      }
     }
   }
   getallcoursetype() {
@@ -106,5 +117,38 @@ export class AddmenuForApprovalComponent implements OnInit {
     
     this.files = event.target.files;
     this.currentphoto = this.files.item(0);
+    this.isvalidphoto = true;
+    window.URL = window.URL;
+    
+    
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      this.files = event.target.files[0];
+    
+      let img = new Image();
+    
+      img.src = window.URL.createObjectURL( this.files );
+      reader.readAsDataURL(this.files);
+      reader.onload = () => {
+        setTimeout(() => {
+          const width = img.naturalWidth;
+          const height = img.naturalHeight;
+    
+          window.URL.revokeObjectURL( img.src );
+          console.log(width + '*' + height);
+          if ( width !== 300 && height !== 300) {
+            this.isvalidphoto = false;
+              console.log(width,height)
+            this.toaster.error('photo should be 300*300 size');
+            
+          } else {
+            this.isvalidphoto = true;
+              console.log(width,height)
+            this.currentphoto = this.files.item(0);
+          
+          }
+        }, 2000);
+          };
+      }
   }
 }

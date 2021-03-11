@@ -87,11 +87,11 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="">Total No of Users </label>
+                    <label for="">No of Quantity Per User </label>
                     <input type="number" class="form-control" placeholder="Enter the Total No of Users  " [(ngModel)]="tnusers" [ngClass]="{ 'is-invalid': submitted && f.tnusers.errors }" formControlName="tnusers">
 
                     <div *ngIf="submitted && f.tnusers.errors" class="invalid-feedback">
-                        <div *ngIf="f.tnusers.errors.required">Total no of users is required</div>
+                        <div *ngIf="f.tnusers.errors.required">No of Quantity Per User is required</div>
 
                     </div>
                 </div>
