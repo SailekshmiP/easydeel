@@ -24,11 +24,8 @@
 
                     <select name="" id="" class="form-control" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
                         <option value="" disabled selected>Choose a option </option>
-                        <option value="">Adhitya</option>
-                        <option value="">Blackforest</option>
-                        <option value="">Anandbhavan</option>
-                        <option value="">Hangout 514</option>
-                        <option value="">Murali</option>
+                        <option *ngFor="let results of results" value="{{results._id}}">{{results.shop_name}}</option>
+                      
                     </select>
                     <div *ngIf="submitted && f.sname.errors" class="invalid-feedback">
                         <div *ngIf="f.sname.errors.required">Shop name is required</div>
@@ -41,10 +38,10 @@
 
                     <select name="" id="" class="form-control" [(ngModel)]="sprice" [ngClass]="{ 'is-invalid': submitted && f.sprice.errors }" formControlName="sprice">
                         <option value="" disabled selected>Choose a option </option>
-                        <option value="">Purchase Rate</option>
-                        <option value="">Sales Rate</option>
-                        <option value="">Discount Amount</option>
-                        <option value="">Discount Percentage</option>
+                        <option value="1">Purchase Rate</option>
+                        <option value="2">Sales Rate</option>
+                        <option value="3">Discount Amount</option>
+                        <option value="4">Discount Percentage</option>
 
                     </select>
                     <div *ngIf="submitted && f.sprice.errors" class="invalid-feedback">
@@ -55,14 +52,14 @@
 
                 <div class="col-sm-4">
                     <label>Amount</label>
-                    <input type="text" class="form-control" [disabled]="false" placeholder="Enter the Amount" [(ngModel)]="amount" (keyup)="onkeydown(amount)" formControlName="amount">
+                    <input type="text" class="form-control" [disabled]="false" placeholder="Enter the Amount" [(ngModel)]="amount" formControlName="amount">
 
                 </div>
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <label>Percentage</label>
                     <input type="text" class="form-control" [disabled]="false" placeholder=" Enter the Percentage " [(ngModel)]="percentage " (keyup)="onkeydown1(percentage) " formControlName="percentage">
 
-                </div>
+                </div> -->
 
 
                 <div class="col-sm-12">

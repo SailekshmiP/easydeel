@@ -21,6 +21,8 @@ export class AddPriceUpdatorComponent implements OnInit {
   percentage;
   disable = false;
   disabled = false;
+  results:any=[];
+  
   constructor(private formbuilder:FormBuilder,private easydealservices:EasydealService,private router:Router,private toastr:ToastrService) { }
 
 
@@ -30,10 +32,10 @@ export class AddPriceUpdatorComponent implements OnInit {
         sname: ['', Validators.required],
         sprice: ['', Validators.required],
         amount: ['', Validators.required],
-        percentage: ['',Validators.required],
+        // percentage: [''],
         
       })
-
+      this.getallshops();
   }
   get f() { return this.addpriceupdatorFormRegistration.controls; }
 
@@ -52,10 +54,11 @@ export class AddPriceUpdatorComponent implements OnInit {
       this.isLoading = true;
       this.button = 'Processing';
       let req = {
+        "amount":parseInt(this.amount),
+        "type":parseInt(this.sprice)
 
-        
       }
-      this.easydealservices.addgencat(req).subscribe(
+      this.easydealservices.updateprice(this.sname,req).subscribe(
         data => {
           this.isLoading = false;
           this.button = 'Submit';
@@ -72,19 +75,19 @@ export class AddPriceUpdatorComponent implements OnInit {
     }
   }
 
- onkeydown(amount) {
-    this.disabled = true;
-    if (amount == '') {
-      this.disabled = false;
-      this.addpriceupdatorFormRegistration.get('percentage').enable();
+//  onkeydown(amount) {
+//     this.disabled = true;
+//     if (amount == '') {
+//       this.disabled = false;
+//       this.addpriceupdatorFormRegistration.get('percentage').enable();
 
-    }
-    else {
-      this.disabled = true;
-      this.addpriceupdatorFormRegistration.get('percentage').disable();
+//     }
+//     else {
+//       this.disabled = true;
+//       this.addpriceupdatorFormRegistration.get('percentage').disable();
 
-    }
-  }
+//     }
+//   }
   onkeydown1(percentage) {
     this.disable = true;
     if (percentage == '') {
@@ -97,5 +100,19 @@ export class AddPriceUpdatorComponent implements OnInit {
       this.addpriceupdatorFormRegistration.get('amount').disable();
 
     }
+  }
+
+  getallshops()
+  {
+    this.easydealservices.getshop().subscribe(
+      data =>{
+        console.log(data);
+        this.results =data;
+      
+      },
+      error =>{
+        console.log(error);
+      }
+    )
   }
 }
