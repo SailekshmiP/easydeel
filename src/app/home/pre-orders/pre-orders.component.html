@@ -29,8 +29,8 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header>Order ID</mat-header-cell>
                         <mat-cell *matCellDef="let row;let i=index;">
                             <!-- <img *ngIf="i == 0" src="./assets/img/new.gif" alt=""> -->
-                            {{row.porder_id}}
-                        </mat-cell>
+                            <img *ngIf="row.order_status == 'Pending'" src="./assets/img/new.gif" alt=""> {{row.porder_id}} </mat-cell>
+
                     </ng-container>
 
 

@@ -20,6 +20,9 @@ export class ViewPreOrdersComponent implements OnInit {
   dboyName;
   isStatus= false;
   bookingid;
+  shopdetails:any = [];
+  sname;
+  sphone;
   constructor(@Inject(MAT_DIALOG_DATA) data, private easydeelservice:EasydealService,
   private toaster:ToastrService,
   private dialogRef: MatDialogRef<ViewPreOrdersComponent>) 
@@ -29,6 +32,7 @@ export class ViewPreOrdersComponent implements OnInit {
     this.status = this.details.order_status;
     console.log(this.status);
     this.getorderbyorderid();
+    this.getpreordershopbyoid();
   }
 
   ngOnInit() {
@@ -79,5 +83,26 @@ export class ViewPreOrdersComponent implements OnInit {
 
     }
   )
+  }
+  getpreordershopbyoid(){
+    
+    let poid = this.details['porder_id'];
+    this.easydeelservice.getpreordershop(poid).subscribe(
+      data =>{
+        let req :any=[];
+
+        req = data['data'];
+        // console.log();
+        
+        this.shopdetails = req;
+        this.sname = this.shopdetails[0].shop_id['shop_name'];
+        this.sphone = this.shopdetails[0].shop_id['shop_phone'];
+      },
+      error =>{
+
+      }
+    )
+
+
   }
 }

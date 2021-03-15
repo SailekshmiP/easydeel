@@ -7,28 +7,31 @@
 
 
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <h4 class="page-title">DAILY SALES REPORT</h4>
             </div>
 
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
+                <!-- <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
                 <option value="" selected>Choose a option</option>
                 <option value="s">Shop Name</option>
                 <option value="l">Location</option>
-                <!-- <option value="c">Category</option> -->
+         
 
-              </select>
+              </select> -->
+                <h4>Sale Amount : {{totalamount - deliverycharge}}</h4>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" id="">
+                <!-- <select class="form-control" id="">
                     <option value="" selected>Choose a option</option>
                    <option value="" *ngFor="let results of results">{{results.sales}}</option>
     
-                  </select>
+                  </select> -->
+                <h4>Delivery Charge : {{deliverycharge}}</h4>
             </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="search here" (keyup)="applyFilter($event.target.value)">
+            <div class="col-sm-2">
+                <h4>Final Amount {{totalamount}}</h4>
+                <!-- <input type="text" class="form-control" placeholder="search here" (keyup)="applyFilter($event.target.value)"> -->
             </div>
         </div>
 
@@ -38,12 +41,12 @@
             </div>
             <div class="col-sm-3">
                 <label for="">From</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" data-date-format="DD MMMM YYYY" (change)="fromdate($event)">
             </div>
             <div class="col-sm-3">
                 <label for="">Date</label>
 
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" data-date-format="DD MMMM YYYY" (change)="todate($event)">
 
             </div>
         </div>
@@ -58,7 +61,7 @@
                 <!--Sl No Column -->
                 <ng-container matColumnDef="slno">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Sl No </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.slno}} </mat-cell>
+                    <mat-cell *matCellDef="let row;let i=index"> {{i+1}} </mat-cell>
                 </ng-container>
 
                 <!-- Date Column -->
@@ -72,15 +75,15 @@
                 <!-- Order ID Column -->
                 <ng-container matColumnDef="orderid">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.orderid}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.order_id}} </mat-cell>
                 </ng-container>
 
 
                 <!--  Purchase Amount Column -->
-                <ng-container matColumnDef="purchaseamount">
+                <!-- <ng-container matColumnDef="purchaseamount">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Purchase Amount </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.purchaseamount}} </mat-cell>
-                </ng-container>
+                    <mat-cell *matCellDef="let row"> {{row.total_price}} </mat-cell>
+                </ng-container> -->
 
                 <!--     
     Payment Type Column
@@ -91,30 +94,30 @@
 
 
                 <!--  Sales Amount Column -->
-                <ng-container matColumnDef="salesamount">
+                <!-- <ng-container matColumnDef="salesamount">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Sales Amount </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.salesamount}} </mat-cell>
-                </ng-container>
+                </ng-container> -->
 
 
                 <!--Delivery Charge Column  -->
                 <ng-container matColumnDef="deliverycharge">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Charge </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.deliverycharge}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.shop_delivery}} </mat-cell>
                 </ng-container>
 
 
                 <!-- Total Amount Column -->
                 <ng-container matColumnDef="totalamount">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Total Amount </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.totalamount}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.total_price}} </mat-cell>
                 </ng-container>
 
                 <!-- Profit Column -->
-                <ng-container matColumnDef="profit">
+                <!-- <ng-container matColumnDef="profit">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Profit </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.profit}} </mat-cell>
-                </ng-container>
+                </ng-container> -->
 
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

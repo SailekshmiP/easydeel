@@ -16,11 +16,15 @@ export class ShopComponent implements OnInit {
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   options: any = "";
+  options1: any = "";
+
   results: any=[];
   apiUrl;
   loginstatus:any;
   locationid;
   userdetails;
+  firsteventvalue;
+
   ngAfterViewInit() {
     // this.dataSource.sort = this.sort;
     
@@ -85,61 +89,97 @@ export class ShopComponent implements OnInit {
   }
   selectedevent(s) {
     console.log(s);
+    this.firsteventvalue = s;
     if (s == "s") {
-      this.results = [
-        {
-        "id": "`1",
-        "shopname": "Blackforest"
-      },
+      if(this.loginstatus =='masteradmin')
       {
-        "id": "`1",
-        "shopname": "Adithya"
-      },   {
-        "id": "`1",
-        "shopname": "Murali"
-      },   {
-        "id": "`1",
-        "shopname": "Thaza"
-      },
-    ]
+        this.easydealservice.getshop().subscribe(
+          data =>{
+            console.log(data);
+            this.results =data;
+            // this.dataSource.data = this.results;
+          },
+          error =>{
+            console.log(error);
+          }
+        )
+      }
+      else if(this.loginstatus == 'locationamin')   
+      {
+        this.locationid=this.userdetails['locationId']._id;
+        console.log(this.locationid);
+  
+      this.easydealservice.getallshopsbylocation(this.locationid).subscribe(
+        data =>{
+          console.log(data);
+          this.results =data;
+          // this.dataSource.data = this.results;
+        },
+        error =>{
+          
+        }
+      )
+        
+      }
+      else if(this.loginstatus =='shopadmin')
+      {
+  
+      }
     }
     else if (s == "c") {
-      this.results = [
-        {
-        "id": "`1",
-        "shopname": "Hotel"
-      },
-      {
-        "id": "`1",
-        "shopname": "Restaurant"
-      },   {
-        "id": "`1",
-        "shopname": "Supermarket"
-      },   {
-        "id": "`1",
-        "shopname": "Services"
-      },
-    ]
+     
     }
     else if (s == "l") {
-      this.results = [
-        {
-        "id": "`1",
-        "shopname": "Haripad"
-      },
-      {
-        "id": "`1",
-        "shopname": "Kayamkulam"
-      },   {
-        "id": "`1",
-        "shopname": "Mavelikara"
-      },   {
-        "id": "`1",
-        "shopname": "Karunagappally"
-      },
-    ]
-    }
+        this.easydealservice.getalllocations().subscribe(
+          data =>{
+       
+            let arr :any = [];
+            arr = data;
+            this.results = [];
+            for(let i=0;i<arr.length;i++)
+            {
+              let req = {
+                "_id":arr[i]._id,
+                "shop_name":arr[i].location
+              }
+              this.results.push(req)
 
+
+            }
+            console.log(this.results);
+            
+          },
+          error =>{
+            console.log(error);
+            
+          }
+        )
+      }
+
+  }
+  selectedevent1(si)
+  {
+    // this.options1 = si;
+    if(this.firsteventvalue == 'l')
+    {
+      console.log(si);
+      this.easydealservice.getallshopsbylocation(si).subscribe(
+        data =>{
+          console.log(data);
+          let res :any = [];
+          res =data;
+          this.dataSource.data = res;
+        },
+        error =>{
+  
+        }
+      )
+      
+    }
+    else if(this.firsteventvalue == 'c')
+    {
+      
+    }
   }
   edit(r)
   {

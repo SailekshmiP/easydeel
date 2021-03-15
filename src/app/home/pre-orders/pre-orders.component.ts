@@ -47,7 +47,7 @@ export class PreOrdersComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewPreOrdersComponent, {
       data: s,
       width:"500px",
-      height:"auto"
+      height:"600px"
     }
     );
     dialogRef.afterClosed().subscribe(result => {

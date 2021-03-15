@@ -35,16 +35,16 @@
             <div class="col-sm-2">
                 <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
                     <option value="" selected>Choose a option</option>
-                    <option value="s">Shop</option>
+                    <!-- <option value="s">Shop</option> -->
                     <option value="l">Location</option>
                     <option value="c">Category</option>
 
                 </select>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" id="">
+                <select class="form-control" id="" [(ngModel)]="options1" (change)="selectedevent1(options1)">
                     <option value="" selected>Choose a option</option>
-                    <option value="" *ngFor="let results of results">{{results.shopname}}</option>
+                    <option  *ngFor="let results of results" value="{{results._id}}">{{results.shop_name}}</option>
 
                 </select>
             </div>

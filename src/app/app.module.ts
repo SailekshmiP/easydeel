@@ -70,7 +70,7 @@ import { PreOrdersComponent } from './home/pre-orders/pre-orders.component';
 import { AddPreOrdersComponent } from './home/pre-orders/add-pre-orders/add-pre-orders.component';
 import { EditPreOrdersComponent } from './home/pre-orders/edit-pre-orders/edit-pre-orders.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
@@ -93,7 +93,7 @@ import { EditUpiComponent } from './settings/upi/edit-upi/edit-upi.component';
 
 // import { AddPriceUpdatorComponent } from './settings/add-price-updator/add-price-updator.component';
 // import { EditPriceUpdatorComponent } from './settings/edit-price-updator/edit-price-updator.component';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+// import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { AddmenuForApprovalComponent } from './home/approval-request/addmenu-for-approval/addmenu-for-approval.component';
 import { EditmenuForApprovalComponent } from './home/approval-request/editmenu-for-approval/editmenu-for-approval.component';
 import { LocationAdminViewPendingrequestComponent } from './home/approval-request/location-admin-view-pendingrequest/location-admin-view-pendingrequest.component';
@@ -200,12 +200,12 @@ import { EditLocationAdminPhonenumberComponent } from './settings/location-admin
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    NgxMatSelectSearchModule
+    // NgxMatSelectSearchModule
   ],
 
   entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent],
   
-  providers: [{provide: LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [{provide: LocationStrategy,useClass:HashLocationStrategy},DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
