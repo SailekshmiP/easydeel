@@ -384,4 +384,8 @@ updateprice(sid,req)
 {
   return this.http.patch(this.apiUrl+'addrestaurantmenu/salesrate/shop/'+sid,req);
 }
+getpurchasereport(sid,fromdate,todate)
+{
+  return this.http.get(this.apiUrl+'report/purchasereport/'+sid+'?from_date='+fromdate+'&to_date='+todate);
+}
 }

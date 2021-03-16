@@ -173,6 +173,7 @@ export class RestaurantMenuComponent implements OnInit {
     sessionStorage.setItem("restmenu", JSON.stringify(s));
 
     this.router.navigate(['/edit-rest-menu']);
+    // window.open('#/edit-rest-menu', '_blank');
   }
   // selectedevent(r) {
   //   console.log(r);

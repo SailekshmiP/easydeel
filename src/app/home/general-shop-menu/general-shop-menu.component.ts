@@ -106,7 +106,8 @@ this.easydeelservice.changegmstatus(s._id).subscribe(
 edit(s)
 {
   sessionStorage.setItem("gmenu",JSON.stringify(s));
-  this.router.navigate(['/edit-general-shop-menu']);
+  // this.router.navigate(['/edit-general-shop-menu']);
+  window.open('#/edit-general-shop-menu', '_blank');
 }
 
 }

@@ -8,46 +8,41 @@
 
         <div class="row">
             <div class="col-sm-4">
-                <h4 class="page-title">DAILY PURCHASE REPORT</h4>
+                <h4 class="page-title">PURCHASE REPORT</h4>
             </div>
 
             <div class="col-sm-2">
-                <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
-                <option value="" selected>Choose a option</option>
-                <option value="s">Shop Name</option>
-                <option value="l">Location</option>
-                <!-- <option value="c">Category</option> -->
 
-              </select>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" id="">
-                    <option value="" selected>Choose a option</option>
-                   <option value="" *ngFor="let results of results">{{results.purchase}}</option>
-    
-                  </select>
+
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" placeholder="search here" (keyup)="applyFilter($event.target.value)">
+
+                <h6>Total Purchase Amount : {{totalpurchaseamount}}</h6>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-6">
-
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+                <label for="">Shop</label>
+                <select name="" id="" class="form-control" (change)="shopevent($event)">
+                    <option value="" disabled selected>Choose a shop</option>
+                    <option *ngFor="let shops of shops" value="{{shops._id}}">{{shops.shop_name}}</option>
+                </select>
             </div>
             <div class="col-sm-3">
                 <label for="">From</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" (change)="fromdate($event)">
             </div>
             <div class="col-sm-3">
                 <label for="">Date</label>
 
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" (change)="todate($event)">
 
             </div>
         </div>
-
 
     </div>
     <div class="row">
@@ -58,28 +53,28 @@
                 <!--Sl No Column -->
                 <ng-container matColumnDef="slno">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Sl No </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.slno}} </mat-cell>
+                    <mat-cell *matCellDef="let row;let i=index"> {{i+1}} </mat-cell>
                 </ng-container>
 
                 <!-- Shop Name Column -->
                 <ng-container matColumnDef="shopname">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Shop Name</mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.shopname}} </mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.date}} </mat-cell>
                 </ng-container>
 
 
 
                 <!-- Location Column -->
                 <ng-container matColumnDef="location">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Location </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.location}} </mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.order_id}} </mat-cell>
                 </ng-container>
 
 
                 <!--  Purchase Amount Column -->
                 <ng-container matColumnDef="purchaseamount">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Purchase Amount </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.purchaseamount}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.purchase_rate}} </mat-cell>
                 </ng-container>
 
                 <!--     
@@ -90,7 +85,6 @@
       </ng-container> -->
 
 
-                Sales Amount Column
                 <!-- <ng-container matColumnDef="salesamount">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Sales Amount </mat-header-cell>
                     <mat-cell *matCellDef="let row"> {{row.salesamount}} </mat-cell>

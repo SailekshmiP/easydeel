@@ -184,7 +184,8 @@ export class ShopComponent implements OnInit {
   edit(r)
   {
     sessionStorage.setItem("shop",JSON.stringify(r))
-    this.router.navigate(['/editshop'])
+    // this.router.navigate(['/editshop'])
+    window.open('#/editshop', '_blank');
   }
   active(r)
   {

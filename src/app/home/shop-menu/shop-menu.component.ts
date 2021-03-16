@@ -109,7 +109,9 @@ export class ShopMenuComponent implements OnInit {
   }
   edit(s) {
     sessionStorage.setItem("shopmenu", JSON.stringify(s));
-    this.router.navigate(['/edit-shop-menu'])
+    // this.router.navigate(['/edit-shop-menu'])
+    window.open('#/edit-shop-menu', '_blank');
+
   }
   filter1(s) {
     console.log(s);
