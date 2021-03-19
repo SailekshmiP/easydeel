@@ -14,7 +14,7 @@
             <div class="col-sm-2">
                 <select class="form-control" id="" [(ngModel)]="options" (change)="selectedevent(options)">
                 <option value="" selected>Choose a option</option>
-                <option value="s">Delivery Boy</option>
+                <option *ngFor="let results of results" value="{{results._id}}">{{results.name}}</option>
                 <!-- <option value="l">Location</option> -->
                 <!-- <option value="c">Category</option> -->
 
@@ -34,16 +34,16 @@
 
         <div class="row">
             <div class="col-sm-6">
-
+                <h6 style="    font-size: 20px;">Total Delivey Charge: {{totaldeliverycharge}}</h6>
             </div>
             <div class="col-sm-3">
                 <label for="">From</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" (change)="fromdate($event)">
             </div>
             <div class="col-sm-3">
                 <label for="">Date</label>
 
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" (change)="todate($event)">
 
             </div>
         </div>
@@ -58,7 +58,7 @@
                 <!--Sl No Column -->
                 <ng-container matColumnDef="slno">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Sl No </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.slno}} </mat-cell>
+                    <mat-cell *matCellDef="let row;let i=index;"> {{i+1}} </mat-cell>
                 </ng-container>
 
                 <!-- Date Column -->
@@ -92,15 +92,15 @@
 
                 <!--  Sales Amount Column -->
                 <ng-container matColumnDef="salesamount">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Sales Amount </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.salesamount}} </mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.order_id}} </mat-cell>
                 </ng-container>
 
 
                 <!--Delivery Amount Column  -->
                 <ng-container matColumnDef="deliveryamount">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Amount </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.deliveryamount}} </mat-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Rate </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.delivery_rate}} </mat-cell>
                 </ng-container>
 
 

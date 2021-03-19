@@ -388,4 +388,8 @@ getpurchasereport(sid,fromdate,todate)
 {
   return this.http.get(this.apiUrl+'report/purchasereport/'+sid+'?from_date='+fromdate+'&to_date='+todate);
 }
+getalldeliveryboyreport(id,fromdate,todate)
+{
+  return this.http.get(this.apiUrl+'report/deliveryboy/dboy/'+id+'?from_date='+fromdate+'&to_date='+todate);
+}
 }
