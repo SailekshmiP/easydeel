@@ -77,7 +77,7 @@ export class EasydealService {
 
     }
 
-    return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/state/' + a, req);
+    return this.http.patch(this.apiUrl + 'addrestaurantmenu/edit/manual_state/' + a, req);
   }
   getalllocations() {
 
@@ -291,6 +291,9 @@ export class EasydealService {
   getallpreorders() {
     return this.http.get(this.apiUrl + 'preorders');
   }
+  getallpreordersbylocation(id){
+    return this.http.get(this.apiUrl+'preorders/location/'+id);
+  }
   getpreorerbyuserid(id) {
     return this.http.get(this.apiUrl + 'preorders/items/' + id);
 
@@ -391,5 +394,23 @@ getpurchasereport(sid,fromdate,todate)
 getalldeliveryboyreport(id,fromdate,todate)
 {
   return this.http.get(this.apiUrl+'report/deliveryboy/dboy/'+id+'?from_date='+fromdate+'&to_date='+todate);
+}
+editlocationadmin(id,req)
+{
+  return this.http.patch(this.apiUrl+'admin/edit/'+id,req);
+}
+addpoints(id,req){
+  return this.http.patch(this.apiUrl+'users/edit/radeem/'+id,req);
+}
+getallgmeusforapproval(){
+  return this.http.get(this.apiUrl+'/location_general');
+}
+addgeneralitemmenuforapproval(formdata){
+  return this.http.post(this.apiUrl+'/location_general/post',formdata);
+
+}
+approvemenugeneral(id,req){
+  return this.http.patch(this.apiUrl+'location_general/approved/'+id,req);
+
 }
 }

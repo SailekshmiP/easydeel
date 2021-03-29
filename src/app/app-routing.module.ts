@@ -6,8 +6,10 @@ import { EditCoursetypeComponent } from './coursetype/edit-coursetype/edit-cours
 import { AddGeneralCategoryComponent } from './general-category/add-general-category/add-general-category.component';
 import { EditGeneralCategoryComponent } from './general-category/edit-general-category/edit-general-category.component';
 import { GeneralCategoryComponent } from './general-category/general-category.component';
+import { AddGeranalMenuForApprovalComponent } from './home/approval-request/add-geranal-menu-for-approval/add-geranal-menu-for-approval.component';
 import { AddmenuForApprovalComponent } from './home/approval-request/addmenu-for-approval/addmenu-for-approval.component';
 import { ApprovalRequestComponent } from './home/approval-request/approval-request.component';
+import { GeneralMenuApprovalComponent } from './home/approval-request/general-menu-approval/general-menu-approval.component';
 import { LocationAdminViewPendingrequestComponent } from './home/approval-request/location-admin-view-pendingrequest/location-admin-view-pendingrequest.component';
 import { MenuApprovalComponent } from './home/approval-request/menu-approval/menu-approval.component';
 import { AddCategoryComponent } from './home/category/add-category/add-category.component';
@@ -118,6 +120,10 @@ const routes: Routes = [
   {path:'addshopadminoffers',component:AddShopAdminOffersComponent},
   {path:'salesreport',component:SalesReportComponent},
   {path:'approvalrequest',component:ApprovalRequestComponent},
+  {path:'geranlmenuapproval',component:GeneralMenuApprovalComponent},
+  {path:'geranlmenuforapproval',component:AddGeranalMenuForApprovalComponent},
+
+  
   {path:'menuapproval',component:MenuApprovalComponent},
   {path:'priceupdator',component:PriceUpdatorComponent},
   {path:'addpriceupdator',component:AddPriceUpdatorComponent},

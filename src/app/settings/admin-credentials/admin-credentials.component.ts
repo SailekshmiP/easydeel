@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
 import { EasydealService } from 'src/app/_services/easydeal.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { EasydealService } from 'src/app/_services/easydeal.service';
 export class AdminCredentialsComponent implements OnInit {
 
   
-  displayedColumns = ['slno', 'emailusername','role','location','password'];
+  displayedColumns = ['slno', 'emailusername','role','location','password','edit'];
   dataSource = new MatTableDataSource();
 
   // @ViewChild(MatSort) sort: MatSort;
@@ -20,7 +21,7 @@ export class AdminCredentialsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydeelservice:EasydealService) { }
+  constructor(private easydeelservice:EasydealService,private router:Router) { }
 
   ngOnInit() {
     this.easydeelservice.getalladmindetails().subscribe(
@@ -35,6 +36,9 @@ export class AdminCredentialsComponent implements OnInit {
       }
     )
   }
-
+  edit(s){
+    sessionStorage.setItem("admincred",JSON.stringify(s));
+    this.router.navigate(['/editadmincredentials']);
+  }
 
 }

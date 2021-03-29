@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { EasydealService } from 'src/app/_services/easydeal.service';
+import { AddRedeempointComponent } from './add-redeempoint/add-redeempoint.component';
 
 @Component({
   selector: 'app-users',
@@ -20,7 +22,7 @@ export class UsersComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private easydeelervice:EasydealService) { }
+  constructor(private easydeelervice:EasydealService,public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loginstatus = JSON.parse(localStorage.getItem("loginstatus"))
@@ -63,5 +65,18 @@ export class UsersComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+  addpont(s){
+    console.log(s);
+    const dialogRef = this.dialog.open(AddRedeempointComponent, {
+      data: s,
+      height:"auto"
+    }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+      console.log('The dialog was closed');
+      
+    });
   }
 }

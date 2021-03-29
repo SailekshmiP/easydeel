@@ -15,7 +15,9 @@ export class PreOrdersComponent implements OnInit {
 
   displayedColumns = ['orderid', 'bookingdate', 'customernameandaddress','contactno', 'deliverydate','deliverytime','status','action'];
   dataSource = new MatTableDataSource();
-
+  status: any =[];
+  userdetails: any=[];
+  locationid;
   // @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -27,11 +29,15 @@ export class PreOrdersComponent implements OnInit {
     private toaster:ToastrService) { }
 
   ngOnInit() {
+    this.status = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     this.getallPreorders();
   }
 
   getallPreorders()
   {
+    if(this.status =='masteradmin')
+    {
     this.easydeelservice.getallpreorders().subscribe(
       data =>{
         let arr :any =[];
@@ -41,7 +47,21 @@ export class PreOrdersComponent implements OnInit {
       error =>{
 
       }
-    )
+    )}
+    else if(this.status == 'locationamin'){
+      this.locationid=this.userdetails['locationId']._id;
+      console.log(this.locationid);
+      this.easydeelservice.getallpreordersbylocation(this.locationid).subscribe(
+        data =>{
+          let arr :any =[];
+          arr = data['data'];
+          this.dataSource.data = arr;
+        },
+        error =>{
+  
+        }
+      )
+    }
   }
   view(s){
     const dialogRef = this.dialog.open(ViewPreOrdersComponent, {

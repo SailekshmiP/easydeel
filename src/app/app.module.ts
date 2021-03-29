@@ -100,6 +100,9 @@ import { LocationAdminViewPendingrequestComponent } from './home/approval-reques
 import { LocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/location-admin-phonenumber.component';
 import { AddLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/add-location-admin-phonenumber/add-location-admin-phonenumber.component';
 import { EditLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/edit-location-admin-phonenumber/edit-location-admin-phonenumber.component';
+import { AddRedeempointComponent } from './home/users/add-redeempoint/add-redeempoint.component';
+import { GeneralMenuApprovalComponent } from './home/approval-request/general-menu-approval/general-menu-approval.component';
+import { AddGeranalMenuForApprovalComponent } from './home/approval-request/add-geranal-menu-for-approval/add-geranal-menu-for-approval.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -189,6 +192,9 @@ import { EditLocationAdminPhonenumberComponent } from './settings/location-admin
     LocationAdminPhonenumberComponent,
     AddLocationAdminPhonenumberComponent,
     EditLocationAdminPhonenumberComponent,
+    AddRedeempointComponent,
+    GeneralMenuApprovalComponent,
+    AddGeranalMenuForApprovalComponent,
     // MatSort
   ],
   imports: [
@@ -203,7 +209,7 @@ import { EditLocationAdminPhonenumberComponent } from './settings/location-admin
     // NgxMatSelectSearchModule
   ],
 
-  entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent],
+  entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent,AddRedeempointComponent],
   
   providers: [{provide: LocationStrategy,useClass:HashLocationStrategy},DatePipe],
   bootstrap: [AppComponent]

@@ -261,6 +261,8 @@ export class ShopMenuComponent implements OnInit {
     {
       console.log(event.pageIndex)
       this.pagenumber = event.pageIndex;
+      console.log(this.pagenumber);
+      
       this.easydealservice.getallmenus(event.pageIndex).subscribe(
         data => {
           this.dataSource = new MatTableDataSource();

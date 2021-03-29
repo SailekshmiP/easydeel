@@ -66,9 +66,9 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
 
-                            <button class="btn btn-success" *ngIf="row.user_state == 'Inactive'">Active</button> &nbsp;
-                            <button class="btn btn-danger" *ngIf="row.user_state == 'Active'">InActive</button>
-
+                            <!-- <button class="btn btn-success" *ngIf="row.user_state == 'Inactive'">Active</button> &nbsp;
+                            <button class="btn btn-danger" *ngIf="row.user_state == 'Active'">InActive</button> -->
+                            <button class="btn btn-warning" (click)="addpont(row)">Add Redeem Point</button>
                         </mat-cell>
                     </ng-container>
 

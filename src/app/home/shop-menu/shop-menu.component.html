@@ -103,8 +103,8 @@
 
                             <div>
 
-                                <button class="btn btn-warning" (click)="active(row)" *ngIf="row.status == 'Inactive'">Active </button>&nbsp;
-                                <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.status == 'Active'">In-Active </button>
+                                <button class="btn btn-warning" (click)="active(row)" *ngIf="row.mstatus == 'Inactive'">Active </button>&nbsp;
+                                <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.mstatus == 'Active'">In-Active </button>
                             </div>
 
                         </mat-cell>
