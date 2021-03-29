@@ -22,7 +22,7 @@
                 <div class="col-sm-4">
                     <label for="">Shop Name </label>
 
-                    <select name="" id="" class="form-control" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname">
+                    <select name="" id="" class="form-control" [(ngModel)]="sname" [ngClass]="{ 'is-invalid': submitted && f.sname.errors }" formControlName="sname" (change)=getlocationsbyshopid(sname)>
                         <option value="" disabled selected>Choose a option </option>
                         <option *ngFor="let results of results" value="{{results._id}}">{{results.shop_name}}</option>
                       
@@ -32,6 +32,20 @@
 
                     </div>
                 </div>
+
+                <div class="col-sm-4">
+                    <label for=""> Location</label>
+
+                    <select name="" id="" class="form-control" [(ngModel)]="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" formControlName="location">
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let l of locations" value="{{l._id}}">{{l.location}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                        <div *ngIf="f.location.errors.required">Location is required</div>
+
+                    </div>
+                </div>
+
 
                 <div class="col-sm-4">
                     <label for="">Select Price </label>

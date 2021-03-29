@@ -11,20 +11,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/masteradminphonenumber">
                     <img src="./assets/img/icons8-phone-100.png" alt="" style="    height: 150px;">
                     <h5>Master Admin Phone Number</h5>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/walletpoints">
                     <img src="./assets/img/icons8-add-bookmark-150.png" alt="">
                     <h5>Wallet Points</h5>
 
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/pincodes">
                     <img src="./assets/img/icons8-location-100.png" alt="" style="    height: 150px;">
                     <h5>Location</h5>
@@ -46,7 +46,7 @@
                 </div>
             </div> -->
 
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/admincredentials">
                     <img src="./assets/img/admin-credentials.png" alt="" style="    height: 150px;">
                     <h5>Admin Credentials</h5>
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/chatbox">
                     <img src="./assets/img/icons8-chat-bubble-100.png" alt="" style="    height: 150px;">
                     <h5>Chat Box</h5>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/upi">
                     <img src="./assets/img/upi.png" alt="" style="    height: 150px;">
                     <h5>UPI Credentials</h5>
@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngIf="status=='masteradmin'">
                 <div class="card" routerLink="/locationadminphonenumber">
                     <img src="./assets/img/location admin phn.png" alt="" style="    height: 150px;">
                     <h5>Location Admin Phone Number</h5>

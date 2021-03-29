@@ -383,9 +383,9 @@ getpreordershop(id)
 {
   return this.http.get(this.apiUrl+'preorders/shop/item/'+id);
 }
-updateprice(sid,req)
+updateprice(sid,lid,req)
 {
-  return this.http.patch(this.apiUrl+'addrestaurantmenu/salesrate/shop/'+sid,req);
+  return this.http.patch(this.apiUrl+'addrestaurantmenu/salesrate/shop/'+sid+'/'+lid,req);
 }
 getpurchasereport(sid,fromdate,todate)
 {

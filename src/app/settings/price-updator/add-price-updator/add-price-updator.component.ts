@@ -16,13 +16,19 @@ export class AddPriceUpdatorComponent implements OnInit {
   isLoading = false;
   button = 'Submit';
   sname ="";
+  location = "";
   sprice ="";
   amount;
   percentage;
   disable = false;
   disabled = false;
   results:any=[];
-  
+
+    // mstyle="";
+    shops: any = [];
+    locations: any = [];
+    status: any;
+    userdetails:any = [];
   constructor(private formbuilder:FormBuilder,private easydealservices:EasydealService,private router:Router,private toastr:ToastrService) { }
 
 
@@ -32,9 +38,14 @@ export class AddPriceUpdatorComponent implements OnInit {
         sname: ['', Validators.required],
         sprice: ['', Validators.required],
         amount: ['', Validators.required],
+        location: ['', Validators.required],
+
         // percentage: [''],
         
       })
+      this.status = JSON.parse(localStorage.getItem("loginstatus"));
+      this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
+
       this.getallshops();
   }
   get f() { return this.addpriceupdatorFormRegistration.controls; }
@@ -58,11 +69,11 @@ export class AddPriceUpdatorComponent implements OnInit {
         "type":parseInt(this.sprice)
 
       }
-      this.easydealservices.updateprice(this.sname,req).subscribe(
+      this.easydealservices.updateprice(this.sname,this.location,req).subscribe(
         data => {
           this.isLoading = false;
           this.button = 'Submit';
-
+          this.addpriceupdatorFormRegistration.reset();
           this.toastr.success("Price Updated successfully");
         
         },
@@ -101,18 +112,67 @@ export class AddPriceUpdatorComponent implements OnInit {
 
     }
   }
+  getlocationsbyshopid(s)
+  {
+    console.log(s)
+
+    this.easydealservices.getalllocationbyshopid(s).subscribe(
+      data => {
+        this.locations = data[0].locationId;
+        console.log(this.locations);
+       
+
+
+      },
+      error => {
+
+      }
+    )
+  }
 
   getallshops()
   {
-    this.easydealservices.getshop().subscribe(
+    // if(this.status == '')
+    // this.easydealservices.getshop().subscribe(
+    //   data =>{
+    //     console.log(data);
+    //     this.results =data;
+      
+    //   },
+    //   error =>{
+    //     console.log(error);
+    //   }
+    // )
+
+    if(this.status =='masteradmin')
+    {
+      this.easydealservices.getshop().subscribe(
+        data =>{
+          console.log(data);
+          this.results =data;
+          // this.dataSource.data = this.results;
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+    }
+    else if(this.status == 'locationamin')   
+    {
+      let locationids=this.userdetails['locationId']._id;
+      console.log(locationids);
+
+    this.easydealservices.getallshopsbylocation(locationids).subscribe(
       data =>{
         console.log(data);
         this.results =data;
-      
+        // this.dataSource.data = this.results;
       },
       error =>{
-        console.log(error);
+        
       }
     )
+      
+    }
   }
 }

@@ -122,10 +122,11 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
       return;
     }
     else {
-      this.calculateshopprofitpercentage();
+  
       this.isLoading = true;
       this.button = 'Processing';
       this.prate = "0";
+      this.calculateshopprofitpercentage();
       // this.formData.append("shop_id", this.sname.toUpperCase())
       // this.formData.append("location_id", this.location)
       // this.formData.append("menu_id", this.mname)
@@ -187,6 +188,8 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
         this.locations = data[0].locationId;
         console.log(this.locations);
         this.profitpercenatge = data[0].profitpercentage;
+        console.log("PROFIT PERCENTAGE"+this.profitpercenatge);
+        
         
 
       },
@@ -282,13 +285,20 @@ this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     )
   }
   calculateshopprofitpercentage() {
+    // let ppcaluate;
+    // let number = 100;
+    // let res = (this.profitpercenatge / number);
+    // let res2 = (this.srate*res);
+    // let profitrate = this.srate - res2;
+    // this.prate = profitrate;
+    // console.log("profit rate"+profitrate);
     let ppcaluate;
     let number = 100;
     let res = (this.profitpercenatge / number);
     let res2 = (this.srate*res);
     let profitrate = this.srate - res2;
-    this.prate = profitrate;
-    console.log("profit rate"+profitrate);
+    this.prate = profitrate.toFixed();
+    console.log(this.prate);
 
   }
 
