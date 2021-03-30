@@ -11,7 +11,7 @@ import { AddRedeempointComponent } from './add-redeempoint/add-redeempoint.compo
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'address', 'phonenumber','redeempoint', 'action'];
+  displayedColumns = ['id', 'name', 'address', 'phonenumber','email','redeempoint', 'action'];
   dataSource = new MatTableDataSource();
   loginstatus;
   userdetails;
