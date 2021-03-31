@@ -150,12 +150,25 @@ export class AddPriceUpdatorComponent implements OnInit {
         data =>{
           console.log(data);
           this.results =data;
+          this.results.sort(function (a, b) {
+            if (a['shop_name'] < b['shop_name']) {
+              return -1;
+            }
+            else if (a['shop_name'] > b['shop_name']) {
+              return 1;
+            }
+            else {
+              return 0;
+            }
+          });
           // this.dataSource.data = this.results;
+          console.log(this.results);
         },
         error =>{
           console.log(error);
         }
       )
+      
     }
     else if(this.status == 'locationamin')   
     {
