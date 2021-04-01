@@ -224,4 +224,67 @@ export class SalesComponent implements OnInit {
     }
 
   }
+
+  singledate(event)
+  {
+    console.log(event.target.value);
+    let singledate=this.datepipe.transform(event.target.value, 'dd-MM-yyyy');
+    console.log(singledate)
+
+    if(this.status =='masteradmin')
+    {
+      
+      this.easydeelervice.getreportbyDate(singledate).subscribe(
+        data =>{
+          let arr :any=[];
+          arr = data['data'];
+          this.responsearray = data['data']
+          this.dataSource.data = arr;
+        
+          for(let i=0;i<this.responsearray.length;i++)
+          {
+            this.totalamount = this.totalamount+parseInt(this.responsearray[i].total_price);
+          }
+          console.log(this.totalamount);
+          for(let j=0;j<this.responsearray.length;j++)
+          {
+            this.deliverycharge = this.deliverycharge+parseInt(this.responsearray[j].shop_delivery); 
+          }
+          
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if(this.status =='locationamin')
+    {
+     
+     let locationid=this.userdetails['locationId']._id;
+      console.log(locationid);
+      this.easydeelervice.getreportbyDatebyloations(locationid,singledate).subscribe(
+        data =>{
+          let arr :any=[];
+          arr = data['data'];
+          this.responsearray = data['data']
+          this.dataSource.data = arr;
+        
+          for(let i=0;i<this.responsearray.length;i++)
+          {
+            this.totalamount = this.totalamount+parseInt(this.responsearray[i].total_price);
+          }
+          console.log(this.totalamount);
+          for(let j=0;j<this.responsearray.length;j++)
+          {
+            this.deliverycharge = this.deliverycharge+parseInt(this.responsearray[j].shop_delivery); 
+          }
+          
+        },
+        error =>{
+  
+        }
+      )
+    }
+    
+  }
 }

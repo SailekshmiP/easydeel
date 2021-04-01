@@ -46,7 +46,14 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </mat-header-cell>
                         <mat-cell *matCellDef="let row"> {{row.mobileNo}} </mat-cell>
                     </ng-container>
-
+                    <ng-container matColumnDef="moneyinhand">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Cash in hand </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.money_hand}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="deliveryboyearnings">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>  Earnings </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.earnings}} </mat-cell>
+                    </ng-container>
                     <!-- Status Column -->
                     <ng-container matColumnDef="status">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Status</mat-header-cell>
@@ -58,20 +65,26 @@
                     <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
                         <mat-cell *matCellDef="let row">
-                            <button class="btn btn-success" (click)="edit(row)"><i
-                                    class="fa fa-edit" style="color: white;"></i></button> &nbsp;
+                            <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit"
+                                    style="color: white;"></i></button> &nbsp;
                             <!-- <button class="btn btn-dark"><i class="fa fa-trash" style="color: white;"></i></button>&nbsp; -->
 
-                            <div>
-                                <button class="btn btn-warning" (click)="active(row)" *ngIf="row.state == 'Inactive'">Active </button>
-                                <button class="btn btn-danger" (click)="inactive(row)" *ngIf="row.state == 'Active'">In-Active </button>
-
-                            </div>
-
-
+                            <!-- <div>
+                                <button class="btn btn-warning" (click)="active(row)"
+                                    *ngIf="row.state == 'Inactive'">Active </button>
+                                <button class="btn btn-danger" (click)="inactive(row)"
+                                    *ngIf="row.state == 'Active'">In-Active </button>
+                                  
+                            </div> -->
+                           
                         </mat-cell>
                     </ng-container>
-
+                    <ng-container matColumnDef="collectcash">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Collect Cash</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> <button class="btn btn-warning" (click)="collectcash(row)"
+                            >Collect Cash </button>
+                        </mat-cell>
+                    </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;">
                     </mat-row>

@@ -1,7 +1,35 @@
 <h6 style="text-align: center;">ORDER DETAILS</h6>
 <hr>
+<div *ngIf="status == 'Pending'" >
+    <button style="    float: right;" (click)="Changename()" *ngIf="textfieldstatus == false">Change Name </button>
+
+</div>
 <p>Customer Name: {{details.customer_id.name}}</p>
 <p>Customer Number & Address: {{details.customer_id.phone}}, {{details.customer_id.address}}</p>
+
+<div class="row" *ngIf="textfieldstatus == true">
+    <div class="col-sm-4">
+        <label for="">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="name">
+    </div>
+
+    <div class="col-sm-4">
+        <label for="">Address</label>
+        <input type="text" class="form-control"  [(ngModel)]="address">
+
+    </div>
+    <div class="col-sm-4">
+        <label for="">Phone Number</label>
+        <input type="text" class="form-control"  [(ngModel)]="number">
+
+    </div>
+    <div class="col-sm-12">
+     <button class="btn btn-info"  style="    margin: 0 auto;
+     display: block;
+     margin-top: 23px;
+     margin-bottom: 10px;" (click)="submitform()">Submit</button> 
+    </div>
+</div>
 
 
 <p>Booking ID : {{details.order_id}}</p>
@@ -41,7 +69,7 @@
 <div *ngIf="isStatus">
     <label for="">Select a delivery Boy</label>
     <select [(ngModel)]="dboyid" class="form-control">
-        <option *ngFor="let deliveryboys of deliveryboys" value="{{deliveryboys._id}}" >{{deliveryboys.name}}</option>
+        <option *ngFor="let deliveryboys of deliveryboys" value="{{deliveryboys._id}}">{{deliveryboys.name}}</option>
     </select>
 </div>
 

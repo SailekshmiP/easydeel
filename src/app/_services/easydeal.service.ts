@@ -413,4 +413,14 @@ approvemenugeneral(id,req){
   return this.http.patch(this.apiUrl+'location_general/approved/'+id,req);
 
 }
+addNameandnumber(req)
+{
+  return this.http.post(this.apiUrl+'indirect/add',req);
+}
+addearningsdeliveryboy(id,req)
+
+{
+  return  this.http.patch(this.apiUrl+'deliveryboy/edit/earnings/'+id,req);
+}
+
 }

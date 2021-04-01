@@ -103,6 +103,7 @@ import { EditLocationAdminPhonenumberComponent } from './settings/location-admin
 import { AddRedeempointComponent } from './home/users/add-redeempoint/add-redeempoint.component';
 import { GeneralMenuApprovalComponent } from './home/approval-request/general-menu-approval/general-menu-approval.component';
 import { AddGeranalMenuForApprovalComponent } from './home/approval-request/add-geranal-menu-for-approval/add-geranal-menu-for-approval.component';
+import { CollectCashComponentComponent } from './home/delivery-boys/collect-cash-component/collect-cash-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -195,6 +196,7 @@ import { AddGeranalMenuForApprovalComponent } from './home/approval-request/add-
     AddRedeempointComponent,
     GeneralMenuApprovalComponent,
     AddGeranalMenuForApprovalComponent,
+    CollectCashComponentComponent,
     // MatSort
   ],
   imports: [
@@ -209,7 +211,7 @@ import { AddGeranalMenuForApprovalComponent } from './home/approval-request/add-
     // NgxMatSelectSearchModule
   ],
 
-  entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent,AddRedeempointComponent],
+  entryComponents: [ViewOrderDetailsComponent,ViewimageComponent,ViewPreOrdersComponent,AddRedeempointComponent,CollectCashComponentComponent],
   
   providers: [{provide: LocationStrategy,useClass:HashLocationStrategy},DatePipe],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +21,14 @@ export class ViewOrderDetailsComponent implements OnInit {
   isStatus= false;
   shopdetails: any=[];
   sname:any;
+textfieldstatus=false;
+name;
+address;
+number;
   sphone:any;
+  userdetails:any=[];
+  locationid;
+  statuslogin;
   constructor(@Inject(MAT_DIALOG_DATA) data, private easydeelservice:EasydealService,private toaster:ToastrService,
   private dialogRef: MatDialogRef<ViewOrderDetailsComponent>) 
   { 
@@ -28,6 +36,8 @@ export class ViewOrderDetailsComponent implements OnInit {
     console.log(this.details);
     this.status = this.details.order_status;
     console.log(this.status);
+    this.statuslogin = JSON.parse(localStorage.getItem("loginstatus"));
+    this.userdetails = JSON.parse(localStorage.getItem("userdetails"));
     if(this.details.dboy_id == null)
     {
       this.dboyName = "";
@@ -56,6 +66,28 @@ export class ViewOrderDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
+  Changename()
+  {
+    this.textfieldstatus= true;
+  }
+  submitform()
+  {
+    let ree = {
+        "orderid":this.details['order_id'],
+        "name":this.name,
+        "phone":this.number,
+        "address":this.address
+    }
+    console.log(ree);
+    this.easydeelservice.addNameandnumber(ree).subscribe(
+      data =>{
+        this.textfieldstatus= false;
+      },
+      error =>{
+
+      }
+    )
+  }
   getorderbyorderid()
   {
     this.oid = this.details['order_id']
@@ -70,15 +102,37 @@ export class ViewOrderDetailsComponent implements OnInit {
   }
   getalldeliveryboy()
   {
-    this.easydeelservice.getalldeliveryboy().subscribe(
-      data =>{
-      
-        this.deliveryboys = data;
-      },
-      error =>{
 
-      }
-    )
+
+    if(this.statuslogin =='masteradmin')
+    {
+      this.easydeelservice.getalldeliveryboy().subscribe(
+        data =>{
+        
+          this.deliveryboys = data;
+        },
+        error =>{
+  
+        }
+      )
+    }
+    else if(this.statuslogin == 'locationamin'){
+      this.locationid=this.userdetails['locationId']._id;
+      console.log(this.locationid);
+      this.easydeelservice.getalldeliveryboybylocations(this.locationid).subscribe(
+        data =>{
+        
+          this.deliveryboys = data;
+        },
+        error =>{
+  
+        }
+      )
+
+    }
+
+
+   
   }
   assgin(){
       let req = {
