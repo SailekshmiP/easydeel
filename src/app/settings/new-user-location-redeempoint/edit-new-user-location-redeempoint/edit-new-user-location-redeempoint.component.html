@@ -1,0 +1,65 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">Add New User Location Reddem Point</h4>
+
+            </div>
+        </div>
+        <form [formGroup]="addnewuserlocationreddempointformregistration">
+
+            <div class="row">
+
+                
+       
+
+                <div class="col-sm-6">
+                    <label for="">Location </label>
+
+                    <select name="" id="" class="form-control" [(ngModel)]="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }" formControlName="location">
+                        <option value="" disabled selected>Choose a option </option>
+                        <option *ngFor="let l of locations" value="{{l._id}}">{{l.location}}</option>
+                        
+                    </select>
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                        <div *ngIf="f.location.errors.required">Location is required</div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="">Redeem Amount</label>
+                    <input type="number" class="form-control" placeholder="Enter Your Redeem Amount" [(ngModel)]="ramount" [ngClass]="{ 'is-invalid': submitted && f.ramount.errors }" formControlName="ramount">
+
+                    <div *ngIf="submitted && f.ramount.errors" class="invalid-feedback">
+                        <div *ngIf="f.ramount.errors.required">Redeem Amount is required</div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="col-sm-12">
+                    <!-- <button class="btn btn-warning" (click)="submit()">SUBMIT</button> -->
+                    <button class="btn btn-warning" (click)="submit()" [disabled]="isLoading"><i class="fa"
+                        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i>
+                    {{button}}</button>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>

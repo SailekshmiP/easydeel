@@ -104,6 +104,9 @@ import { AddRedeempointComponent } from './home/users/add-redeempoint/add-redeem
 import { GeneralMenuApprovalComponent } from './home/approval-request/general-menu-approval/general-menu-approval.component';
 import { AddGeranalMenuForApprovalComponent } from './home/approval-request/add-geranal-menu-for-approval/add-geranal-menu-for-approval.component';
 import { CollectCashComponentComponent } from './home/delivery-boys/collect-cash-component/collect-cash-component.component';
+import { NewUserLocationRedeempointComponent } from './settings/new-user-location-redeempoint/new-user-location-redeempoint.component';
+import { AddNewUserLocationRedeempointComponent } from './settings/new-user-location-redeempoint/add-new-user-location-redeempoint/add-new-user-location-redeempoint.component';
+import { EditNewUserLocationRedeempointComponent } from './settings/new-user-location-redeempoint/edit-new-user-location-redeempoint/edit-new-user-location-redeempoint.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -197,6 +200,9 @@ import { CollectCashComponentComponent } from './home/delivery-boys/collect-cash
     GeneralMenuApprovalComponent,
     AddGeranalMenuForApprovalComponent,
     CollectCashComponentComponent,
+    NewUserLocationRedeempointComponent,
+    AddNewUserLocationRedeempointComponent,
+    EditNewUserLocationRedeempointComponent,
     // MatSort
   ],
   imports: [

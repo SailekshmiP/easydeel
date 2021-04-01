@@ -422,5 +422,16 @@ addearningsdeliveryboy(id,req)
 {
   return  this.http.patch(this.apiUrl+'deliveryboy/edit/earnings/'+id,req);
 }
-
+getallamoutnvalueslocation()
+{
+  return this.http.get(this.apiUrl+'locationpoint');
+}
+addredeemamount(req)
+{
+  return this.http.post(this.apiUrl+'locationpoint/post',req);
+}
+updateredeemamount(req,id)
+{
+  return this.http.patch(this.apiUrl+'locationpoint/edit/'+id,req);
+}
 }

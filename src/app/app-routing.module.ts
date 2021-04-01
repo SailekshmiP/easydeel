@@ -59,6 +59,9 @@ import { AddLocationAdminPhonenumberComponent } from './settings/location-admin-
 import { EditLocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/edit-location-admin-phonenumber/edit-location-admin-phonenumber.component';
 import { LocationAdminPhonenumberComponent } from './settings/location-admin-phonenumber/location-admin-phonenumber.component';
 import { MasteradminphonenumberComponent } from './settings/masteradminphonenumber/masteradminphonenumber.component';
+import { AddNewUserLocationRedeempointComponent } from './settings/new-user-location-redeempoint/add-new-user-location-redeempoint/add-new-user-location-redeempoint.component';
+import { EditNewUserLocationRedeempointComponent } from './settings/new-user-location-redeempoint/edit-new-user-location-redeempoint/edit-new-user-location-redeempoint.component';
+import { NewUserLocationRedeempointComponent } from './settings/new-user-location-redeempoint/new-user-location-redeempoint.component';
 import { AddPriceUpdatorComponent } from './settings/price-updator/add-price-updator/add-price-updator.component';
 import { PriceUpdatorComponent } from './settings/price-updator/price-updator.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -157,6 +160,9 @@ const routes: Routes = [
   {path:'locationadminphonenumber',component:LocationAdminPhonenumberComponent},
   {path:'addlocationadminphonenumber',component:AddLocationAdminPhonenumberComponent},
   {path:'editlocationadminphonenumber',component:EditLocationAdminPhonenumberComponent},
+  {path:'newuserlocationredeempoint',component:NewUserLocationRedeempointComponent},
+  {path:'addnewuserlocationredeempoint',component:AddNewUserLocationRedeempointComponent},
+  {path:'editnewuserlocationredeempoint',component:EditNewUserLocationRedeempointComponent},
 
 ];
 

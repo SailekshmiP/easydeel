@@ -1,0 +1,60 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">New User Location Reddem Point</h4>
+
+            </div>
+
+            <div class="col-sm-4">
+                <button class="btn btn-primary" style="float: right;" routerLink="/addnewuserlocationredeempoint">Add
+                    New User Location Reddem Point</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <mat-table [dataSource]="dataSource" matSort>
+
+
+               
+
+
+                    <!-- Location Column -->
+                    <ng-container matColumnDef="location">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.locationId.location}} </mat-cell>
+                    </ng-container>
+
+
+
+                         <!--Redeem Amount Column -->
+                         <ng-container matColumnDef="ramount">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Redeem Amount </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.point}} </mat-cell>
+                        </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <button class="btn btn-success" (click)="edit(row)"><i class="fa fa-edit"
+                                    style="color: rgb(255, 255, 255);background-color: #55ce63;"></i></button> &nbsp;
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                </mat-table>
+
+                <mat-paginator></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
